@@ -19,3 +19,17 @@ ls -lR >> Lista os diretorios de forma recursiva
 
 ####### rmdir #######
 rmdir -p >> Inverso de mkdir -p (obs. só apaga as pastas se estiverem vazias)
+
+####### cat #######
+cat -E >> Coloca um $ no final do arquivo. Util pra saber se a linha encerra com espaço.
+zcat >> Utilizado para visualizar arquivos .gz
+bzcat >> Utilizado para visualizar arquivos .bz2
+xzcat >> Utilizado para visualizar arquivos .xz
+
+####### cp #######
+cp -vf >> Força copia e ativa o mode verbose
+cp -vu >> Copia apenas se o arquivo destino for mais antigo que o arquivo origem(update)
+cp -p >> Preserva dono/grupo do arquivo
+
+#######  #######
+
