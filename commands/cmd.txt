@@ -31,5 +31,12 @@ cp -vf >> Força copia e ativa o mode verbose
 cp -vu >> Copia apenas se o arquivo destino for mais antigo que o arquivo origem(update)
 cp -p >> Preserva dono/grupo do arquivo
 
-#######  #######
+#######*********CURINGAS*********#######
+ls m[a-g] >> Exibe os arquivos que iniciam com m e tenham no segundo caractere as letras a, b, c, d, e, f ou g.
+ls m[^a-g] >> Oposto do anterior. Exibe os arquivos com exceção dos que tenham o segundo caractere as letras de a - g
+ls x{zd,ze}* >> Exibe todos os arquivos que iniciam com x tenham zd ou ze após ele e qualquer caraceter no final. Ex: ls x{zd,ze}* /usr/bin
+				      xzdiff xzegrep
+####### date #######
+date 111612001987 (mes dia hora ano) >> Altera a data/hora atual para a data/hora escolhida
+
 
