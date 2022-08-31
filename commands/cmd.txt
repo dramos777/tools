@@ -38,5 +38,68 @@ ls x{zd,ze}* >> Exibe todos os arquivos que iniciam com x tenham zd ou ze após 
 				      xzdiff xzegrep
 ####### date #######
 date 111612001987 (mes dia hora ano) >> Altera a data/hora atual para a data/hora escolhida
+date "+%d-%m-%Y %T" >> Exibe a data (ex: 02-10-2022 07:52:53)
+hwclock --systohc >> Envia o horário do systema pro hardware
+hwclock --hctosys >> Evia o horário do hardware pro systema
 
+####### df #######
+df -l >> Lista somente sistemas de arquivos locais. Não exibe sistema de arquivo montado via rede
+df -m >> Exibe a saída em Megabytes. Util quando precisa tratar a saida em scripts
+df -a >> Exibe detalhes, inclusive pseudo filesystem
+df -i >> Exibe os inodes
+df -T >> Exibe qual sistema de arquivo está sendo usado em cada partição
+df -t ext4 >> Faz um filtro para exibir apenas as partições que estão formatadas com ext4
+df -P >> Exibe a saída em formato posix (util em scripts)
+
+####### du #######
+du -hs >> Exibe em formato humano e sumariza o tamanho
+du -k >> Exibe em kbytes
+du -m >> Exibe em mbytes
+du --inodes >> Exibe os dados dos inodes ao invés de kbytes
+
+####### find #######
+find . -type f -name teste >> Pesquisa apenas arquivos que tenham o nome teste
+find . -type d -name teste >> Pesquisa apenas diretorios que tenham o nome teste
+find /usr -maxdepth 2 -name teste >> Pesquisa pelo nome teste em até 2 níveis de profundiade (nivel atual + 1)
+find /usr -mindepth 2 -name teste >> Pesquisa pelo nome teste iniciando a partir do nível 2 de profundiade (nivel atual + 1)
+
+find /etc -mtime -1 >> Pesquisa os arquivos modificados até 1 dia atrás
+find /etc -ctime -1 >> Pesquisa os arquivos criados até 1 dia atrás
+find /etc -atime -1 >> Pesquisa os arquivos acessados até 1 dia atrás
+find /etc -amin -10 >> Pesquisa os arquivos acessados até 10 minutos atrás
+find /etc -cmin -10 >> Pesquisa os arquivos criados até 10 minutos atrás
+
+find /etc -mtime +1 >> Pesquisa os arquivos modificados a mais de 1 dia atrás
+find /etc -ctime +1 >> Pesquisa os arquivos criados a mais de 1 dia atrás
+find /etc -atime +1 >> Pesquisa os arquivos acessados a mais de 1 dia atrás
+find /etc -amin +10 >> Pesquisa os arquivos acessados a mais de 10 minutos atrás
+find /etc -cmin +10 >> Pesquisa os arquivos criados a mais de 10 minutos atrás
+
+find /usr -gid 1000 >> Pesquisa arquivos pelo gid do grupo 1000
+find /usr -uid 0 >> Pesquisa arquivos pelo uid do usuário 0
+find /home -user teste >> Pesquisa arquivos pelo nome de usuário teste
+find /home -group teste >> Pesquisa arquivos pelo nome de grupo teste
+
+find /usr -links 2 >> Pesquisa arquivos que possuem 2 links como referência
+
+find /usr -size -1000 >> Pesquisa arquivos menores que 1000 blocos
+find /usr -size +1000 >> Pesquisa arquivos maiores que 1000 blocos
+
+find /usr -size -1000k >> Pesquisa arquivos menores que 1000kbytes
+find /usr -size +1000k >> Pesquisa arquivos maiores que 1000kbytes
+
+find /usr -iname ls -exec cp -r {} /tmp \; >> Copia os arquivos ls para o diretorio /tmp
+
+####### free #######
+free >> Exibe informações da memória física e swap da estação
+free --kilo >> Exibe em kilobytes (bloco de 1000)
+free --kibi >> Exibe em kilobytes (bloco de 1024)
+free --mega >> Exibe em megabytes (bloco de 1000)
+free --mebi >> Exibe em megabytes (bloco de 1024)
+free --giga >> Exibe em gigabytes (bloco de 1000)
+free --gibi >> Exibe em gigabytes (bloco de 1024)
+
+free --mega -s 1 >> Exibe em megabytes a cada 1 segundo
+
+####### grep #######
 
