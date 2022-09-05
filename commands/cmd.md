@@ -2,7 +2,9 @@
 Este arquivo foi criado com base em alguns comandos que são utilizados no dia a dia do SysAdmin
 
 ### COMANDO ls
-ls -B >> Lista os arquivos sem exibir os que tem ~ no final (arquivos de backup)
+```
+ls -B #Lista os arquivos sem exibir os que tem ~ no final (arquivos de backup)
+```
 ls --color=auto >> Lista os arquivos utilizando cores para diferenciar diretorios de arquivos
 ls --color=never >> Remove a utilização de cores caso (inverso do comando ls --color=auto)
 ls Diretorio1 Diretorio2 >> O comando ls permite listar o conteúdo de mais de um diretório ao mesmo tempo
