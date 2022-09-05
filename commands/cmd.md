@@ -47,8 +47,9 @@ cp -p >> Preserva dono/grupo do arquivo
 ```
 ls m[a-g] >> Exibe os arquivos que iniciam com m e tenham no segundo caractere as letras a, b, c, d, e, f ou g.
 ls m[^a-g] >> Oposto do anterior. Exibe os arquivos com exceção dos que tenham o segundo caractere as letras de a - g
-ls x{zd,ze}* >> Exibe todos os arquivos que iniciam com x tenham zd ou ze após ele e qualquer caraceter no final. Ex: ls x{zd,ze}* /usr/bin
-				      xzdiff xzegrep
+ls x{zd,ze}* >> Exibe todos os arquivos que iniciam com x tenham zd ou ze após ele e qualquer caraceter no final.
+Ex: ls x{zd,ze}* /usr/bin
+    xzdiff xzegrep
 ```
 ### date
 ```
