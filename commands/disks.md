@@ -95,6 +95,11 @@ O cfdisk é interativo. As opções estarão na tela
 ```
 cfdisk /dev/sdb >> Seleciona o disco /dev/sdb
 ```
+### /etc/mke2fs.conf
+
+Arquivo de especificações utilizado na criação das partições.
+block size >> Tamanho de cada bloco do arquivo. Ex com block size 1024: Um arquivo ocupa no mínimo 1024 de tamanho em disco. Caso ultrapasse o tamanho de 1024 ele vai usar mais um bloco de 1024 para completer seu tamanho.
+inode ratio >> Espaçamento entre cada block size
 
 ### Formatar partição
 ```
@@ -107,12 +112,6 @@ wipefs -a /dev/sdb >> Apaga/Destroi dados de partições criadas em /dev/sdb
 mkfs.ext4 -T largefile /dev/sdb1 >> Vai formatar a partição como ext4 levando em consideração o inode_ratio do largefile (Essas especificações estão disponível em /etc/mke2fs.conf)
 
 ```
-### /etc/mke2fs.conf
-
-Arquivo de especificações utilizado na criação das partições.
-block size >> Tamanho de cada bloco do arquivo. Ex com block size 1024: Um arquivo ocupa no mínimo 1024 de tamanho em disco. Caso ultrapasse o tamanho de 1024 ele vai usar mais um bloco de 1024 para completer seu tamanho.
-inode ratio >> Espaçamento entre cada block size
-
 ### mklost+fourd
 ```
 mklost+found >> Cria a pasta lost+found no diretório corrente
