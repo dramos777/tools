@@ -12,7 +12,7 @@ nosuid >> Não permite criar arquivos suid
 nodev >> Não permite a criação de dispositivos
 rw >> Read and Write
 ro >> Read only
-
+errors=remount-ro >> Em caso de erros remonta como Read Only
 
 mount -o remount /var >> Remonta o ponto de montagem /var
 mount -a|grep var >> Vai exibir informações de montagem de /var
