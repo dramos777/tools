@@ -276,6 +276,7 @@ patch -p1 -N </tmp/diferencas.patch
 ### -N >> Não desfazer patchs que já foram aplicados
 
 ### Para reverter o patch aplicado
+```
 patch -p1 -R </tmp/diferencas.patch
 ```
 
@@ -287,4 +288,16 @@ whereis é utilizado para encontrar pastas de manuais por string
 ### which
 ```
 which ls >> Encontra onde o binário está localizado no sistema operacional
+```
+### mount
+```
+mount -o remount /var >> Vai remontar o ponto de montagem /var
+mount -a >> Exibe todas as configurações dos pontos de montagens. Interessante utilizar com o grep pra filtrar e checar as opções de ponto de montagem
+mounte -o remount,ro /var >> Vai remontar o ponto de montagem /var como somente leitura
+
+```
+### lsof
+```
+lsof /var >> Vai exibir os arquivos do diretório /var abertos e o PID do processo
+lsof -t /var >> Vai exibir o PID do processo dos arquivos abertos no diretório /var
 ```

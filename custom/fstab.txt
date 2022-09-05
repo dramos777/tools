@@ -1,0 +1,18 @@
+### /etc/fstab
+<file system>  	<mount 	point>  <type>  <options>  	<dump>  <check>
+/dev/sdb6	/var		ext4	defaults	0	1
+
+```
+defaults >> Opções defaults
+noatime >> Não atualiza o access time dos arquivos
+nodiratime >> Não atualiza o access time dos diretórios
+norelatime >> Não atualiza o access time dos inodes
+noexec >> Não permite executáveis no sistema de arquivos nem mesmo ao usuário root
+nosuid >> Não permite criar arquivos suid
+nodev >> Não permite a criação de dispositivos
+rw >> Read and Write
+ro >> Read only
+
+
+mount -o remount /var >> Remonta o ponto de montagem /var
+mount -a|grep var >> Vai exibir informações de montagem de /var

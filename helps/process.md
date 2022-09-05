@@ -119,4 +119,10 @@ fg %3 >> Envia o processo 3 para rodar em foreground
 ### kill
 ```
 kill %3 >> Mata o programa que está rodando em background e que tem o número do job 3
+
+```
+### lsof
+```
+lsof /var >> Vai exibir os arquivos do diretório /var abertos e o PID do processo
+lsof -t /var >> Vai exibir o PID do processo dos arquivos abertos no diretório /var
 ```
