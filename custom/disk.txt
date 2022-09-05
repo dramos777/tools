@@ -1,0 +1,37 @@
+### /etc/fstab
+<file system>  	<mount 	point>  <type>  <options>  	<dump>  <check>
+/dev/sdb6	/var		ext4	defaults	0	1
+
+```
+defaults >> Opções defaults
+noatime >> Não atualiza o access time dos arquivos
+nodiratime >> Não atualiza o access time dos diretórios
+norelatime >> Não atualiza o access time dos inodes
+noexec >> Não permite executáveis no sistema de arquivos nem mesmo ao usuário root
+nosuid >> Não permite criar arquivos suid
+nodev >> Não permite a criação de dispositivos
+rw >> Read and Write
+ro >> Read only
+errors=remount-ro >> Em caso de erros remonta como Read Only
+commit=60 >> Realiza o sync do disco a cada 60 segundo
+
+mount -o remount /var >> Remonta o ponto de montagem /var
+mount -a|grep var >> Vai exibir informações de montagem de /var
+```
+### dumpe2fs
+```
+dumpe2fs /dev/sdb1 >> Exibe dados internos do disco relacionado a formatação do sistema de arquivos (label, uuid, status do filesystem, contagem de blocos, blocos reservados, etc)
+```
+### tune2fs
+```
+tune2fs -m 1 /dev/sdb1 >> Altera para 1% o espaço reservado ao root na partição
+tune2fs -O ^has_journal /dev/sdb1 >> Remove o Journal do sistema de arquivos. Esta opção melhora a performace diminuindo o IO de disco, principalmente quando utilizado em rede. Esta técnica foi adotada massivamente por ambientes de clouds.
+```
+### /etc/mke2fs.conf
+Arquivo de especificações utilizado na criação das partições.
+block size >> Tamanho de cada bloco do arquivo. Ex com block size 1024: Um arquivo ocupa no mínimo 1024 de tamanho em disco. Caso ultrapasse o tamanho de 1024 ele vai usar mais um bloco de 1024 para completer seu tamanho.
+inode ratio >> Espaçamento entre cada block size
+
+### mkfs.ext4
+mkfs.ext4 -T largefile /dev/sdb1 >> Vai formatar a partição como ext4 levando em consideração o inode_ratio do largefile (Essas especificações estão disponível em /etc/mke2fs.conf)
+mkfs.ext4 -b 2048 /dev/sdb1 >> Vai alterar o block size para 2048 (Consulte /etc/mke2fs.conf)

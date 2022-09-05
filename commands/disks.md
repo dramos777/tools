@@ -99,11 +99,66 @@ cfdisk /dev/sdb >> Seleciona o disco /dev/sdb
 ### Formatar partição
 ```
 mkfs.ext3 /dev/sdb1 >> Formata a partição /dev/sdb1 como ext3
+mkfs.ext4 -T news /dev/sdb1 >> Formata a partição /dev/sdb1 como ext4 seguindo as especificações do fs_types news disponvível no arquivo /etc/mke2fs.conf
 mkswap /dev/sdb1 >> Formata a partição /dev/sdb1 como swap
+
 wipefs -a /dev/sdb >> Apaga/Destroi dados de partições criadas em /dev/sdb
 
+mkfs.ext4 -T largefile /dev/sdb1 >> Vai formatar a partição como ext4 levando em consideração o inode_ratio do largefile (Essas especificações estão disponível em /etc/mke2fs.conf)
+
 ```
+### /etc/mke2fs.conf
+
+Arquivo de especificações utilizado na criação das partições.
+block size >> Tamanho de cada bloco do arquivo. Ex com block size 1024: Um arquivo ocupa no mínimo 1024 de tamanho em disco. Caso ultrapasse o tamanho de 1024 ele vai usar mais um bloco de 1024 para completer seu tamanho.
+inode ratio >> Espaçamento entre cada block size
+
 ### mklost+fourd
+```
 mklost+found >> Cria a pasta lost+found no diretório corrente
+```
 
+### blkid
+```
+blkid /dev/sdb1 >> Retorna o UUID da partição /dev/sdb1
+blkid -s UUID /dev/sdb1 >> Retorna apenas o UUID da partição /dev/sdb1
+```
 
+### /etc/fstab
+<file system>  	<mount 	point>  <type>  <options>  	<dump>  <check>
+/dev/sdb6	/var		ext4	defaults	0	1
+
+```
+defaults >> Opções defaults
+noatime >> Não atualiza o access time dos arquivos
+nodiratime >> Não atualiza o access time dos diretórios
+norelatime >> Não atualiza o access time dos inodes
+noexec >> Não permite executáveis no sistema de arquivos nem mesmo ao usuário root
+nosuid >> Não permite criar arquivos suid
+nodev >> Não permite a criação de dispositivos
+rw >> Read and Write
+ro >> Read only
+errors=remount-ro >> Em caso de erros remonta como Read Only
+commit=60 >> Realiza o sync do disco a cada 60 segundo
+
+mount -o remount /var >> Remonta o ponto de montagem /var
+mount -a|grep var >> Vai exibir informações de montagem de /var
+```
+
+### dumpe2fs
+```
+dumpe2fs /dev/sdb1 >> Exibe dados internos do disco relacionado a formatação do sistema de arquivos (label, uuid, status do filesystem, contagem de blocos, blocos reservados, etc)
+```
+
+### tune2fs
+```
+tune2fs -L LabelName /dev/sdb1 >> Adiciona a label LabelName na partição /dev/sdb1
+tune2fs -c 10 /dev/sdb1 >> Altera o mount count para 10
+tune2fs -i 180 /dev/sdb1 >> Altera o intervalo de checagem de disco com fsck para 180 dias, ou seja, quando o servidor atingir 180 dias de uso ele realizará uma checagem de disco
+tune2fs -e remount-ro /dev/sdb1 >> Altera o comportamento caso ocorra um erro no sistema de arquivos remontando como somente leitura
+tune2fs -m 1 /dev/sdb1 >> Altera para 1% o espaço reservado ao root
+tune2fs -m 0.1 /dev/sdb1 >> Altera para 0.1% o espaço reservado ao root
+tune2fs -O ^has_journal /dev/sdb1 >> Remove o Journal do sistema de arquivos. Esta opção melhora a performace diminuindo o IO de disco, principalmente quando utilizado em rede. Esta técnica foi adotada massivamente por ambientes de clouds.
+tune2fs -O has_journal /dev/sdb1 >> Habilita o Journal do sistema de arquivos.
+
+```
