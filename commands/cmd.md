@@ -1,5 +1,5 @@
-# Comando comuns
-Este arquivo foi criado com base em alguns comandos que são utilizados no dia a dia do SysAdmin
+# Comandos
+Comando de uso comum o dia-a-dia de um SysAdmin
 
 ### COMANDO ls
 ```
