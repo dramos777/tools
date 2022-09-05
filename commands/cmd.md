@@ -43,7 +43,7 @@ cp -vu >> Copia apenas se o arquivo destino for mais antigo que o arquivo origem
 cp -p >> Preserva dono/grupo do arquivo
 ```
 
-###*********CURINGAS*********###
+#### CORINGAS
 ```
 ls m[a-g] >> Exibe os arquivos que iniciam com m e tenham no segundo caractere as letras a, b, c, d, e, f ou g.
 ls m[^a-g] >> Oposto do anterior. Exibe os arquivos com exceção dos que tenham o segundo caractere as letras de a - g
@@ -215,7 +215,7 @@ shutdown -c >> Cancela um agendamento feito anteriormente pelo comando shutdown
 shutdown -h +10 >> Desliga a máquina em 10min
 ```
 
-###### wc###
+### wc
 ```
 wc >> Exibe o número de linhas, palavras e tamanho do arquivo
 wc -l >> Exibe apenas o número de linhas
@@ -223,7 +223,7 @@ wc -c >> Exibe apenas o número de bytes
 wc -w >> Exibe apenas o número de palavras
 ```
 
-###### seq
+### seq
 ```
 seq 10 >> Enumera as linhas de 1 a 10
 seq 2 10 >> Enumera as linhas começando do 2 até o 10
@@ -271,10 +271,10 @@ diff -ru /tmp/dir-app /tmp/dir-update > /tmp/diferencas.patch
 cd /tmp/dir-app
 patch -p1 -N </tmp/diferencas.patch
 
-####-p1 >> Nível da pasta que o patch foi aplicado (esta opção diz: desça uma pasta para localizar o patch)
-####-N >> Não desfazer patchs que já foram aplicados
+### -p1 >> Nível da pasta que o patch foi aplicado (esta opção diz: desça uma pasta para localizar o patch)
+### -N >> Não desfazer patchs que já foram aplicados
 
-#### Para reverter o patch aplicado
+### Para reverter o patch aplicado
 patch -p1 -R </tmp/diferencas.patch
 ```
 
