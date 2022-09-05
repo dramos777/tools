@@ -3,7 +3,7 @@ Este arquivo foi criado com base em alguns comandos que são utilizados no dia a
 
 ### COMANDO ls
 ```
-ls -B #Lista os arquivos sem exibir os que tem ~ no final (arquivos de backup)
+**ls -B** *Lista os arquivos sem exibir os que tem ~ no final (arquivos de backup)
 ```
 ls --color=auto >> Lista os arquivos utilizando cores para diferenciar diretorios de arquivos
 ls --color=never >> Remove a utilização de cores caso (inverso do comando ls --color=auto)
