@@ -4,7 +4,6 @@ Este arquivo foi criado com base em alguns comandos que são utilizados no dia a
 ### COMANDO ls
 ```
 ls -B ~> lista os arquivos sem exibir os que tem ~ no final (arquivos de backup)
-```
 ls --color=auto >> Lista os arquivos utilizando cores para diferenciar diretorios de arquivos
 ls --color=never >> Remove a utilização de cores caso (inverso do comando ls --color=auto)
 ls Diretorio1 Diretorio2 >> O comando ls permite listar o conteúdo de mais de um diretório ao mesmo tempo
@@ -21,6 +20,8 @@ ls -lhatr >> Exibe a listagem classificada por data de forma invertida, inclusiv
 ls -lc >> Classifica pela data de criação (ctime)
 ls -lX >> Classifica pela externsão do arqivo
 ls -lR >> Lista os diretorios de forma recursiva
+
+```
 
 ### rmdir 
 rmdir -p >> Inverso de mkdir -p (obs. só apaga as pastas se estiverem vazias)
