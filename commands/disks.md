@@ -167,3 +167,5 @@ truncate -s 1G teste.img >> Cria um "disco" dinamicamente alocado de 1G em teste
 ### dd
 dd fi=/dev/zero of=teste.img bs=1024 count=1024000 >> Cria um "disco" com tamanho real de 1G. Depois de criado é possível formatar e montar (mkswap teste.img)
 
+###lsblk
+lsblk >> Exibe uma arvore com os discos e partições existentes
