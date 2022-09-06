@@ -161,3 +161,9 @@ tune2fs -O ^has_journal /dev/sdb1 >> Remove o Journal do sistema de arquivos. Es
 tune2fs -O has_journal /dev/sdb1 >> Habilita o Journal do sistema de arquivos.
 
 ```
+### truncate
+truncate -s 1G teste.img >> Cria um "disco" dinamicamente alocado de 1G em teste.img. Depois de driado é possível formatar e montar o sistema de arquivos (mkfs.ext4 teste.img)
+
+### dd
+dd fi=/dev/zero of=teste.img bs=1024 count=1024000 >> Cria um "disco" com tamanho real de 1G. Depois de criado é possível formatar e montar (mkswap teste.img)
+
