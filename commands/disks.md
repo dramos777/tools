@@ -68,20 +68,20 @@ https://pt.wikipedia.org/wiki/Ext3
 ```
 
 ### fdisk
-```
-fdisk -l >> Lista os discos e as partições
+- Listar os discos e as partições
+fdisk -l
 
-fdisk /dev/sdb >> Seleciona a partição /dev/sdb para ser alterada
-p >> Faz o print das partições do disco
-m >> Exibe um help dos comandos
+- Seleciona a partição /dev/sdb para ser alterada
+fdisk /dev/sdb
+- **p** --> Faz o print das partições do disco
+- **m** --> Exibe um help dos comandos
 
-g >> Cria uma nova tabela (esquema) de partição GPT
-o >> Cria uma nova tabela (esquema) de partição DOS
-n >> Cria uma nova partição
-t >> Altera o tipo da partição (L exibe a lista de partições, 82 swap, 83 Linux)
-w >> Write as alterações realizadas
+- **g** --> Cria uma nova tabela (esquema) de partição GPT
+- **o** --> Cria uma nova tabela (esquema) de partição DOS
+- **n** --> Cria uma nova partição
+- **t** --> Altera o tipo da partição (L exibe a lista de partições, 82 swap, 83 Linux)
+- **w** --> Write as alterações realizadas
 
-```
 ### gdisk
 
 ```
