@@ -115,16 +115,18 @@ gdisk /dev/sdb
 **z** --> Destroy a estrutura de dados da partição (similar ao wipefs -a)
 
 ### parted
+Selecionar o disco /dev/sdb
 ```
-parted /dev/sdb >> Seleciona o disco /dev/sdb
-print >> Exibe as partições existentes no HD
-help >> Ajuda do comando parted
-mklabel msdos >> Cria um nova tabela (esquema) de partição msdos
-mkpart >> Cria uma partição do tipo primaria/estendida/logica e o sistema de arquivos (ext3, ext4, etc)
-unit kB >> Vai alterar a visualização da unidade de medida para kilobytes
-unit mB >> Vai alterar a visualização da unidade de medida para megabytes
-rm >> Remove a partição (após o rm ele vai perguntar qual o número da partição)
+parted /dev/sdb
 ```
+**print** --> Exibe as partições existentes no HD
+**help** --> Ajuda do comando parted
+**mklabel msdos** --> Cria um nova tabela (esquema) de partição msdos
+**mkpart** --> Cria uma partição do tipo primaria/estendida/logica e o sistema de arquivos (ext3, ext4, etc)
+**unit kB** --> Vai alterar a visualização da unidade de medida para kilobytes
+**unit mB** --> Vai alterar a visualização da unidade de medida para megabytes
+**rm** --> Remove a partição (após o rm ele vai perguntar qual o número da partição)
+
 ### cfdisk
 O cfdisk é interativo. As opções estarão na tela
 ```
