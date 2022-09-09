@@ -1,11 +1,9 @@
 # Gerenciamento de Discos
 Tabela (esquema) de particionamento (GPT, MSDOS, ETC)
 
-&nbsp;
 
 Tipo de particionamento (Primario, Extendida, lógica)
 
-&nbsp;
 
 Tipo de sistema de arquivo (EXT2, EXT4, NTFS, SWAP, ETC)
 
