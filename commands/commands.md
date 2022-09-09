@@ -426,7 +426,7 @@ sort -k 2
 sort -t ":" -k 2
 ```
 
-#### time
+### time
 O comando time serve basicamente para calcular o tempo de execução de um comando
 - Calcular o tempo de execução do comando ls
 ```
@@ -449,12 +449,19 @@ touch -a -t 111612001987 arquivo.txt
 
 ### dmesg
 - Prender a tela do demesg para exibir tudo que está ocorrendo naquele momento
+```
 dmesg -w
+```
 - Classificar as mensagens de forma mais legível
+```
 dmesg -x
+```
 - Exibir o timestemp do boot e transformar para uma forma mais legível
+```
 dmesg -T
+```
 - Limpar as mensagens do buffer do Kernel
+```
 dmesg -c
 ```
 
