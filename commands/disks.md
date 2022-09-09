@@ -360,3 +360,8 @@ lvextend -L 400M /dev/vg-technogaps/lv-technogaps
 ```
 resize2fs /dev/vg-technogaps/lv-technogaps >> Resize sistema de arquivos ext4
 ```
+### fstrim (Discard SSD)
+- Escanear e liberar todo o sistema de arquivos que tenha o discard. (Utilizar esta técnica em discos SSD é recomendado para otimizar o uso do disco e diminuir lentidão no sistema. OBS.: Agendar para ser executado periodicamente ou no login da máquina)
+```
+fstrim -va
+```
