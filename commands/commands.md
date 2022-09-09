@@ -1,10 +1,9 @@
-### COMANDO ls
-
-listar os arquivos sem exibir arquivos de backup (arquivos que possuem ~ no final )
+### COMANDO <ls>
+listar arquivos sem exibir backup (arquivos com ~ no final)
 ```
 ls -B
 ```
-Listar os arquivos utilizando cores para diferenciar diretorios de arquivos
+Listar arquivos diferenciando por cores
 ```
 ls --color=auto
 ```
