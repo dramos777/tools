@@ -29,6 +29,10 @@ Indicado para armazenamento de arquivos pequenos (5k, 10k) porque ele trabalha c
 apt update && apt install reiserfs-progs
 ```
 #### btrfs
+Para instalar:
+```
+apt update && apt install btrfs-tools
+```
 Sistema de arquivo de segunda geração. Além da capacidade de armazenamento normal de arquivo também permite o armazenamento compactado de arquivos, deduplicação e RAID (2 arquivos iguais ocupam o mesmo espaço no disco caso estejam em diretorios diferentes. 
 
 **OBS1.:** A opção de compactação não vem ativa por padrão, é necessário utilzar ferramentas de terceiros para ativar. Ex:
@@ -37,35 +41,26 @@ mount /dev/sdb1 /mnt -o compress
 ```
 **OBS2.:** Cuidado com a opção de compactação pois consome mais CPU
 
-```
-apt update && apt install btrfs-tools
-```
 #### zfs
 Sistema de arquivos de segunda geração com compactação e deduplicação nativas, mas possui licença incompatível com o Linux e por isso não é distribuido por padrão nas distribuições. Para utilizar o zfs é necessário instalar o suporte a ele na distribuição
 
 #### ext2
-```
 Tamanho máximo da partição - 2Tb - 16Tb (número de blocos limitados a 65 536)
 
 Tamanho máximo de Arquivo - 16Gb
-```
+
 #### ext3
 
-```
 Tamanho máximo da partição 2Tb - 32Tb - (número de blocos limitados a 65 536)
 
 Tamanho máximo de Arquivo - 16Gb - 2Tb
-```
+
 #### ext4
-```
 Tamanho máximo da partição - 1Eb (número de blocos limitados a 65 536)
 
 Tamanho máximo de Arquivo - 16Tb (para blocos de 4k)
-```
 
-Detalhes sobre o cálculo de blocos e como atingir valores máximos, podem ser
-
-encontrados em:
+Detalhes sobre o cálculo de blocos e como atingir valores máximos, podem ser encontrados em:
 ```
 https://pt.wikipedia.org/wiki/Ext4
 
