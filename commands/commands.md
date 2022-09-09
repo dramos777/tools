@@ -106,7 +106,7 @@ O comando **cat** é utilizado para concatenar aquivos. No geral, ele é usado p
 ```
 cat /tmp/arquivo.txt
 ```
-- Colocar um $ no final da linha do arquivo. Util pra saber se a linha encerra com espaço.
+- Colocar um $ no final da linha do arquivo. Util para identificar linhas que encerram com espaço.
 ```
 cat -E /tmp/arquivo.txt
 ```
@@ -128,79 +128,193 @@ xzcat /tmp/arquivo.xz
 ### cp
 O comando **cp** é utilizado para copiar arquivos/diretorios
 
-Forçar copia e exibir em modo verbose
+- Forçar copia e exibir em modo verbose
 ```
 cp -vf arquivo.txt /tmp/
 ```
-Copiar apenas se o arquivo destino for mais antigo que o arquivo origem(update)
+- Copiar apenas se o arquivo destino for mais antigo que o arquivo origem(update)
 ```
 cp -vu arquivo.txt /tmp/
 ```
-Preservar dono/grupo do arquivo
+- Preservar dono/grupo do arquivo
 ```
 cp -p arquivo.txt /tmp/ 
 ```
 
 ### date
+O comando date gerencia a data e hora do sistema.
+
+- Altera a data/hora atual para 16 de novembro de 1987 às 12:00h (syntax: mes dia hora ano)
 ```
-date 111612001987 (mes dia hora ano) >> Altera a data/hora atual para a data/hora escolhida
-date "+%d-%m-%Y %T" >> Exibe a data (ex: 02-10-2022 07:52:53)
-hwclock --systohc >> Envia o horário do systema pro hardware
-hwclock --hctosys >> Evia o horário do hardware pro systema
+date 111612001987
+```
+Exibir a data (ex: 02-10-2022 07:52:53). Esta syntax é muito utilizada em script para logar início e término de determinada tarefa:
+```
+date "+%d-%m-%Y %T"
+```
+### hwclock
+Comando utilizado para aplicar alterações de data de hora no sistema e no hardware(bios)
+
+-Enviar o horário do systema pro hardware:
+```
+hwclock --systohc
+```
+- Eviar o horário do hardware pro systema:
+```
+hwclock --hctosys
 ```
 
 ### df
+- Lista somente sistemas de arquivos locais. Não exibe sistema de arquivo montado via rede
 ```
-df -l >> Lista somente sistemas de arquivos locais. Não exibe sistema de arquivo montado via rede
-df -m >> Exibe a saída em Megabytes. Util quando precisa tratar a saida em scripts
-df -a >> Exibe detalhes, inclusive pseudo filesystem
-df -i >> Exibe os inodes
-df -T >> Exibe qual sistema de arquivo está sendo usado em cada partição
-df -t ext4 >> Faz um filtro para exibir apenas as partições que estão formatadas com ext4
-df -P >> Exibe a saída em formato posix (util em scripts)
+df -l
+```
+- Exibir a saída em Megabytes. Util quando precisa tratar a saida em scripts
+```
+df -m
+```
+- Exibir detalhes, inclusive pseudo filesystem
+```
+df -a
+```
+- Exibir os inodes
+```
+df -i
+```
+- Exibir qual sistema de arquivo está sendo usado em cada partição
+```
+df -T
+```
+- Exibir apenas as partições que estão formatadas com ext4
+```
+df -t ext4 
+```
+- Exibir a saída em formato posix (util em scripts)
+```
+df -P 
 ```
 
 ### du
+- Exibir em formato humano e sumariza o tamanho
 ```
-du -hs >> Exibe em formato humano e sumariza o tamanho
-du -k >> Exibe em kbytes
-du -m >> Exibe em mbytes
-du --inodes >> Exibe os dados dos inodes ao invés de kbytes
+du -hs /tmp/diretorio
+```
+- Exibir em kbytes
+```
+du -k /tmp/diretorio
+```
+- Exibir em mbytes
+```
+du -m /tmp/diretorio
+```
+- Exibir os dados dos inodes ao invés de kbytes
+```
+du --inodes /tmp/diretorio
 ```
 
 ### find
+- Pesquisar apenas arquivos que tenham o nome teste:
 ```
-find . -type f -name teste >> Pesquisa apenas arquivos que tenham o nome teste
-find . -type d -name teste >> Pesquisa apenas diretorios que tenham o nome teste
-find /usr -maxdepth 2 -name teste >> Pesquisa pelo nome teste em até 2 níveis de profundiade (nivel atual + 1)
-find /usr -mindepth 2 -name teste >> Pesquisa pelo nome teste iniciando a partir do nível 2 de profundiade (nivel atual + 1)
+find . -type f -name teste
+```
+- Pesquisar apenas diretorios que tenham o nome teste
+```
+find . -type d -name teste
+```
+- Pesquisar pelo nome teste em até 2 níveis de profundiade (nivel atual + 1)
+```
+find /usr -maxdepth 2 -name teste
+```
+- Pesquisar pelo nome teste iniciando a partir do nível 2 de profundiade (nivel atual + 1)
+```
+find /usr -mindepth 2 -name teste
+```
 
-find /etc -mtime -1 >> Pesquisa os arquivos modificados até 1 dia atrás
-find /etc -ctime -1 >> Pesquisa os arquivos criados até 1 dia atrás
-find /etc -atime -1 >> Pesquisa os arquivos acessados até 1 dia atrás
-find /etc -amin -10 >> Pesquisa os arquivos acessados até 10 minutos atrás
-find /etc -cmin -10 >> Pesquisa os arquivos criados até 10 minutos atrás
+- Pesquisar os arquivos modificados até 1 dia atrás
+```
+find /etc -mtime -1
+```
+- Pesquisar os arquivos criados até 1 dia atrás
+```
+find /etc -ctime -1
+```
+- Pesquisar os arquivos acessados até 1 dia atrás
+```
+find /etc -atime -1
+```
+- Pesquisar os arquivos acessados até 10 minutos atrás
+```
+find /etc -amin -10
+```
+- Pesquisar os arquivos criados até 10 minutos atrás
+```
+find /etc -cmin -10
+```
 
-find /etc -mtime +1 >> Pesquisa os arquivos modificados a mais de 1 dia atrás
-find /etc -ctime +1 >> Pesquisa os arquivos criados a mais de 1 dia atrás
-find /etc -atime +1 >> Pesquisa os arquivos acessados a mais de 1 dia atrás
-find /etc -amin +10 >> Pesquisa os arquivos acessados a mais de 10 minutos atrás
-find /etc -cmin +10 >> Pesquisa os arquivos criados a mais de 10 minutos atrás
+- Pesquisar os arquivos modificados a mais de 1 dia atrás
+```
+find /etc -mtime +1
+```
+- Pesquisar os arquivos criados a mais de 1 dia atrás
+```
+find /etc -ctime +1
+```
+- Pesquisar os arquivos acessados a mais de 1 dia atrás
+```
+find /etc -atime +1
+```
+- Pesquisar os arquivos acessados a mais de 10 minutos atrás
+```
+find /etc -amin +10
+```
+- Pesquisar os arquivos criados a mais de 10 minutos atrás
+```
+find /etc -cmin +10
+```
 
-find /usr -gid 1000 >> Pesquisa arquivos pelo gid do grupo 1000
-find /usr -uid 0 >> Pesquisa arquivos pelo uid do usuário 0
-find /home -user teste >> Pesquisa arquivos pelo nome de usuário teste
-find /home -group teste >> Pesquisa arquivos pelo nome de grupo teste
+- Pesquisar arquivos pelo gid do grupo 1000
+```
+find /usr -gid 1000
+```
+- Pesquisar arquivos pelo uid do usuário 0
+```
+find /usr -uid 0
+```
+- Pesquisar arquivos pelo nome de usuário teste
+```
+find /home -user teste
+```
+- Pesquisar arquivos pelo nome de grupo teste
+```
+find /home -group teste
+```
 
-find /usr -links 2 >> Pesquisa arquivos que possuem 2 links como referência
+- Pesquisar arquivos que possuem 2 links como referência
+```
+find /usr -links 2
+```
 
-find /usr -size -1000 >> Pesquisa arquivos menores que 1000 blocos
-find /usr -size +1000 >> Pesquisa arquivos maiores que 1000 blocos
+- Pesquisar arquivos menores que 1000 blocos
+```
+find /usr -size -1000
+```
+- Pesquisar arquivos maiores que 1000 blocos
+```
+find /usr -size +1000
+```
 
-find /usr -size -1000k >> Pesquisa arquivos menores que 1000kbytes
-find /usr -size +1000k >> Pesquisa arquivos maiores que 1000kbytes
+- Pesquisar arquivos menores que 1000kbytes
+```
+find /usr -size -1000k
+```
+- Pesquisar arquivos maiores que 1000kbytes
+```
+find /usr -size +1000k
+```
 
-find /usr -iname ls -exec cp -r {} /tmp \; >> Copia os arquivos ls para o diretorio /tmp
+- Copiar os arquivos com nome ls para o diretorio /tmp
+```
+find /usr -iname ls -exec cp -r {} /tmp \;
 ```
 
 ### free
