@@ -193,27 +193,27 @@ blkid -s UUID /dev/sdb1 >> Retorna apenas o UUID da partição /dev/sdb1
 |/dev/sdb6   |	/var       |ext4  |defaults |	0  |	1  |
 
 #### Mapa de opções do arquivo /etc/fstab
-defaults --> Opções defaults
+**defaults** --> Opções defaults
 
-noatime --> Não atualiza o access time dos arquivos
+**noatime** --> Não atualiza o access time dos arquivos
 
-nodiratime --> Não atualiza o access time dos diretórios
+**nodiratime** --> Não atualiza o access time dos diretórios
 
-norelatime --> Não atualiza o access time dos inodes
+**norelatime** --> Não atualiza o access time dos inodes
 
-noexec --> Não permite executáveis no sistema de arquivos nem mesmo ao usuário root
+**noexec** --> Não permite executáveis no sistema de arquivos nem mesmo ao usuário root
 
-nosuid --> Não permite criar arquivos suid
+**nosuid** --> Não permite criar arquivos suid
 
-nodev --> Não permite a criação de dispositivos
+**nodev** --> Não permite a criação de dispositivos
 
-rw --> Read and Write
+**rw** --> Read and Write
 
-ro --> Read only
+**ro** --> Read only
 
-errors=remount-ro --> Em caso de erros remonta como Read Only
+**errors=remount-ro** --> Em caso de erros remonta como Read Only
 
-commit=60 --> Realiza o sync do disco a cada 60 segundo
+**commit=60** --> Realiza o sync do disco a cada 60 segundo
 
 ### mount
 O comando mount é utilizado para montar e remontar partições. Ele permite opões durante a montagem
@@ -227,27 +227,59 @@ mount -a|grep -i var
 ```
 
 ### dumpe2fs
+Exibir dados internos do disco relacionado a formatação do sistema de arquivos (label, uuid, status do filesystem, contagem de blocos, blocos reservados, etc)
 ```
-dumpe2fs /dev/sdb1 >> Exibe dados internos do disco relacionado a formatação do sistema de arquivos (label, uuid, status do filesystem, contagem de blocos, blocos reservados, etc)
+dumpe2fs /dev/sdb1
 ```
 
 ### tune2fs
+- Adicionar a label LabelName na partição /dev/sdb1
 ```
-tune2fs -L LabelName /dev/sdb1 >> Adiciona a label LabelName na partição /dev/sdb1
-tune2fs -c 10 /dev/sdb1 >> Altera o mount count para 10
-tune2fs -i 180 /dev/sdb1 >> Altera o intervalo de checagem de disco com fsck para 180 dias, ou seja, quando o servidor atingir 180 dias de uso ele realizará uma checagem de disco
-tune2fs -e remount-ro /dev/sdb1 >> Altera o comportamento caso ocorra um erro no sistema de arquivos remontando como somente leitura
-tune2fs -m 1 /dev/sdb1 >> Altera para 1% o espaço reservado ao root
-tune2fs -m 0.1 /dev/sdb1 >> Altera para 0.1% o espaço reservado ao root
-tune2fs -O ^has_journal /dev/sdb1 >> Remove o Journal do sistema de arquivos. Esta opção melhora a performace diminuindo o IO de disco, principalmente quando utilizado em rede. Esta técnica foi adotada massivamente por ambientes de clouds.
-tune2fs -O has_journal /dev/sdb1 >> Habilita o Journal do sistema de arquivos.
+tune2fs -L LabelName /dev/sdb1
+```
+- Alterar o mount count para 10
+```
+tune2fs -c 10 /dev/sdb1
+```
+Alterar o intervalo de checagem de disco com fsck para 180 dias, ou seja, quando o servidor atingir 180 dias de uso ele realizará uma checagem de disco
+```
+tune2fs -i 180 /dev/sdb1
+```
+- Altera o comportamento caso ocorra um erro no sistema de arquivos remontando como somente leitura
+```
+tune2fs -e remount-ro /dev/sdb1
+```
+- Alterar para 1% o espaço reservado ao root
+```
+tune2fs -m 1 /dev/sdb1
+```
+- Altera para 0.1% o espaço reservado ao root
+```
+tune2fs -m 0.1 /dev/sdb1
+```
+- Remover o Journal do sistema de arquivos. Esta opção melhora a performace diminuindo o IO de disco, principalmente quando utilizado em rede. Esta técnica foi adotada massivamente por ambientes de clouds.
+```
+tune2fs -O ^has_journal /dev/sdb1
+```
+- Habilita o Journal do sistema de arquivos.
+```
+tune2fs -O has_journal /dev/sdb1
+```
 
-```
 ### truncate
-truncate -s 1G teste.img >> Cria um "disco" dinamicamente alocado de 1G em teste.img. Depois de driado é possível formatar e montar o sistema de arquivos (mkfs.ext4 teste.img)
+- Criar um "disco" dinamicamente alocado de 1G em teste.img. Depois de driado é possível formatar e montar o sistema de arquivos (mkfs.ext4 teste.img)
+```
+truncate -s 1G teste.img
+```
 
 ### dd
-dd fi=/dev/zero of=teste.img bs=1024 count=1024000 >> Cria um "disco" com tamanho real de 1G. Depois de criado é possível formatar e montar (mkswap teste.img)
+- Criar um "disco" com tamanho real de 1G. Depois de criado é possível formatar e montar (mkswap teste.img)
+```
+dd fi=/dev/zero of=teste.img bs=1024 count=1024000
+```
 
 ###lsblk
-lsblk >> Exibe uma arvore com os discos e partições existentes
+- Exibir uma arvore com os discos e partições existentes
+```
+lsblk
+```
