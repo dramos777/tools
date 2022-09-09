@@ -1,10 +1,13 @@
-# Comandos
-Comando de uso comum o dia-a-dia de um SysAdmin
-
 ### COMANDO ls
+
+listar os arquivos sem exibir arquivos de backup (arquivos que possuem ~ no final )
 ```
-ls -B >> lista os arquivos sem exibir os que tem ~ no final (arquivos de backup)
-ls --color=auto >> Lista os arquivos utilizando cores para diferenciar diretorios de arquivos
+ls -B
+```
+Listar os arquivos utilizando cores para diferenciar diretorios de arquivos
+```
+ls --color=auto
+```
 ls --color=never >> Remove a utilização de cores caso (inverso do comando ls --color=auto)
 ls Diretorio1 Diretorio2 >> O comando ls permite listar o conteúdo de mais de um diretório ao mesmo tempo
 ls -ld >> Lista apenas o nome diretório (opção -d) sem listar o conteúdo da pasta. A opção -d sozinha não tem muito sentido por isso foi utilizdo o -l junto.
