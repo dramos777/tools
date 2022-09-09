@@ -192,21 +192,38 @@ blkid -s UUID /dev/sdb1 >> Retorna apenas o UUID da partição /dev/sdb1
 |------------|-------------|------|---------|------|-------|
 |/dev/sdb6   |	/var       |ext4  |defaults |	0  |	1  |
 
-```
-defaults >> Opções defaults
-noatime >> Não atualiza o access time dos arquivos
-nodiratime >> Não atualiza o access time dos diretórios
-norelatime >> Não atualiza o access time dos inodes
-noexec >> Não permite executáveis no sistema de arquivos nem mesmo ao usuário root
-nosuid >> Não permite criar arquivos suid
-nodev >> Não permite a criação de dispositivos
-rw >> Read and Write
-ro >> Read only
-errors=remount-ro >> Em caso de erros remonta como Read Only
-commit=60 >> Realiza o sync do disco a cada 60 segundo
+#### Mapa de opções do arquivo /etc/fstab
+defaults --> Opções defaults
 
-mount -o remount /var >> Remonta o ponto de montagem /var
-mount -a|grep var >> Vai exibir informações de montagem de /var
+noatime --> Não atualiza o access time dos arquivos
+
+nodiratime --> Não atualiza o access time dos diretórios
+
+norelatime --> Não atualiza o access time dos inodes
+
+noexec --> Não permite executáveis no sistema de arquivos nem mesmo ao usuário root
+
+nosuid --> Não permite criar arquivos suid
+
+nodev --> Não permite a criação de dispositivos
+
+rw --> Read and Write
+
+ro --> Read only
+
+errors=remount-ro --> Em caso de erros remonta como Read Only
+
+commit=60 --> Realiza o sync do disco a cada 60 segundo
+
+### mount
+O comando mount é utilizado para montar e remontar partições. Ele permite opões durante a montagem
+- Remontar o ponto de montagem /var
+```
+mount -o remount /var
+```
+- Exibir informações de montagem de /var
+```
+mount -a|grep -i var
 ```
 
 ### dumpe2fs
