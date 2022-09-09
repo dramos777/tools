@@ -486,7 +486,7 @@ adduser technogaps sudo
 ```
 
 ### uname
-```
+
 - Exibir dados do sistema como Versão do Linux, arquitetura
 ```
 uname -a
