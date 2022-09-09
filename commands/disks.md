@@ -141,7 +141,9 @@ cfdisk /dev/sdb >> Seleciona o disco /dev/sdb
 ### /etc/mke2fs.conf
 
 Arquivo de configuração contendo as especificações utilizado na criação das partições.
+
 **block size** --> Tamanho de cada bloco do arquivo. Ex com block size 1024: Um arquivo ocupa no mínimo 1024 de tamanho em disco. Caso ultrapasse o tamanho de 1024 ele vai usar mais um bloco de 1024 para completer seu tamanho.
+
 **inode ratio** --> Espaçamento entre cada block size
 
 ### Formatar partição
@@ -186,8 +188,9 @@ blkid -s UUID /dev/sdb1 >> Retorna apenas o UUID da partição /dev/sdb1
 ```
 
 ### /etc/fstab
-|file system|  	|mount 	point|  |type|  |options|  	|dump|  |check|
-/dev/sdb6	/var		ext4	defaults	0	1
+|file system | mount point | type | options | dump | check |
+|------------|-------------|------|---------|------|-------|
+|/dev/sdb6   |	/var       |ext4  |defaults |	0  |	1  |
 
 ```
 defaults >> Opções defaults
