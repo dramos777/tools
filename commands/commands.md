@@ -513,78 +513,185 @@ uname -m
 ```
 
 ### reboot
-reboot -f >> Reinicia a máquina de forma forçada
-shutdown -r now >> Reinicia a máquina
-shutdown -r 09:40 >> Reinicia a máquina em um horário expecífico
-shutdown -r +10 >> Reinicia a máquina em 10min
-echo b >/proc/sysrq-trigger >> Reinicia a máquina de forma extremamente forçada
+- Reiniciar a máquina de forma forçada
+```
+reboot -f
+```
+- Reiniciar a máquina
+```
+shutdown -r now
+```
+- Reiniciar a máquina em um horário expecífico
+```
+shutdown -r 09:40
+```
+- Reinicia a máquina em 10min
+```
+shutdown -r +10
+```
+Reiniciar a máquina de forma extremamente forçada
+```
+echo b >/proc/sysrq-trigger
 ```
 
 ### shutdown
+
+- Desligar a máquina
 ```
-halt >> Desliga a máquina
-shutdown -h now >> Reinicia a máquina no momento que o comando for executado
-echo o >/proc/sysrq-trigger >> Desliga a máquina de forma extremamente forçada
-shutdown -h 09:40h >> Desliga a máquina em um horário expecífico
-shutdown -c >> Cancela um agendamento feito anteriormente pelo comando shutdown
-shutdown -h +10 >> Desliga a máquina em 10min
+halt
+```
+- Desligar a máquina no momento que o comando for executado
+```
+shutdown -h now
+```
+- Desligar a máquina de forma extremamente forçada
+```
+echo o >/proc/sysrq-trigger
+```
+- Desligar a máquina em um horário expecífico
+```
+shutdown -h 09:40h
+```
+- Cancelar um agendamento feito anteriormente pelo comando shutdown
+```
+shutdown -c
+```
+- Desliga a máquina em 10min
+```
+shutdown -h +10
 ```
 
 ### wc
+- Exibir o número de linhas, palavras e tamanho do arquivo
 ```
-wc >> Exibe o número de linhas, palavras e tamanho do arquivo
-wc -l >> Exibe apenas o número de linhas
-wc -c >> Exibe apenas o número de bytes
-wc -w >> Exibe apenas o número de palavras
+wc
+```
+- Exibir apenas o número de linhas
+```
+wc -l
+```
+- Exibir apenas o número de bytes
+```
+wc -c
+```
+- Exibir apenas o número de palavras
+```
+wc -w 
 ```
 
 ### seq
+- Enumerar as linhas de 1 a 10
 ```
-seq 10 >> Enumera as linhas de 1 a 10
-seq 2 10 >> Enumera as linhas começando do 2 até o 10
-seq 2 2 10 >> Enumera as linhas iniciando em 2 e incrementando 2  até chegar no 10 (2 4 6 8 10)
-seq -w 10 >> Enumera as linhas de 1 a 10 alinhando com um 0 a esquerda (01 02 03 04 05... 10)
+seq 10
+```
+- Enumerar as linhas começando do 2 até o 10
+```
+seq 2 10
+```
+- Enumerar as linhas iniciando em 2 e incrementando 2  até chegar no 10 (2 4 6 8 10)
+```
+seq 2 2 10
+```
+- Enumerar as linhas de 1 a 10 alinhando com um 0 a esquerda (01 02 03 04 05... 10)
+```
+seq -w 10
 ```
 
 ### attr
+- Listar os atributos dos arquivos
 ```
-lsattr >> Lista os atributos dos arquivos
-chattr +i >> (imutável) Não permite alterações ou deleções do arquivo/diretório nem mesmo com usuário root
-chattr -i >> Remove o atributo imutável do arquivo/diretório
-chattr -R >> Modo recursivo
-chattr -a diretorio >> Coloca o diretório em modo apend (o arquivo não pode ser deletado, apenas alterado)
-chattr -a arquivo >> Coloca o arquivo em modo apend (o arquivo não pode ser deletado ou alterado, apenas aceita adição de novas linhas)
-chattr =aie * >> Irá igualar os atributos (a, i, e) em todos os arquivos (*)
-chattr +c >> Compacta o arquivo no momento do armazenamento. (obs. Algumas distros não possuem suporte a este atributo. Neste caso ele será ignorado)
-chattr +s >> É utilizado para deletar o arquivo de forma segura. Ele zera todos os dados do arquivo. (obs. Não funciona bem com sistemas com journal)
-chattr +S >> Ativa o sync do arquivo para imediatamente.
-chatt +D diretorio >> Ativa o sync em um diretório. CUIDADO. Este atributo grava os arquivos no disco sem passar pelo buffer e diminui a performace do sistema
+lsattr
+```
+- Não permitir alterações ou deleções do arquivo/diretório nem mesmo com usuário root (tornar imutável)
+```
+chattr +i
+```
+- Remover o atributo imutável do arquivo/diretório
+```
+chattr -i
+```
+- Aplicar as configurações de modo recursivo
+```
+chattr -R
+```
+- Colocar o diretório em modo apend (o arquivo não pode ser deletado, apenas alterado)
+```
+chattr -a diretorio
+```
+- Colocar o arquivo em modo apend (o arquivo não pode ser deletado ou alterado, apenas aceita adição de novas linhas)
+```
+chattr -a arquivo
+```
+- Igualar os atributos (a, i, e) em todos os arquivos (*)
+```
+chattr =aie *
+```
+- Compactar o arquivo no momento do armazenamento. (obs. Algumas distros não possuem suporte a este atributo. Neste caso ele será ignorado)
+```
+chattr +c
+```
+- Utilizar atributo para deletar o arquivo de forma segura. (este atributo zera todos os dados do arquivo. Obs. Não funciona bem com sistemas com journal)
+```
+chattr +s
+```
+- Ativar o sync do arquivo para imediatamente.
+```
+chattr +S
+```
+- Ativar o sync em um diretório. CUIDADO. Este atributo grava os arquivos no disco sem passar pelo buffer e diminui a performace do sistema
+```
+chatt +D diretorio
 ```
 
 ### cut
+- "Cortar" o primeiro e o sétimo campo (field) do arquivo /etc/passwd levando em consideração o delimitador :
 ```
-cut -d ":" -f 1,7 /etc/passwd >> "Corta" o primeiro e o sétimo campo (field) do arquivo /etc/passwd levando em consideração o delimitador :
-cut -d ":" -f 1-3 /arquivo >> "Corta" o intervalo de 1 a 3 do /arquivo
-cut -b 1-4 arquivo.txt >> "Corta" os 4 primeiro bytes do arquivo.txt
-cut -c 1-4 arquivo.txt >> Corta os 4 primeiros caracteres do arquivo.txt (em caractere o espaço não é contato)
+cut -d ":" -f 1,7 /etc/passwd
+```
+- "Cortar" o intervalo de 1 a 3 do /arquivo
+```
+cut -d ":" -f 1-3 /arquivo
+```
+- "Cortar" os 4 primeiro bytes do arquivo.txt
+```
+cut -b 1-4 arquivo.txt
+```
+- "Corta" os 4 primeiros caracteres do arquivo.txt (em caractere o espaço não é contato)
+```
+cut -c 1-4 arquivo.txt
 ```
 
 ### cmp
+Utilizado para comparar binários
+- Comparar os arquivos e exibe o resultado na tela
 ```
-cmp arquivo1 arquivo2 >> Compara os arquivos e exibe o resultado na tela
-cmp -s arquivo1 arquivo2 >> Compara os arquivos, mas não exibe o resultado, apenas guarda na variável $? o código de saída
+cmp arquivo1 arquivo2
+```
+- Comparar os arquivos, mas não exibe o resultado, apenas guarda na variável $? o código de saída
+```
+cmp -s arquivo1 arquivo2
 ```
 
 ### diff
+- Comparar e exibir as diferenças entre os arquivos arquivo1 e arquivo2
 ```
-diff arquivo1 arquivo2 >> Compara os arquivos e exibe as linhas diferentes
-diff -u arquivo1 arquivo2 >> Compara os arquivos e exibe as linhas diferentes em um formato mais legível (unificado)
-diff -r diretorio1 diretorio2 >> Permite a comparação entre diretórios. Na saída do comando será exibido os arquivos que estão diferentes e as respectivas linhas diferentes
+diff arquivo1 arquivo2
+```
+- Comparar os arquivos e exibe as linhas diferentes em um formato mais legível (unificado)
+```
+diff -u arquivo1 arquivo2
+```
+- Comparar e exibir as diferenças entre os diretórios diretorio1 e diretorio2. (Na saída do comando será exibido os arquivos que estão diferentes e as respectivas linhas diferentes)
+```
+diff -r diretorio1 diretorio2
+```
 
-### patch Exemplo de utilização para atualização de um "app"
+####Exemplo de utilização para atualizar um "app" (patch)
+```
 diff -ru /tmp/dir-app /tmp/dir-update > /tmp/diferencas.patch
 cd /tmp/dir-app
 patch -p1 -N </tmp/diferencas.patch
+```
 
 ### -p1 >> Nível da pasta que o patch foi aplicado (esta opção diz: desça uma pasta para localizar o patch)
 ### -N >> Não desfazer patchs que já foram aplicados
