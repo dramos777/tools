@@ -1,30 +1,75 @@
-### COMANDO <ls>
-listar arquivos sem exibir backup (arquivos com ~ no final)
+### ls
+listar arquivos sem exibir backup (arquivos com ~ no final):
 ```
 ls -B
 ```
-Listar arquivos diferenciando por cores
+Listar arquivos diferenciando por cores:
 ```
 ls --color=auto
 ```
-Remover cores da lista (inverso do comando ls --color=auto)
-````
+Remover cores da lista (inverso do comando ls --color=auto):
+```
 ls --color=never
-````
-ls Diretorio1 Diretorio2 >> O comando ls permite listar o conteúdo de mais de um diretório ao mesmo tempo
-ls -ld >> Lista apenas o nome diretório (opção -d) sem listar o conteúdo da pasta. A opção -d sozinha não tem muito sentido por isso foi utilizdo o -l junto.
-ls -lf >> Classifica a listagem por ordem de criação do inode de disco do arquivo/diretorio
-ls -F >> Mesmo que ls sem parâmetros, mas colocando identificadores no final dos arquivos (/ para diretorios, = para caracteres, @ para link simbolico, * para executaveis)
-ls -lG >> Oculta a coluna Grupos da listagem
-ls -ln >> Não resolve nomes (substitui nome/grupo por id/gid)ls -lo >> Exibe apenas o dono do arquivo (-o de own)
-ls -lg >> Exibe apenas o grupo do arquivo
-ls -lp >> Exibe a listagem colocando uma / no final dos diretórios
-ls -lt >> Classifica a listagem por data, ordem de criação (atualização) do arquivo/diretorio (mais recentes primeiro)
-ls -lr >> Inverte a classificação da listagem
-ls -lhatr >> Exibe a listagem classificada por data de forma invertida, inclusive arquivos ocultos. (ideal para auditoria de logs, para saber os logs que foram alterados por ultimo)
-ls -lc >> Classifica pela data de criação (ctime)
-ls -lX >> Classifica pela externsão do arqivo
-ls -lR >> Lista os diretorios de forma recursiva
+```
+O comando ls permite listar o conteúdo de mais de um diretório ao mesmo tempo:
+```
+ls Diretorio1 Diretorio2
+```
+Listar apenas o nome diretório sem listar o conteúdo:
+```
+ls -ld
+```
+Classificar a listagem por ordem de criação do inode de disco do arquivo/diretorio
+```
+ls -lf
+```
+Listar diretório colocando identificadores no final dos arquivos (/ para diretorios, = para caracteres, @ para link simbolico, * para executaveis):
+```
+ls -F
+```
+Ocultar a coluna Grupos da listagem
+```
+ls -lG
+```
+Não resolver nomes na listagem (substitui nome/grupo por id/gid)
+```
+ls -ln
+```
+Exibir apenas o dono do arquivo (-o de own)
+```
+ls -lo
+```
+Exibir apenas o grupo do arquivo
+```
+ls -lg
+```
+Exibir a listagem com uma / no final dos diretórios
+```
+ls -lp
+```
+Classificar a listagem por data, ordem atualização do arquivo/diretorio (mais recentes primeiro)
+```
+ls -lt
+```
+Inverter a classificação da listagem
+```
+ls -lr
+```
+Exibir a listagem classificada por data de forma invertida, inclusive arquivos ocultos. (ideal para auditoria de logs, para saber os logs que foram alterados por ultimo)
+```
+ls -lhatr
+```
+Classificar pela data de criação (ctime)
+```
+ls -lc
+```
+Classificar pela externsão do arqivo
+```
+ls -lX
+```
+Listar os diretorios de forma recursiva
+```
+ls -lR
 
 ```
 
