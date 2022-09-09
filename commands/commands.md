@@ -734,7 +734,7 @@ lsof /var >> Vai exibir os arquivos do diretório /var abertos e o PID do proces
 lsof -t /var >> Vai exibir o PID do processo dos arquivos abertos no diretório /var
 ```
 
-###irqtop
+### irqtop
 - Instalar o pacote irqtop
 ```
 apt update && apt install irqtop
@@ -744,7 +744,7 @@ apt update && apt install irqtop
 irqtop
 ```
 
-###lspci
+### lspci
 - Exibir os periféricos que estão conectados no barramento PCI do sistema
 ```
 lspci
@@ -754,13 +754,13 @@ lspci
 lspci -vv
 ```
 
-###lsusb
+### lsusb
 - Exibir os periféricos que estão conectados no barramento USB do sistema
 ```
 lsusb
 ```
 
-###lshw
+### lshw
 - Instalar o pacote lshw
 ```
 apt update && apt install lshw
