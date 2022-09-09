@@ -278,7 +278,7 @@ truncate -s 1G teste.img
 dd fi=/dev/zero of=teste.img bs=1024 count=1024000
 ```
 
-###lsblk
+### lsblk
 - Exibir uma arvore com os discos e partições existentes
 ```
 lsblk
