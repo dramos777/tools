@@ -1,9 +1,9 @@
-# Discos
-Tabela (esquema) de particionamento >> GPT, MSDOS, ETC
-Tipo de particionamento >> Primario, Extendida, lógica
-Tipo de sistema de arquivo >> EXT2, EXT4, NTFS, SWAP, ETC
+# Gerenciamento de Discos
+Tabela (esquema) de particionamento (GPT, MSDOS, ETC) &nbsp;
+Tipo de particionamento (Primario, Extendida, lógica) &nbsp;
+Tipo de sistema de arquivo (EXT2, EXT4, NTFS, SWAP, ETC)
 
-Tipo DOS
+###Tipo DOS
 ```
 Rótulos - GPT, SGI, DOS, SUN
 Os rótulos são esquemas de particionamento.
@@ -12,7 +12,7 @@ De 1 a 4 - partições primárias
 Limite de até 2TB de tamanho de partições
 
 ```
-Tipo GPT
+###Tipo GPT
 Não possui um número limite de partições primárias expecificadas, mas no geral são 128 partições primárias disponíveis
 Limite de tamanho de até 9,4ZB (Zetabytes - 1 trilhão de GB)
 
