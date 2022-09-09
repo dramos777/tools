@@ -1,43 +1,38 @@
 # Gerenciamento de Discos
-Tabela (esquema) de particionamento (GPT, MSDOS, ETC)
+Tabela (esquema) de particionamento (GGPT, SGI, DOS, SUN)
 
 
 Tipo de particionamento (Primario, Extendida, lógica)
 
 
-Tipo de sistema de arquivo (EXT2, EXT4, NTFS, SWAP, ETC)
+Tipo de sistema de arquivo (ext2, ext3, ext4, ntfs, swap, etc)
 
-### Tipo DOS
-```
-Rótulos - GPT, SGI, DOS, SUN
-Os rótulos são esquemas de particionamento.
-Sistemas com boot UEFI precisa ter o esquema de particionamento GPT obrigatoriamente, porém um esquema de particionamento GPT também pode ser instalado em sistemas com BIOS no Linux
-De 1 a 4 - partições primárias
-Limite de até 2TB de tamanho de partições
+### Esquema/rótulo de particionamento do tipo DOS
+- De 1 a 4 - partições primárias
+- Limite de até 2TB de tamanho de partições
 
-```
-###Tipo GPT
-Não possui um número limite de partições primárias expecificadas, mas no geral são 128 partições primárias disponíveis
-Limite de tamanho de até 9,4ZB (Zetabytes - 1 trilhão de GB)
+### Esquema/rótulo de particionamento do tipo GPT
+- Não possui um número limite de partições primárias expecificadas, mas no geral são 128 partições primárias disponíveis
+- Limite de tamanho de até 9,4ZB (Zetabytes - 1 trilhão de GB)
+- Sistemas com boot UEFI precisa ter o esquema de particionamento GPT obrigatoriamente, porém um esquema de particionamento GPT também pode ser instalado em sistemas com BIOS no Linux
 
 ### Sistemas de arquivos
 
-ext2
+#### ext2
 ```
 Tamanho máximo da partição - 2Tb - 16Tb (número de blocos limitados a 65 536)
 
 Tamanho máximo de Arquivo - 16Gb
 ```
-ext3
+#### ext3
 
 ```
 Tamanho máximo da partição 2Tb - 32Tb - (número de blocos limitados a 65 536)
 
 Tamanho máximo de Arquivo - 16Gb - 2Tb
 ```
-ext4
+#### ext4
 ```
-
 Tamanho máximo da partição - 1Eb (número de blocos limitados a 65 536)
 
 Tamanho máximo de Arquivo - 16Tb (para blocos de 4k)
@@ -47,7 +42,6 @@ Detalhes sobre o cálculo de blocos e como atingir valores máximos, podem ser
 
 encontrados em:
 ```
-
 https://pt.wikipedia.org/wiki/Ext4
 
 https://pt.wikipedia.org/wiki/Ext3
