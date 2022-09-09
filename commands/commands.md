@@ -7,7 +7,10 @@ Listar arquivos diferenciando por cores
 ```
 ls --color=auto
 ```
-ls --color=never >> Remove a utilização de cores caso (inverso do comando ls --color=auto)
+Remover cores da lista (inverso do comando ls --color=auto)
+``````
+ls --color=never
+``````
 ls Diretorio1 Diretorio2 >> O comando ls permite listar o conteúdo de mais de um diretório ao mesmo tempo
 ls -ld >> Lista apenas o nome diretório (opção -d) sem listar o conteúdo da pasta. A opção -d sozinha não tem muito sentido por isso foi utilizdo o -l junto.
 ls -lf >> Classifica a listagem por ordem de criação do inode de disco do arquivo/diretorio
