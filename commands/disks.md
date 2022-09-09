@@ -82,26 +82,38 @@ fdisk /dev/sdb
 **m** --> Exibe um help dos comandos
 
 **g** --> Cria uma nova tabela (esquema) de partição GPT
+
 **o** --> Cria uma nova tabela (esquema) de partição DOS
+
 **n** --> Cria uma nova partição
+
 **t** --> Altera o tipo da partição (L exibe a lista de partições, 82 swap, 83 Linux)
+
 **w** --> Write as alterações realizadas
 
 ### gdisk
 
+- Selecionar a partição /dev/sdb para ser alterada
 ```
-gdisk /dev/sdb >> Seleciona a partição /dev/sdb para ser alterada
-? >> Exibe as teclas de atalho (help)
-i >> Exibe detalhes de partições criadas
-l >> Lista partições conhecidas no alvo
-
-o >> Cria uma nova tebela (esquema) de partição GPT
-n >> Cria uma nova partição
-b >> Cria um backup do esquema de particionamento do disco
-w >> Write as configurações alteradas
-z >> Destroy a estrutura de dados da partição (similar ao wipefs -a)
-
+gdisk /dev/sdb
 ```
+**?** --> Exibe as teclas de atalho (help)
+
+**i** --> Exibe detalhes de partições criadas
+
+**l** --> Lista partições conhecidas no alvo
+
+
+**o** --> Cria uma nova tebela (esquema) de partição GPT
+
+**n** --> Cria uma nova partição
+
+**b** --> Cria um backup do esquema de particionamento do disco
+
+**w** --> Write as configurações alteradas
+
+**z** --> Destroy a estrutura de dados da partição (similar ao wipefs -a)
+
 ### parted
 ```
 parted /dev/sdb >> Seleciona o disco /dev/sdb
