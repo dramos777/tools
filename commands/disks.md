@@ -69,10 +69,14 @@ https://pt.wikipedia.org/wiki/Ext3
 
 ### fdisk
 - Listar os discos e as partições
+```
 fdisk -l
+```
 
 - Seleciona a partição /dev/sdb para ser alterada
+```
 fdisk /dev/sdb
+```
 - **p** --> Faz o print das partições do disco
 - **m** --> Exibe um help dos comandos
 
