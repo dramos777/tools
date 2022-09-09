@@ -694,8 +694,8 @@ patch -p1 -N < /tmp/diferencas.patch
 
 ```
 
-- -p1 --> Nível da pasta que o patch foi aplicado (esta opção diz: desça uma pasta para localizar o patch)
-- -N --> Não desfazer patchs que já foram aplicados
+- **-p1** --> Nível da pasta que o patch foi aplicado (esta opção diz: desça uma pasta para localizar o patch)
+- **-N** --> Não desfazer patchs que já foram aplicados
 
 #### Para reverter o patch aplicado
 ```
