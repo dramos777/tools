@@ -120,11 +120,17 @@ Selecionar o disco /dev/sdb
 parted /dev/sdb
 ```
 **print** --> Exibe as partições existentes no HD
+
 **help** --> Ajuda do comando parted
+
 **mklabel msdos** --> Cria um nova tabela (esquema) de partição msdos
+
 **mkpart** --> Cria uma partição do tipo primaria/estendida/logica e o sistema de arquivos (ext3, ext4, etc)
+
 **unit kB** --> Vai alterar a visualização da unidade de medida para kilobytes
+
 **unit mB** --> Vai alterar a visualização da unidade de medida para megabytes
+
 **rm** --> Remove a partição (após o rm ele vai perguntar qual o número da partição)
 
 ### cfdisk
@@ -134,34 +140,53 @@ cfdisk /dev/sdb >> Seleciona o disco /dev/sdb
 ```
 ### /etc/mke2fs.conf
 
-Arquivo de especificações utilizado na criação das partições.
-block size >> Tamanho de cada bloco do arquivo. Ex com block size 1024: Um arquivo ocupa no mínimo 1024 de tamanho em disco. Caso ultrapasse o tamanho de 1024 ele vai usar mais um bloco de 1024 para completer seu tamanho.
-inode ratio >> Espaçamento entre cada block size
+Arquivo de configuração contendo as especificações utilizado na criação das partições.
+**block size** --> Tamanho de cada bloco do arquivo. Ex com block size 1024: Um arquivo ocupa no mínimo 1024 de tamanho em disco. Caso ultrapasse o tamanho de 1024 ele vai usar mais um bloco de 1024 para completer seu tamanho.
+**inode ratio** --> Espaçamento entre cada block size
 
 ### Formatar partição
+
+- Formatar a partição /dev/sdb1 como ext3
 ```
-mkfs.ext3 /dev/sdb1 >> Formata a partição /dev/sdb1 como ext3
-mkfs.ext4 -T news /dev/sdb1 >> Formata a partição /dev/sdb1 como ext4 seguindo as especificações do fs_types news disponvível no arquivo /etc/mke2fs.conf
-mkswap /dev/sdb1 >> Formata a partição /dev/sdb1 como swap
-
-wipefs -a /dev/sdb >> Apaga/Destroi dados de partições criadas em /dev/sdb
-
-mkfs.ext4 -T largefile /dev/sdb1 >> Vai formatar a partição como ext4 levando em consideração o inode_ratio do largefile (Essas especificações estão disponível em /etc/mke2fs.conf)
-
+mkfs.ext3 /dev/sdb1
 ```
+- Formatar a partição /dev/sdb1 como ext4 seguindo as especificações do fs_types news disponvível no arquivo /etc/mke2fs.conf
+```
+mkfs.ext4 -T news /dev/sdb1
+```
+- Formatar a partição /dev/sdb1 como swap
+```
+mkswap /dev/sdb1
+```
+
+- Apagar/Destruir os dados das partições criados em /dev/sdb
+```
+wipefs -a /dev/sdb
+```
+
+- Formatar a partição como ext4 levando em consideração o inode_ratio do largefile (Essas especificações estão disponível em /etc/mke2fs.conf)
+```
+mkfs.ext4 -T largefile /dev/sdb1
+```
+
 ### mklost+fourd
+- Criar a pasta lost+found no diretório corrente
 ```
-mklost+found >> Cria a pasta lost+found no diretório corrente
+mklost+found
 ```
 
 ### blkid
+- Exibir o UUID da partição /dev/sdb1
 ```
 blkid /dev/sdb1 >> Retorna o UUID da partição /dev/sdb1
+```
+- Exibir apenas o UUID da partição /dev/sdb1
+```
 blkid -s UUID /dev/sdb1 >> Retorna apenas o UUID da partição /dev/sdb1
 ```
 
 ### /etc/fstab
-<file system>  	<mount 	point>  <type>  <options>  	<dump>  <check>
+|file system|  	|mount 	point|  |type|  |options|  	|dump|  |check|
 /dev/sdb6	/var		ext4	defaults	0	1
 
 ```
