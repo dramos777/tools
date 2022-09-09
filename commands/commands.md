@@ -73,35 +73,74 @@ ls -lX
 ls -lR
 
 ```
+#### CORINGAS
+Coringas são caracteres especiais que são interpretados pelos programas
+- Exibir arquivos que iniciam com **m** e tenham no segundo caractere as letras **a, b, c, d, e, f ou g**.
+```
+ls m[a-g] /tmp/diretorio/
+```
+- Exibir arquivos que iniciam com **m** com exceção dos arquivos que tenham como segundo caractere as letras de **a - g**:
+```
+ls m[^a-g] /tmp/diretorio/
+```
+- Exibir todos os arquivos que iniciam com x tenham zd ou ze após ele e qualquer caraceter no final:
+```
+ls x{zd,ze}* /usr/bin
+```
+saída do comando acima:
+```
+xzdiff xzegrep
+```
 
 ### rmdir 
+O comando rmdir remove diretório que estejam vazios
+
+- Apagar pastas vazias recursivamente:
 ```
-rmdir -p >> Inverso de mkdir -p (obs. só apaga as pastas se estiverem vazias)
+rmdir -p /tmp/diretorio1/diretorio2/diretorio3
 ```
 
 ### cat
+O comando **cat** é utilizado para concatenar aquivos. No geral, ele é usado para exibir conteúdo de arquivos
+- Visualizar conteúdo de arquivo:
 ```
-cat -E >> Coloca um $ no final do arquivo. Util pra saber se a linha encerra com espaço.
-zcat >> Utilizado para visualizar arquivos .gz
-bzcat >> Utilizado para visualizar arquivos .bz2
-xzcat >> Utilizado para visualizar arquivos .xz
+cat /tmp/arquivo.txt
+```
+- Colocar um $ no final da linha do arquivo. Util pra saber se a linha encerra com espaço.
+```
+cat -E /tmp/arquivo.txt
+```
+### Variações do comando cat
+
+- Visualizar arquivos .gz:
+```
+zcat /tmp/arquivo.gz
+```
+- Visualizar arquivos .bz2:
+```
+bzcat /tmp/arquivo.bz2
+```
+- Visualizar arquivos .xz:
+```
+xzcat /tmp/arquivo.xz
 ```
 
 ### cp
+O comando **cp** é utilizado para copiar arquivos/diretorios
+
+Forçar copia e exibir em modo verbose
 ```
-cp -vf >> Força copia e ativa o mode verbose
-cp -vu >> Copia apenas se o arquivo destino for mais antigo que o arquivo origem(update)
-cp -p >> Preserva dono/grupo do arquivo
+cp -vf arquivo.txt /tmp/
+```
+Copiar apenas se o arquivo destino for mais antigo que o arquivo origem(update)
+```
+cp -vu arquivo.txt /tmp/
+```
+Preservar dono/grupo do arquivo
+```
+cp -p arquivo.txt /tmp/ 
 ```
 
-#### CORINGAS
-```
-ls m[a-g] >> Exibe os arquivos que iniciam com m e tenham no segundo caractere as letras a, b, c, d, e, f ou g.
-ls m[^a-g] >> Oposto do anterior. Exibe os arquivos com exceção dos que tenham o segundo caractere as letras de a - g
-ls x{zd,ze}* >> Exibe todos os arquivos que iniciam com x tenham zd ou ze após ele e qualquer caraceter no final.
-Ex: ls x{zd,ze}* /usr/bin
-    xzdiff xzegrep
-```
 ### date
 ```
 date 111612001987 (mes dia hora ano) >> Altera a data/hora atual para a data/hora escolhida
