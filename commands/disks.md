@@ -77,6 +77,7 @@ fdisk -l
 ```
 fdisk /dev/sdb
 ```
+```
 - **p** --> Faz o print das partições do disco
 - **m** --> Exibe um help dos comandos
 
@@ -85,6 +86,7 @@ fdisk /dev/sdb
 - **n** --> Cria uma nova partição
 - **t** --> Altera o tipo da partição (L exibe a lista de partições, 82 swap, 83 Linux)
 - **w** --> Write as alterações realizadas
+```
 
 ### gdisk
 
