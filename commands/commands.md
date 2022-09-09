@@ -1,8 +1,8 @@
 ### ls
-listar arquivos sem exibir backup (arquivos com ~ no final):
-```
+O comando **ls** é utilizado basicamente para listar conteúdo de diretórios e informações úteis para o gerenciamento de arquivos.
+- listar arquivos sem exibir backup (arquivos com ~ no final):
 ls -B
-```
+
 Listar arquivos diferenciando por cores:
 ```
 ls --color=auto
