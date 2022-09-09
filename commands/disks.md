@@ -7,8 +7,7 @@ Tipo de particionamento (Primario, Extendida, lógica)
 
 Tipo de sistema de arquivo (EXT2, EXT4, NTFS, SWAP, ETC)
 
-
-###Tipo DOS
+### Tipo DOS
 ```
 Rótulos - GPT, SGI, DOS, SUN
 Os rótulos são esquemas de particionamento.
