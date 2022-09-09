@@ -703,41 +703,69 @@ patch -p1 -R < /tmp/diferencas.patch
 ```
 
 ### whereis
-```
 whereis é utilizado para encontrar pastas de manuais por string
-```
 
 ### which
+Which é utilizado para encontra onde o binário está instalado no sistema operacional
+- Exibir onde o binário do **ls** está localizado no sistema operacional
 ```
-which ls >> Encontra onde o binário está localizado no sistema operacional
+which ls
 ```
 ### mount
+- Remontar o ponto de montagem /var
 ```
-mount -o remount /var >> Vai remontar o ponto de montagem /var
-mount -a >> Exibe todas as configurações dos pontos de montagens. Interessante utilizar com o grep pra filtrar e checar as opções de ponto de montagem
-mounte -o remount,ro /var >> Vai remontar o ponto de montagem /var como somente leitura
-
+mount -o remount /var
+```
+- Exibir todas as configurações dos pontos de montagens. Interessante utilizar com o grep pra filtrar e checar as opções de ponto de montagem
+```
+mount -a
+```
+- Remontar o ponto de montagem /var como somente leitura
+```
+mounte -o remount,ro /var
 ```
 ### lsof
+- Exibir os arquivos do diretório /var abertos e o PID do processo
 ```
 lsof /var >> Vai exibir os arquivos do diretório /var abertos e o PID do processo
+```
+- Exibir o PID do processo dos arquivos abertos no diretório /var
+```
 lsof -t /var >> Vai exibir o PID do processo dos arquivos abertos no diretório /var
 ```
 
 ###irqtop
+- Instalar o pacote irqtop
 ```
 apt update && apt install irqtop
-irqtop >> Similuar a o comando top só que para gerenciar interrupções e I/O
+```
+- Similuar a o comando top só que para gerenciar interrupções e I/O
+```
+irqtop
 ```
 
 ###lspci
-lspci >> Exibe os periféricos que estão conectados no barramento PCI do sistema
-lspci -vv >> Exibe detalhes das configurações dos periféricos PCI conectados (IRQ, IO Port, Módulo do Kernel, Região de memória alocado)
+- Exibir os periféricos que estão conectados no barramento PCI do sistema
+```
+lspci
+```
+- Exibir detalhes das configurações dos periféricos PCI conectados (IRQ, IO Port, Módulo do Kernel, Região de memória alocado)
+```
+lspci -vv
+```
 
 ###lsusb
-lsusb >> Exibe os periféricos que estão conectados no barramento USB do sistema
+- Exibir os periféricos que estão conectados no barramento USB do sistema
+```
+lsusb
+```
 
 ###lshw
+- Instalar o pacote lshw
+```
 apt update && apt install lshw
-lshw >> Escanea os hardware e exibe as informações na tela em formato de arvore
-
+```
+- Escanear os hardware e exibe as informações na tela em formato de arvore
+```
+lshw
+```
