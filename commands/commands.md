@@ -686,11 +686,12 @@ diff -u arquivo1 arquivo2
 diff -r diretorio1 diretorio2
 ```
 
-####Exemplo de utilização para atualizar um "app" (patch)
+#### Exemplo de utilização para atualizar um "app" (patch)
 ```
 diff -ru /tmp/dir-app /tmp/dir-update > /tmp/diferencas.patch
 cd /tmp/dir-app
-patch -p1 -N </tmp/diferencas.patch
+patch -p1 -N < /tmp/diferencas.patch
+
 ```
 
 ### -p1 >> Nível da pasta que o patch foi aplicado (esta opção diz: desça uma pasta para localizar o patch)
