@@ -155,7 +155,7 @@ date "+%d-%m-%Y %T"
 ### hwclock
 Comando utilizado para aplicar alterações de data de hora no sistema e no hardware(bios)
 
--Enviar o horário do systema pro hardware:
+- Enviar o horário do systema pro hardware:
 ```
 hwclock --systohc
 ```
@@ -318,91 +318,194 @@ find /usr -iname ls -exec cp -r {} /tmp \;
 ```
 
 ### free
+- Exibir informações da memória física e swap da estação
 ```
-free >> Exibe informações da memória física e swap da estação
-free --kilo >> Exibe em kilobytes (bloco de 1000)
-free --kibi >> Exibe em kilobytes (bloco de 1024)
-free --mega >> Exibe em megabytes (bloco de 1000)
-free --mebi >> Exibe em megabytes (bloco de 1024)
-free --giga >> Exibe em gigabytes (bloco de 1000)
-free --gibi >> Exibe em gigabytes (bloco de 1024)
+free
+```
+- Exibir em kilobytes (bloco de 1000)
+```
+free --kilo
+```
+- Exibir em kilobytes (bloco de 1024)
+```
+free --kibi
+```
+- Exibir em megabytes (bloco de 1000)
+```
+free --mega
+```
+- Exibir em megabytes (bloco de 1024)
+```
+free --mebi
+```
+- Exibir em gigabytes (bloco de 1000)
+```
+free --giga
+```
+- Exibir em gigabytes (bloco de 1024)
+```
+free --gibi
+```
 
-free --mega -s 1 >> Exibe em megabytes a cada 1 segundo
+Exibir em megabytes a cada 1 segundo
+```
+free --mega -s 1
 ```
 
 ### grep
+- Exibir todas as linhas do arquivo /etc/passwd com excessão da linha que contém www-data
 ```
-grep -v www-data /etc/passwd >> Inverte a busca, ou seja, exibe todas as linhas do arquivo /etc/passwd com excessão da linha que contém www-data
-grep -f /tmp/expressao /etc/passwd >> A opção -f faz pesquisa com base em arquivos, ou seja, o grep iria procurar em /etc/passwd as expressões contidas no arquivo /tmp/expressao
-grep -i >> Ignora maiúscula e minúscula ("remove" o case sensitive)
-grep -E >> Utilizado para fazer pesquisas com expressões regulares ( ^ * $ [] {} . + ? | () )
-grep -F >> Pesquisa caracteres especiais ao invés de interpretar como expressão
-grep -r >> Exibe os arquivos de forma recursiva que contem determinado padrão. Ex: grep -ri 'Foca02' /tmp/ (obs.: comando utilizado em diretórios)
-grep -ril >> Exibe apenas o nome do arquivo que contem determinado padrão (similar ao comando anterior, mas com a saída melhor.
+grep -v www-data /etc/passwd
+```
+- Procurar em /etc/passwd as expressões contidas no arquivo /tmp/expressao (a opção -f faz pesquisa com base em arquivos. No exemplo abaixo o grep iria procurar em /etc/passwd as expressões com base nas linhas do arquivo /tmp/expressao)
+```
+grep -f /tmp/expressao /etc/passwd
+```
+- Ignorar maiúscula e minúscula ("remove" o case sensitive)
+```
+grep -i /etc/passwd
+```
+- Utilizar utilizando expressões regulares ( ^ * $ [] {} . + ? | () )
+```
+grep -E
+```
+- Pesquisar caracteres especiais ao invés de interpretar como expressão
+```
+grep -F
+```
+- Exibir os arquivos que contenham determinado padrão de forma recursiva. (obs.: comando utilizado em diretórios)
+```
+grep -r 'Teste01' /tmp/
+```
+- Exibir apenas o nome do arquivo que contem determinado padrão (similar ao comando anterior, mas com a saída melhor.
+```
+grep -ril 'Teste01' /tmp/
 ```
 
 ### nl
+- Enumerar as linhas pulando de 3 em 3 (obs. todas as linhas do arquivo são exibidas, apenas a numeração que pula de 3 em 3)
 ```
-nl -i 3 /etc/passwd >> Enumera as linhas pulando de 3 em 3 (obs. todas as linhas do arquivo são exibidas, apenas a numeração que pula de 3 em 3)
-nl -v 3 /etc/passwd >> Enumera as linhas começando do 3 (obs. todas as linhas são exibidas, apenas a numeração que começa do 3) 
+nl -i 3 /etc/passwd
+```
+- Enumerar as linhas começando do 3 (obs. todas as linhas são exibidas, apenas a numeração que começa do 3) 
+```
+nl -v 3 /etc/passwd
 ```
 
 ### sort
+- Organizar a saída em ordem alfabética (obs.: classifica os números como se fossem strings)
 ```
-sort >> Organiza a saída em ordem alfabética (obs.: classifica os números como se fossem strings)
-sort -n >> Classifica a saída levando em consideração a ordem numérica (letras são classificadas primeiro)
-sort -r >> Inverte a classificação
-sort -c >> Apenas exibe na saída do comando se a lista já está ordenada ou não
-sort +1 >> Vai ordenar com base na segunda coluna
-sort -t ":" >> Vai ordenar com base no delimitador :
-sort -k 2 >> Vai ordenar com base na segunda coluna (similuar ao +1)
-sort -t ":" -k 2 >> Vai ordenar com base na segunda coluna levando em consideração o delimitador :
+sort
+```
+- Classificar a saída levando em consideração a ordem numérica (letras são classificadas primeiro)
+```
+sort -n
+```
+- Inverter a classificação
+```
+sort -r
+```
+- Exibir mensagem informando se a lista está ordenada ou não
+```
+sort -c
+```
+- Ordenar com base na segunda coluna
+```
+sort +1
+```
+- Ordenar com base no delimitador :
+```
+sort -t ":"
+```
+- Ordenar com base na segunda coluna (similuar ao +1)
+```
+sort -k 2
+```
+- Ordenar com base na segunda coluna levando em consideração o delimitador :
+```
+sort -t ":" -k 2
 ```
 
 #### time
+O comando time serve basicamente para calcular o tempo de execução de um comando
+- Calcular o tempo de execução do comando ls
 ```
-time ls >> O comando time serve basicamente para calcular o tempo de execução de um comando
+time ls /usr/
 ```
 
 ### touch
+- Se utilizado sem parâmetros cria um arquivo
 ```
-touch >> Se utilizado sem parâmetros cria um arquivo
-touch -t 111612001987 arquivo.txt >> Vai alterar a data de modificação do arquivo para 16 de novembro de 1987 às 12:00h
-touch -a -t 111612001987 arquivo.txt >> Vai alterar a data de ultimo acesso do arquivo para 16 de novembro de 1987 às 12:00h
+touch /tmp/arquivo.txt
+```
+- Alterar a data de modificação do arquivo arquivo.txt para 16 de novembro de 1987 às 12:00h
+```
+touch -t 111612001987 arquivo.txt
+```
+- Alterar a data de ultimo acesso do arquivo arquivo.txt para 16 de novembro de 1987 às 12:00h
+```
+touch -a -t 111612001987 arquivo.txt
 ```
 
 ### dmesg
-```
-dmesg -w >> Prende a tela do exibindo tudo que está ocorrendo naquele momento
-dmesg -x >> Classifica as mensagens de forma mais legível
-dmesg -T >> Pega o timestemp do boot e transforma para uma forma mais legível
-dmesg -c >> Limpa as mensagens do buffer do Kernel
+- Prender a tela do demesg para exibir tudo que está ocorrendo naquele momento
+dmesg -w
+- Classificar as mensagens de forma mais legível
+dmesg -x
+- Exibir o timestemp do boot e transformar para uma forma mais legível
+dmesg -T
+- Limpar as mensagens do buffer do Kernel
+dmesg -c
 ```
 
 ### su
+- Eliminar todas as variáveis de ambiente antes de subir para root
 ```
-su - >> Elimina todas as variáveis de ambiente antes de subir para root
-/bin/su -  >> Elimina todas as variáveis de ambiente e utiliza o PATH do binário su. Esta prática é recomendada por questões de segurança, pois é possível ter um PATH alterado ao executar apenas o comando su
-su - www-data -s /bin/bash >> Vai alterar para o usuário www-data e utilizar o shell bash. Por padrão o usuário www-data não tem um shell habilitado pra ele, a opção -s do comando su "garante" que o usuário utilize o terminal determinado no comando. Util para trobleshooting
+su -
+```
+- Eliminar todas as variáveis de ambiente e utilizar o PATH do binário su para subir para root (prática é recomendada por questões de segurança, pois é possível ter um PATH alterado ao executar apenas o comando su)
+```
+/bin/su -
+```
+- Alterar para o usuário www-data e utilizar o shell bash. (por padrão o usuário www-data não tem um shell habilitado pra ele, a opção -s do comando su "garante" que o usuário utilize o terminal determinado no comando. Util para trobleshooting)
+```
+su - www-data -s /bin/bash
 ```
 
 ### sudo
+- Adicionar o usuário technogaps no grupo sudo. (fazendo isso o usuário technogaps poderá usar o sudo utilizando sua senha convencional, ou seja, não precisará saber a senha de root propriamente dita)
 ```
-adduser technogaps sudo >> Vai adicionar o usuário technogaps no grupo sudo. Fazendo isso o usuário technogaps poderá usar o sudo utilizando sua senha convencional, ou seja, não precisará saber a senha de root propriamente dita
+adduser technogaps sudo
 ```
 
 ### uname
 ```
-uname -a >> Retorna dados do sistema como Versão do Linux, arquitetura
-uname -s >> Exibe o kernel
-uname -n >> Exibe o nome da máquina
-uname -r >> Retorna a versão atual do kernel
-uname -v >> Exibe a data que o kernel foi compilado
-uname -m >> Exibe a arquitetura utilizada no kernel
+- Exibir dados do sistema como Versão do Linux, arquitetura
+```
+uname -a
+```
+- Exibir o kernel
+```
+uname -s
+```
+- Exibir o nome da máquina
+```
+uname -n
+```
+- Exibir a versão atual do kernel
+```
+uname -r
+```
+- Exibir a data que o kernel foi compilado
+```
+uname -v
+```
+- Exibir a arquitetura utilizada no kernel
+```
+uname -m
 ```
 
 ### reboot
-```
 reboot -f >> Reinicia a máquina de forma forçada
 shutdown -r now >> Reinicia a máquina
 shutdown -r 09:40 >> Reinicia a máquina em um horário expecífico
