@@ -296,6 +296,7 @@ Para entender o LVM é necessário pensar em camadas:
 - **Logical Volume** ou **LV** --> É o volume que de fato será formatado (ext4, xfs, etc) e montado no sistema.
 
 ### Physical Volume
+
 - Criar um volume fisico (Physical Volume) na partição /dev/sdb1
 ```
 pvcreate /dev/sdb1
@@ -307,7 +308,7 @@ pvdisplay
 - Exibir informações dos PVs criados de forma sumarizada
 ```
 pvs
-´´´
+```
 
 ### Group Volume
 - Criar um grupo de volumes (GV ou Group Volume) chamado vg-tecnogaps e adiciona a partição /dev/sdb1 ao grupo
