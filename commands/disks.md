@@ -29,7 +29,14 @@ Indicado para armazenamento de arquivos pequenos (5k, 10k) porque ele trabalha c
 apt update && apt install reiserfs-progs
 ```
 #### btrfs
-Sistema de arquivo de segunda geração. Além da capacidade de armazenamento normal de arquivo também permite o armazenamento compactado de arquivos, deduplicação e RAID (2 arquivos iguais ocupam o mesmo espaço no disco caso estejam em diretorios diferentes. OBS1.: A opção de compactação não vem ativa por padrão, é necessário utilzar ferramentas de terceiros para ativar. Ex: mount /dev/sdb1 /mnt -o compress) OBS2.: Cuidado com a opção de compactação pois consome mais CPU
+Sistema de arquivo de segunda geração. Além da capacidade de armazenamento normal de arquivo também permite o armazenamento compactado de arquivos, deduplicação e RAID (2 arquivos iguais ocupam o mesmo espaço no disco caso estejam em diretorios diferentes. 
+
+**OBS1.:** A opção de compactação não vem ativa por padrão, é necessário utilzar ferramentas de terceiros para ativar. Ex:
+```
+mount /dev/sdb1 /mnt -o compress
+```
+**OBS2.:** Cuidado com a opção de compactação pois consome mais CPU
+
 ```
 apt update && apt install btrfs-tools
 ```
