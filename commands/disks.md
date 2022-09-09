@@ -1,5 +1,5 @@
 # Gerenciamento de Discos
-Tabela (esquema) de particionamento (GGPT, SGI, DOS, SUN)
+Tabela (esquema) de particionamento (GPT, SGI, DOS, SUN)
 
 
 Tipo de particionamento (Primario, Extendida, lógica)
