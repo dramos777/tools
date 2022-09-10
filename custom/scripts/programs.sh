@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-rm -rf ../tmp/links.sh
+rm -rf tmp/links.sh
 
 #Code install
-dpkg -i ../tmp/*
+dpkg -i tmp/*
 while [ $? != 0 ]; do
 	echo "Missing Dependencies. Fixing Installation"
-	apt install -f -y 
-	dpkg -i ../tmp/*
+	apt install -f -y && \
+	dpkg -i tmp/*
 done
-rm -rf ../tmp/*
+rm -rf tmp/*
 
 echo "Concluded!"

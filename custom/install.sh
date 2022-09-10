@@ -40,8 +40,18 @@
 
 # ------------------------------- EXECUÇÃO ----------------------------------------- #
 
+scripts/basic-programs.sh && \
+scripts/add-to-sudo.sh    && \
+scripts/firmware.sh       && \
+scripts/skel.sh           && \
+scripts/swappiness.sh     && \
+
+
 cat vars/shebang > tmp/links.sh   && \
 cat vars/links >> tmp/links.sh    && \
 cat vars/wget >> tmp/links.sh     && \
 chmod +x tmp/links.sh             && \
-bash tmp/links.sh
+bash tmp/links.sh                 && \
+scripts/programs.sh
+
+

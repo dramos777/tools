@@ -11,5 +11,5 @@ echo "source <(kubectl completion bash)" >> /etc/skel/.bashrc
 #Discard SSD
 echo "fstrim -va" >> /etc/skel/.bash_login
 
-cp -v /etc/skel/.* /home/*/
-cp -v /etc/skel/.* /root/
+cp -v /etc/skel/.???* /home/*/
+cp -v /etc/skel/.???* /root/

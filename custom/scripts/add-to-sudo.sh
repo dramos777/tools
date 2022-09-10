@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
-echo -n "Enter the user name that will be added to the sudo group: "
+echo ""
+echo -n "Enter a user name to be added to the sudo group: "
 read USERTOSUDO
 adduser $USERTOSUDO sudo
+echo ""

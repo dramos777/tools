@@ -1,1 +1,1 @@
-wget $VSCODE -O ../tmp/
+wget $VSCODE -O tmp/vscode.deb
