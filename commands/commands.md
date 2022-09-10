@@ -711,19 +711,6 @@ Which é utilizado para encontra onde o binário está instalado no sistema oper
 ```
 which ls
 ```
-### mount
-- Remontar o ponto de montagem /var
-```
-mount -o remount /var
-```
-- Exibir todas as configurações dos pontos de montagens. Interessante utilizar com o grep pra filtrar e checar as opções de ponto de montagem
-```
-mount -a
-```
-- Remontar o ponto de montagem /var como somente leitura
-```
-mounte -o remount,ro /var
-```
 
 ### irqtop
 - Instalar o pacote irqtop
@@ -1246,6 +1233,14 @@ O comando mount é utilizado para montar e remontar partições. Ele permite op�
 - Remontar o ponto de montagem /var
 ```
 mount -o remount /var
+```
+- Exibir todas as configurações dos pontos de montagens. Interessante utilizar com o grep pra filtrar e checar as opções de ponto de montagem
+```
+mount -a
+```
+- Remontar o ponto de montagem /var como somente leitura
+```
+mounte -o remount,ro /var
 ```
 - Exibir informações de montagem de /var
 ```

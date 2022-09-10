@@ -1,24 +1,30 @@
-### date
-O comando date gerencia a data e hora do sistema.
+### mount
+O comando mount é utilizado para montar e remontar partições. Ele permite opões durante a montagem
+- Remontar o ponto de montagem /var
+```
+mount -o remount /var
+```
+- Exibir todas as configurações dos pontos de montagens. Interessante utilizar com o grep pra filtrar e checar as opções de ponto de montagem
+```
+mount -a
+```
+- Remontar o ponto de montagem /var como somente leitura
+```
+mounte -o remount,ro /var
+```
+- Exibir informações de montagem de /var
+```
+mount -a|grep -i var
+```
 
-- Altera a data/hora atual para 16 de novembro de 1987 às 12:00h (syntax: mes dia hora ano)
+### lsof
+- Exibir os arquivos do diretório /var abertos e o PID do processo
 ```
-date 111612001987
+lsof /var >> Vai exibir os arquivos do diretório /var abertos e o PID do processo
 ```
-Exibir a data (ex: 02-10-2022 07:52:53). Esta syntax é muito utilizada em script para logar início e término de determinada tarefa:
+- Exibir o PID do processo dos arquivos abertos no diretório /var
 ```
-date "+%d-%m-%Y %T"
-```
-### hwclock
-Comando utilizado para aplicar alterações de data de hora no sistema e no hardware(bios)
-
-- Enviar o horário do systema pro hardware:
-```
-hwclock --systohc
-```
-- Eviar o horário do hardware pro systema:
-```
-hwclock --hctosys
+lsof -t /var >> Vai exibir o PID do processo dos arquivos abertos no diretório /var
 ```
 
 ### df
@@ -69,209 +75,6 @@ du -m /tmp/diretorio
 du --inodes /tmp/diretorio
 ```
 
-### free
-- Exibir informações da memória física e swap da estação
-```
-free
-```
-- Exibir em kilobytes (bloco de 1000)
-```
-free --kilo
-```
-- Exibir em kilobytes (bloco de 1024)
-```
-free --kibi
-```
-- Exibir em megabytes (bloco de 1000)
-```
-free --mega
-```
-- Exibir em megabytes (bloco de 1024)
-```
-free --mebi
-```
-- Exibir em gigabytes (bloco de 1000)
-```
-free --giga
-```
-- Exibir em gigabytes (bloco de 1024)
-```
-free --gibi
-```
-
-Exibir em megabytes a cada 1 segundo
-```
-free --mega -s 1
-```
-
-### dmesg
-- Prender a tela do demesg para exibir tudo que está ocorrendo naquele momento
-```
-dmesg -w
-```
-- Classificar as mensagens de forma mais legível
-```
-dmesg -x
-```
-- Exibir o timestemp do boot e transformar para uma forma mais legível
-```
-dmesg -T
-```
-- Limpar as mensagens do buffer do Kernel
-```
-dmesg -c
-```
-
-### uname
-
-- Exibir dados do sistema como Versão do Linux, arquitetura
-```
-uname -a
-```
-- Exibir o kernel
-```
-uname -s
-```
-- Exibir o nome da máquina
-```
-uname -n
-```
-- Exibir a versão atual do kernel
-```
-uname -r
-```
-- Exibir a data que o kernel foi compilado
-```
-uname -v
-```
-- Exibir a arquitetura utilizada no kernel
-```
-uname -m
-```
-
-### mount
-- Remontar o ponto de montagem /var
-```
-mount -o remount /var
-```
-- Exibir todas as configurações dos pontos de montagens. Interessante utilizar com o grep pra filtrar e checar as opções de ponto de montagem
-```
-mount -a
-```
-- Remontar o ponto de montagem /var como somente leitura
-```
-mounte -o remount,ro /var
-```
-
-### irqtop
-- Instalar o pacote irqtop
-```
-apt update && apt install irqtop
-```
-- Similuar a o comando top só que para gerenciar interrupções e I/O
-```
-irqtop
-```
-
-### lspci
-- Exibir os periféricos que estão conectados no barramento PCI do sistema
-```
-lspci
-```
-- Exibir detalhes das configurações dos periféricos PCI conectados (IRQ, IO Port, Módulo do Kernel, Região de memória alocado)
-```
-lspci -vv
-```
-
-### lsusb
-- Exibir os periféricos que estão conectados no barramento USB do sistema
-```
-lsusb
-```
-
-### lshw
-- Instalar o pacote lshw
-```
-apt update && apt install lshw
-```
-- Escanear os hardware e exibe as informações na tela em formato de arvore
-```
-lshw
-```
-# Firmware
-```
-apt install firmware-linux-nonfree firmware-misc-nonfree -y
-```
-
-**/lib/firmware** --> Diretório padrão das firmwares instaladas na máquina
-
-Para adicionar firmwares proprietários é necessários editar o arquivo **/etc/apt/source.list** para que busque em reposítórios fora da main (contrib, non-free) ou baixar a firmware e instalar manualmente.
-
-Depois do arquivo **/etc/source.list** editado com as flags **contrib** e **non-free** é possível executar o comando apt search **firmware-linux-nonfree** e encontrar os pacotes fora da main. O pacote **firmware-misc-nonfree** também possui algumas otimizações do sistema
-
-### lsof
-- Exibir os arquivos do diretório /var abertos e o PID do processo
-```
-lsof /var >> Vai exibir os arquivos do diretório /var abertos e o PID do processo
-```
-- Exibir o PID do processo dos arquivos abertos no diretório /var
-```
-lsof -t /var >> Vai exibir o PID do processo dos arquivos abertos no diretório /var
-```
-
-### top
-
-**m** --> Muda a forma que a memória é exibida
-
-**1** --> Muda a forma de exibição do CPU
-
-
-**M** --> Classifica por uso de memória
-
-**F** --> Abre o seletor de classificação
-
-**k** --> Disponibiliza campo para matar processos
-
-**d** --> Altera o delay de atualização
-
-**W** --> Salva customização
-
-
-### top na linha de comandos
-- Ignorar os processos zumbis
-```
-top -i
-```
-- Exibir a linha de comandos na listagem do processo
-```
-top -c
-```
-
-### nice/renice (prioridade padrão 0; maior prioridade -20; menor prioridade 19)
-**Obs**.: Prioridades abaixo de 0 apenas o root tem permissão para alterar
-- Iniciar o processo sleep com prioridade 10
-```
-nice -n 10 sleep 1000
-```
-- Reajustar a prioridade do processo 597 com nice = 15
-```
-renice -n 15 -p 597
-```
-- Reajustar todos os processos do usuário teste com prioridade 15
-```
-renice -n 15 -u teste
-```
-- Reajustar todos os processos do grupo teste com prioridade 15
-```
-renice -n 15 -g teste
-```
-
-### tload
-- Exibir de forma gráfica um resumo dos processos rodando
-```
-tload
-```
-
 ### vmstat
 - Exibir um resumo do uso de memória, cpu, swap, system e io
 ```
@@ -280,78 +83,6 @@ vmstat >> Exibe um resumo do uso de memória, cpu, swap, system e io
 - Exibir atualização do resumo da memória a cada 1 segundo
 ```
 vmstat 1 >> Exibe atualização a cada 1 segundo
-```
-
-### ps
-- Exibir os processos rodando no terminal corrent
-```
-ps
-```
-- Exibir os processos rodando em todos os terminais
-```
-ps -a
-```
-- Exibir os processos de todos os usuários do sistema sendo de terminais ou não
-```
-ps -ax
-```
-- Exibir os processos de todos os usuários
-```
-ps -aux
-```
-- Exibir detalhes do uso de memória
-```
-ps -axm
-```
-- Exibir as variáveis de ambientes utilizdas na execução do comando (o w server para exibir toda alinha)
-```
-ps -axew
-```
-- Classificar a saída com base no pid
-```
-ps -aux --sort=pid
-```
-- Classificar a saída com base na memória residente (RSS)
-```
-ps -ax --sort=rss
-```
-
-### pidof
-- Exibir o PID do processo do cron (obs. É necessário passar o nome exato do programa rodando)
-```
-pidof cron
-```
-
-### pstree
-- Exibir os processos em forma de "arvore"
-```
-pstree
-```
-- Exibir toda a estrutura, incluindo os processos PAI
-```
-pstree -c
-```
-- Exibir a estrutura destacando o processo PAI
-```
-pstree -h
-```
-- Exibir o PID dos processos entre ()
-```
-pstree -p
-```
-
-### kill
-- Matar o processo de forma forçada
-```
-kill -9
-```
-- Mandar o processo reler as configurações sem finalizar
-```
-kill -HUP
-```
-- Matar um job que esteja rodando em segundo plano
-```
-kill %3
 ```
 
 ### pgrep
@@ -372,58 +103,6 @@ pkill firefox
 - Matar todos os processos do usuário root que tenha firefox
 ```
 pkill -u root firefox
-```
-
-### killall
-- Matar todos os processos do usuáro root que tenha firefox
-```
-killall -u root firefox
-```
-- Matar todos os processos
-```
-killall5
-```
-
-### nohup
-O nohup "proteje" o processo em execução pra que ele não seja afetado por sinais de interrupções que sejam diferentes de kill -9 ou kill -15. Ex:
-```
-nohup sleep 200
-```
-
-### &
-- Iniciar o programa sleep em backgraound
-```
-sleep 100 &
-```
-
-### CTRL + z
-- Enviar um programa que já está rodando em foreground para backgraund
-```
-CTRL+z
-```
-
-### jobs
-- Exibir os jobs que estão rodando em background
-```
-jobs
-```
-
-### bg
-- Iniciar um programa com ID 3 que está parado em background (um programa enviado para background pelo CTRL+x não inicia automaticamente. É necessário utilizar o comando bg)
-```
-bg %3
-```
-
-### fg
-- Enviar o job 3 rodando em background para foreground
-```
-fg %3
-```
-
-### kill
-- Mata o job 3 de um programa que está rodando em background
-```
-kill %3
 ```
 
 # Gerenciamento de Discos
@@ -643,17 +322,6 @@ blkid -s UUID /dev/sdb1 >> Retorna apenas o UUID da partição /dev/sdb1
 
 **commit=60** --> Realiza o sync do disco a cada 60 segundo
 
-### mount
-O comando mount é utilizado para montar e remontar partições. Ele permite opões durante a montagem
-- Remontar o ponto de montagem /var
-```
-mount -o remount /var
-```
-- Exibir informações de montagem de /var
-```
-mount -a|grep -i var
-```
-
 ### dumpe2fs
 Exibir dados internos do disco relacionado a formatação do sistema de arquivos (label, uuid, status do filesystem, contagem de blocos, blocos reservados, etc)
 ```
@@ -793,12 +461,3 @@ resize2fs /dev/vg-technogaps/lv-technogaps
 ```
 fstrim -va
 ```
-# ACPI
-O acpid é responsável pelo controle e monitoramento do acpi da máquina. Ele gerencia o desligamento correto utilizando o botão da máquina, por exemplo, além de permitir a customização utilizando os arquivos do diretório /etc/acpi.
-
-- Instalar o acpi
-```
-apt update && apt install acpid
-```
-
-**OBS**.: Por padrão o systemd já possui suporte para desligamento usando ACPI e o gerenciamento é feito através do arquivo /etc/systemd/logind.conf, mas é menos flexivo, ele só permite utilizar as configurações padrões dele enquanto no ACPI é possível determinar um script
