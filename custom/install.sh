@@ -4,6 +4,10 @@
 4 - fstab
 5 - ssd block discard (adicionar um if) 
 6 - definir umask
+7 - Configurar .bashrc .profile .bash_login .bash_logout /etc/bash.bashrc
+8 - Instalar docker
+9 - Criar cluster kind
+10 - Configurar bash_conpletion
 #!/usr/bin/env bash
 #
 #
@@ -46,3 +50,8 @@
 
 # ------------------------------- EXECUÇÃO ----------------------------------------- #
 
+cat vars/shebang > tmp/links.sh   && \
+cat vars/links >> tmp/links.sh    && \
+cat vars/wget >> tmp/links.sh     && \
+chmod +x tmp/links.sh             && \
+bash tmp/links.sh

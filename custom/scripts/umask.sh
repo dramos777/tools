@@ -1,5 +1,4 @@
-#!/bin/bash
-for FUNCIONARIO in $(ls /srv/homes/)
+#!/usr/bin/env bash
 do
 cp -v /etc/skel/.bashrc /srv/homes/$FUNCIONARIO/
 done
