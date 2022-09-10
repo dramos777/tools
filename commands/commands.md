@@ -1391,7 +1391,7 @@ resize2fs /dev/vg-technogaps/lv-technogaps
 ```
 fstrim -va
 ```
-#ACPI
+# ACPI
 O acpid é responsável pelo controle e monitoramento do acpi da máquina. Ele gerencia o desligamento correto utilizando o botão da máquina, por exemplo, além de permitir a customização utilizando os arquivos do diretório /etc/acpi.
 
 - Instalar o acpi
