@@ -20,5 +20,4 @@ export HOME="/home/$U/"
 	sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' "$HOME/.zshrc" && \
 	sed -i '/ZSH_THEME=/a POWERLEVEL10K_MODE="nerdfont-complete"' "$HOME/.zshrc" && \
 	sed -i 's/plugins=(git)/plugins=(git zsh-syntax-highlighting fzf zsh-autosuggestions k)/g' "$HOME/.zshrc" && \
-	chown $USER:$USER "$HOME.zshrc" && \
 	sed -i "/$U/ s/bash/zsh/g" /etc/passwd
