@@ -1,13 +1,3 @@
-1 - zsh
-2 - firmware
-3 - swappiness
-4 - fstab
-5 - ssd block discard (adicionar um if) 
-6 - definir umask
-7 - Configurar .bashrc .profile .bash_login .bash_logout /etc/bash.bashrc
-8 - Instalar docker
-9 - Criar cluster kind
-10 - Configurar bash_conpletion
 #!/usr/bin/env bash
 #
 #
