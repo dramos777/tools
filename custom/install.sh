@@ -52,6 +52,7 @@ cat vars/links >> tmp/links.sh    && \
 cat vars/wget >> tmp/links.sh     && \
 chmod +x tmp/links.sh             && \
 bash tmp/links.sh                 && \
-scripts/programs.sh
+scripts/programs.sh               && \
 
-
+scripts/zsh/zsh-root.sh           && \
+scripts/zsh/zsh-user.sh
