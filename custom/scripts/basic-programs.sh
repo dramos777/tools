@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-PROGRAMS="vim wget curl git sudo terminator kcalc simplescreenrecorder bash-completion"
+PROGRAMS="vim wget curl git sudo qterminal kcalc simplescreenrecorder bash-completion vlc"
 
 apt update && apt install $PROGRAMS -y
