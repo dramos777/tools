@@ -8,7 +8,7 @@ read U
 
 export ZSH="/home/$U/.oh-my-zsh/"
 export USER="$U"
-export HOME="/home/$U/"
+export HOME="/home/$U"
 
 	curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash && \
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" && \
