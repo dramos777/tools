@@ -52,7 +52,8 @@ cat vars/links >> tmp/links.sh    && \
 cat vars/wget >> tmp/links.sh     && \
 chmod +x tmp/links.sh             && \
 bash tmp/links.sh                 && \
-scripts/programs.sh               && \
+scripts/remove.ss                 && \
+scripts/dpkg-programs.sh          && \
 scripts/docker.sh                 && \
 
 scripts/zsh/zsh-root.sh           && \
