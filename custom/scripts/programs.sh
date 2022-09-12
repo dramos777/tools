@@ -2,7 +2,6 @@
 
 rm -rf tmp/links.sh
 
-#Code install
 dpkg -i tmp/*
 while [ $? != 0 ]; do
 	echo "Missing Dependencies. Fixing Installation"
@@ -10,5 +9,6 @@ while [ $? != 0 ]; do
 	dpkg -i tmp/*
 done
 rm -rf tmp/*
+apt autoremove && apt clean -y
 
 echo "Concluded!"
