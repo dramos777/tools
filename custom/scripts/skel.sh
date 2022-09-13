@@ -8,7 +8,7 @@ sed -i '/source \/usr\/share\/bash-completion\/bash_completion/d' /etc/skel/.bas
 echo "source /usr/share/bash-completion/bash_completion" >> /etc/skel/.bashrc
 #k8s bash_completion
 sed -i '/source <(kubectl completion bash)/d' /etc/skel/.bashrc
-echo "source <(kubectl completion bash)" >> /etc/skel/.bashrc
+echo "#source <(kubectl completion bash)" >> /etc/skel/.bashrc
 
 #Discard SSD
 sed -i '/fstrim -va/d' /etc/skel/.bash_login
