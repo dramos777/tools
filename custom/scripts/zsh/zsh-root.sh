@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
 #Download, install and custom of shell zsh
 
-apt update && apt install zsh -y && \
+apt update && apt-get install fonts-powerline && apt install zsh -y && \
+	mkdir -p /root/.local/share/fonts && \
+	wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -O \
+	/root/.local/share/fonts/Regular.ttf && \
+	wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -O \
+	/root/.local/share/fonts/Bold.ttf && \
+	wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -O \
+	/root/.local/share/fonts/Italic.ttf && \
+	wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -O \
+	/root/.local/share/fonts/BoldItalic.ttf && cd /root/.local/share/fonts/ && fc-cache -f -v && cd - && \
 	curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash && \
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting && \
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && \

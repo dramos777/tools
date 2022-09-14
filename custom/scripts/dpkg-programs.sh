@@ -7,7 +7,6 @@ while [ $? != 0 ]; do
 	apt install -f -y && \
 	dpkg -i tmp/*
 done
-apt autoremove && apt clean -y
 
 rm -rf tmp/*
 

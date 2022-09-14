@@ -57,4 +57,7 @@ scripts/dpkg-programs.sh          && \
 scripts/docker.sh                 && \
 
 scripts/zsh/zsh-root.sh           && \
-scripts/zsh/zsh-user.sh
+scripts/zsh/zsh-user.sh           && \
+
+#Se não quiser executar o autoremove comentar a linha abaixo
+apt autoremove -y and apt clean -y

@@ -9,7 +9,15 @@ read U
 export ZSH="/home/$U/.oh-my-zsh/"
 export USER="$U"
 export HOME="/home/$U"
-
+mkdir -p "$HOME/.local/share/fonts" && \
+	wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -O \
+	$HOME/.local/share/fonts/Regular.ttf && \
+	wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -O \
+	$HOME/.local/share/fonts/Bold.ttf && \
+	wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -O \
+	$HOME/.local/share/fonts/Italic.ttf && \
+	wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -O \
+	$HOME/.local/share/fonts/BoldItalic.ttf && cd /root/.local/share/fonts/ && fc-cache -f -v && cd - && \
 	curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash && \
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" && \
 	git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf" && \
@@ -20,5 +28,5 @@ export HOME="/home/$U"
 	sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' "$HOME/.zshrc" && \
 	sed -i '/ZSH_THEME=/a POWERLEVEL10K_MODE="nerdfont-complete"' "$HOME/.zshrc" && \
 	sed -i 's/plugins=(git)/plugins=(git zsh-syntax-highlighting fzf zsh-autosuggestions k)/g' "$HOME/.zshrc" && \
-	chown $USER:$USER "$HOME.zshrc" && \
+	chown $USER:$USER "$HOME/.zshrc" && \
 	sed -i "/$U/ s/bash/zsh/g" /etc/passwd
