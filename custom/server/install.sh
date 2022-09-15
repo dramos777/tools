@@ -39,25 +39,24 @@
 # ------------------------------------------------------------------------ #
 
 # ------------------------------- EXECUÇÃO ----------------------------------------- #
-
+#Basic config
 scripts/basic-programs.sh && \
 scripts/add-to-sudo.sh    && \
 scripts/firmware.sh       && \
 scripts/skel.sh           && \
 scripts/swappiness.sh     && \
 
+#To install programs using dpkg
+#mkdir tmp                         && \
+#cat vars/shebang > tmp/links.sh   && \
+#cat vars/links >> tmp/links.sh    && \
+#cat vars/wget >> tmp/links.sh     && \
+#chmod +x tmp/links.sh             && \
+#bash tmp/links.sh                 && \
+#scripts/dpkg-programs.sh          && \
 
-cat vars/shebang > tmp/links.sh   && \
-cat vars/links >> tmp/links.sh    && \
-cat vars/wget >> tmp/links.sh     && \
-chmod +x tmp/links.sh             && \
-bash tmp/links.sh                 && \
-scripts/remove.sh                 && \
-scripts/dpkg-programs.sh          && \
+#To install docker
 scripts/docker.sh                 && \
 
-scripts/zsh/zsh-root.sh           && \
-scripts/zsh/zsh-user.sh           && \
-
-#Se não quiser executar o autoremove comentar a linha abaixo
+#To clean
 apt autoremove -y and apt clean -y

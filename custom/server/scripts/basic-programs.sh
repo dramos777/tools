@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-PROGRAMS="vim wget curl git sudo tilix kolourpaint kcalc simplescreenrecorder bash-completion vlc remmina audacity"
+PROGRAMS="vim wget curl git sudo bash-completion"
 
 apt update && apt install $PROGRAMS -y

@@ -8,6 +8,6 @@ while [ $? != 0 ]; do
 	dpkg -i tmp/*
 done
 
-rm -rf tmp/*
+rm -rf tmp
 
 echo "Concluded!"

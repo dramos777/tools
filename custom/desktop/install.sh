@@ -39,14 +39,15 @@
 # ------------------------------------------------------------------------ #
 
 # ------------------------------- EXECUÇÃO ----------------------------------------- #
-
+#Basic Config
 scripts/basic-programs.sh && \
 scripts/add-to-sudo.sh    && \
 scripts/firmware.sh       && \
 scripts/skel.sh           && \
 scripts/swappiness.sh     && \
+scripts/fstab.sh	  && \
 
-
+#To install some programs with dpkg
 cat vars/shebang > tmp/links.sh   && \
 cat vars/links >> tmp/links.sh    && \
 cat vars/wget >> tmp/links.sh     && \
@@ -56,8 +57,9 @@ scripts/remove.sh                 && \
 scripts/dpkg-programs.sh          && \
 scripts/docker.sh                 && \
 
+#To install zsh and configure it
 scripts/zsh/zsh-root.sh           && \
 scripts/zsh/zsh-user.sh           && \
 
-#Se não quiser executar o autoremove comentar a linha abaixo
+#To clean
 apt autoremove -y and apt clean -y
