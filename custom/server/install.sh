@@ -59,4 +59,4 @@ scripts/swappiness.sh     && \
 scripts/docker.sh                 && \
 
 #To clean
-apt autoremove -y and apt clean -y
+apt autoremove -y && apt clean -y

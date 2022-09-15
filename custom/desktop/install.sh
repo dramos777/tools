@@ -62,4 +62,4 @@ scripts/zsh/zsh-root.sh           && \
 scripts/zsh/zsh-user.sh           && \
 
 #To clean
-apt autoremove -y and apt clean -y
+apt autoremove -y && apt clean -y
