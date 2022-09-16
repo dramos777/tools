@@ -11,8 +11,8 @@ sed -i '/source <(kubectl completion bash)/d' /etc/skel/.bashrc
 echo "#source <(kubectl completion bash)" >> /etc/skel/.bashrc
 
 #Discard SSD
-sed -i '/fstrim -va/d' /etc/skel/.bash_login
-echo "fstrim -va" >> /etc/skel/.bash_login
+sed -i '/sudo fstrim -va/d' /etc/skel/.bash_login
+echo "sudo fstrim -va" >> /etc/skel/.bash_login
 
 echo -n "Enter the user name to update profile: "
 read USERPROFILE
