@@ -1395,3 +1395,274 @@ apt update && apt install acpid
 ```
 
 **OBS**.: Por padrão o systemd já possui suporte para desligamento usando ACPI e o gerenciamento é feito através do arquivo /etc/systemd/logind.conf, mas é menos flexivo, ele só permite utilizar as configurações padrões dele enquanto no ACPI é possível determinar um script
+
+# Administração de usuários e grupos
+- /etc/passwd é o arquivo de configuração dos usuários, nele são encontrados os nomes dos usuários, senha criptografada ou indicação de senhas (se não estiver criptografada no arquivo um x indica que a senha está no /etc/shadow), diretório home, shell, etc.
+Descrição das colunas separadas por **:**
+- **usuario:x:uid:gid:comentarios:home:shell**
+ex:
+```
+root:x:0:0:root:/root:/bin/bash
+```
+- /etc/shadow -e o arquivo de configuração das senhas dos usuários, nele são encontrados informações da conta do usuário como expiração da senha, senha criptografada, etc
+- /etc/group é o arquivo de configurção dos grupos de usuário, nele são encontrados informações como nome do grupo, GID, se o grupo tem senha e os usuários pertencentes ao grupo
+- /etc/gshadow nesse arquivo são encontrados o nome do grupo, senha criptografada, administrador do grupo e membros do grupo.
+**OBS.:** Quando adicionamos uma senha no grupo é possível alterar o grupo do usuário naquela sessão com o comando newgrp [-] [grupo]
+
+### adduser and addgroup (interativo)
+- O arquivo de configuração é /etc/adduser.conf, nele é possível alterar váriso parametros de criação de usuário.
+
+adduser [--home DIR] [--shell SHELL] [--no-create-home] [--uid ID]
+[--firstuid ID] [--lastuid ID] [--gecos GECOS] [--ingroup GROUP | --gid ID]
+[--disabled-password] [--disabled-login] [--add_extra_groups] USUÁRIO
+   Adiciona um usuário normal
+
+adduser --system [--home DIR] [--shell SHELL] [--no-create-home] [--uid ID]
+[--gecos GECOS] [--group | --ingroup GRUPO | --gid ID] [--disabled-password]
+[--disabled-login] [--add_extra_groups] USUÁRIO
+   Adiciona um usuário de sistema
+
+adduser --group [--gid ID] GRUPO
+addgroup [--gid ID] GRUPO
+   Adiciona um grupo de usuário
+
+addgroup --system [--gid ID] GRUPO
+   Adiciona um grupo de sistema
+
+adduser USUÁRIO GRUPO
+   Adiciona um usuário existente a um grupo existente
+
+opções gerais:
+  --quiet | -q      não passa informações de processo para stdout
+  --force-badname   permite nomes de usuário que não combinam com
+                    a variável de configuração NAME_REGEX
+  --help | -h       mensagem de utilização
+  --version | -v    número de versão e copyright
+  --conf | -c FILE  usa ARQUIVO como arquivo de configuração
+
+### useradd and groupadd (não interativo)
+Uso: useradd [opções] LOGIN
+     useradd -D
+     useradd -D [opções]
+
+Opções:
+      --badnames                do not check for bad names
+  -b, --base-dir BASE_DIR       diretório base para o diretório pessoal da
+                                nova conta
+      --btrfs-subvolume-home    use BTRFS subvolume for home directory
+  -c, --comment COMENTÁRIO      campo GECOS da nova conta
+  -d, --home-dir DIR_PESSOAL    diretório pessoal da nova conta
+  -D, --defaults                exibe ou altera configuração padrão do useradd
+  -e, --expiredate DATA_DE_EXPIRAÇÃO  data de expiração da nova conta
+  -f, --inactive INATIVO        período de inatividade de senha da nova conta
+  -g, --gid GRUPO               nome ou ID do grupo primário da nova
+                                conta
+  -G, --groups GRUPOS           lista de grupos complementares da nova
+                                conta
+  -h, --help                    mostrar esta mensagem de ajuda e sair
+  -k, --skel SKEL_DIR           use este diretório esqueleto (skeleton) alternativo
+  -K, --key CHAVE=VALOR         sobreescreve os padrões de /etc/login.defs
+  -l, --no-log-init             não adiciona o usuário aos bancos de dados
+                                lastlog e faillog
+  -m, --create-home             cria o diretório pessoal do usuário
+  -M, --no-create-home          não cria o diretório pessoal do usuário
+  -N, --no-user-group           não cria um grupo com o mesmo nome do usuário
+  -o, --non-unique              permite criar usuários com UID duplicado
+                                (não-único)
+  -p, --password SENHA          senha criptografada da nova conta
+  -r, --system                  cria uma conta de sistema
+  -R, --root CHROOT_DIR		directório para onde fazer chroot
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -s, --shell SHELL             shell de login da nova conta
+  -u, --uid UID                 ID de usuário da nova conta
+  -U, --user-group              cria um grupo com o mesmo nome do usuário
+  -Z, --selinux-user USUÁRIO_SE  usa um USUÁRIO_SE específico para o mapeamento de
+                                 usuário SELinux
+
+### deluser
+  remove um usuário normal do sistema
+  exemplo: deluser mike
+
+  --remove-home        remove o diretório pessoal e mail spool do usuário
+  --remove-all-files   remove todos os arquivos dos quais o usuário é o dono
+  --backup             realiza backup de arquivos antes de remover.
+  --backup-to <DIR>    diretório de destino para os backups.
+                       O padrão é o diretório corrente.
+  --system             remove somente se for usuário de sistema
+
+delgroup GRUPO
+deluser --group GRUPO
+  remove um grupo do sistema
+  exemplo: deluser --group students
+
+  --system             remove somente se for grupo de sistema
+  --only-if-empty      remove somente se não houver membros restantes
+
+deluser USUÁRIO GRUPO
+  remove o usuário de um grupo
+  exemplo: deluser mike students
+
+opções gerais:
+  --quiet | -q         não passa informações de processo para stdout
+  --help | -h          mensagem de utilização
+  --version | -v       número da versão e copyright
+  --conf | -c ARQUIVO  usa ARQUIVO como arquivo de configuração
+
+userdel
+
+### id
+Exibe informações de usuários e grupos
+```
+id technogaps
+```
+### newgrp
+Adiciona um usuário a um novo grupo temporariamente, ou seja, só durante aquela sessão. Útil para conseguir permissões de determinado grupo sem fazer alterações definitivas. Uso:
+```
+ newgrp [-] [grupo]
+```
+### passwd
+
+Uso: passwd [opções] [LOGIN]
+
+Opções:
+  -a, --all                     reportar estado de senhas em toda as contas
+  -d, --delete                  remover a senha para a conta indicada
+```
+passwd -d userteste
+```
+  -e, --expire                  forçar expiração da senha para a conta indicada
+```
+passwd -e userteste
+```
+  -h, --help                    mostrar esta mensagem de ajuda e sair
+  -k, --keep-tokens             mudar senha somente caso expirada
+  -i, --inactive INATIVO        definir senha inativa após expiração para
+                                INATIVO
+  -l, --lock                    trava a conta indicada
+```
+passwd -l userteste
+```
+  -n, --mindays MIN_DIAS        define número mínimo de dias antes da troca
+                                de senhas para MIN_DIAS
+  -q, --quiet                   modo silencioso
+  -r, --repository REPOSITÓRIO  mudar senha no repositório REPOSITÓRIO
+  -R, --root CHROOT_DIR		directório para onde fazer chroot
+  -S, --status                  reportar estado de senha para a conta indicada
+  -u, --unlock                  destravar a conta indicada
+```
+passwd -u userteste
+```
+  -w, --warndays DIAS_AVISO     define dias de aviso de expiração para
+                                DIAS_AVISO
+  -x, --maxdays MAX_DIAS        define número máximo de dias antes da troca
+                                de senhas para MAX_DIAS
+  -de, --delete,--expire        deleta a senha e expira
+```
+passwd -de userteste
+```
+### gpasswd
+
+Uso: gpasswd [opção] GRUPO
+- Para colocar senha no grupo:
+```
+gpasswd grupo
+```
+**OBS.:** quando o grupo possui uma senha é possível adiciona um usuário ao grupo de forma temporária, ou seja, só durante aquela sessão. Útil para conseguir permissões de determinado grupo sem fazer alterações definitivas. Uso:
+```
+newgrp grupo
+```
+Opções:
+  -a, --add USUÁRIO             adiciona o USUÁRIO ao GRUPO
+```
+gpasswd -a userteste grupoteste
+```
+  -d, --delete USUÁRIO          remove USUÁRIO do GRUPO
+  -h, --help                    mostrar esta mensagem de ajuda e sair
+  -Q, --root CHROOT_DIR		directório para onde fazer chroot
+  -r, --remove-password         remove a senha do GRUPO
+  -R, --restrict                restringe acesso dos membros ao GRUPO
+  -M, --members USUÁRIO,...     ajusta a lista de membros do GRUPO
+```
+gpasswd -M userteste grupoteste
+```
+  -A, --administrators ADMIN    ajusta a lista de administradores para o GRUPO
+```
+gpasswd -A userteste grupoteste
+```
+
+Exceto para as opções -A e -M, as opções não podem ser combinadas.
+### usermod
+Uso: usermod [opções] LOGIN
+**OBS.:** é possível escrever uma linha de códico com vários argumentos ou executar o comando separadamente.
+```
+usermod -d -m /home/userteste -c "usuario de testes" -l novologin -g 0 -u 5555 userteste
+```
+
+Opções:
+  -b, --badnames                allow bad names
+  -c, --comment COMENTÁRIO      novo valor do campo GECOS
+```
+usermod -c "Usuario de testes" userteste
+```
+  -d, --home DIR_PESSOAL        novo diretório de login para a nova conta de
+```
+usermod -d /home/userteste userteste
+```
+                                usuário
+  -e, --expiredate DATA_EXPIRA  define data de expiração de conta para
+                                DATA_EXPIRA
+  -f, --inactive INATIVO        define inatividade de senha após expiração
+                                para INATIVO
+  -g, --gid GRUPO               forçar usar GRUPO como novo grupo primário
+```
+usermod -g 0 userteste
+```
+  -G, --groups GRUPOS           nova lista de GRUPOS suplementares
+  -a, --append                  anexa o usuário para os GRUPOS suplementares
+                                mencionados pela opção -G sem remove-lo de
+                                outros grupos
+  -h, --help                    mostrar esta mensagem de ajuda e sair
+  -l, --login LOGIN             novo valor do nome de login (altera o nome do usuario)
+```
+usermod -l novonomedeusuario userteste 
+```
+  -L, --lock                    trava a conta de usuário
+```
+usermod -L userteste
+```
+  -m, --move-home               move o conteúdo do diretório pessoal para
+                                a nova localização (use somente com -d)
+```
+usermod -m -d /home/novodiretorio userteste
+```
+  -o, --non-unique              permitir usar UID duplicados (não-únicos)
+  -p, --password SENHA          usar senha criptografada para a nova senha
+  -R, --root CHROOT_DIR		directório para onde fazer chroot
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -s, --shell SHELL             novo shell de login para a conta de usuário
+```
+usermod -s /bin/zsh userteste
+```
+  -u, --uid UID                 novo UID para a conta de usuário
+```
+usermod -u 5555 userteste
+```
+  -U, --unlock                  destravar a conta de usuário
+  -v, --add-subuids FIRST-LAST  add range of subordinate uids
+  -V, --del-subuids FIRST-LAST  remove range of subordinate uids
+  -w, --add-subgids FIRST-LAST  add range of subordinate gids
+  -W, --del-subgids FIRST-LAST  remove range of subordinate gids
+  -Z, --selinux-user SEUSER	novo mapeamento de utilizador SELinux para a conta do utilizador
+
+### chfn
+Uso: chfn [opções] [LOGIN]
+
+Opções:
+  -f, --full-name NOME_COMPLETO alterar o nome completo do utilizador
+  -h, --home-phone TEL_CASA	alterar o número de telefone de casa do utilizador
+  -o, --other OUTRA_INFO	alterar outra info GECOS do utilizador
+  -r, --root NUMERO_PORTA	alterar o número da porta do utilizador
+  -R, --root CHROOT_DIR		directório para onde fazer chroot
+  -u, --help                    mostrar esta mensagem de ajuda e sair
+  -w, --work-phone TEL_EMPREGO alterar o número de telefone do emprego do utilizador
+
