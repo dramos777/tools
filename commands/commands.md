@@ -11,63 +11,48 @@ ls --color=auto
 ls --color=never
 
 #O comando ls permite listar o conteúdo de mais de um diretório ao mesmo tempo:
-```
 ls Diretorio1 Diretorio2
-```
-- Listar apenas o nome diretório sem listar o conteúdo:
-```
+
+#Listar apenas o nome diretório sem listar o conteúdo:
 ls -ld
-```
-- Classificar a listagem por ordem de criação do inode de disco do arquivo/diretorio
-```
+
+#Classificar a listagem por ordem de criação do inode de disco do arquivo/diretorio
 ls -lf
-```
-- Listar diretório colocando identificadores no final dos arquivos (/ para diretorios, = para caracteres, @ para link simbolico, * para executaveis):
-```
+
+#Listar diretório colocando identificadores no final dos arquivos (/ para diretorios, = para caracteres, @ para link simbolico, * para executaveis):
 ls -F
-```
-- Ocultar a coluna Grupos da listagem
-```
+
+#Ocultar a coluna Grupos da listagem
 ls -lG
-```
-- Não resolver nomes na listagem (substitui nome/grupo por id/gid)
-```
+
+#Não resolver nomes na listagem (substitui nome/grupo por id/gid)
 ls -ln
-```
-- Exibir apenas o dono do arquivo (-o de own)
-```
+
+#Exibir apenas o dono do arquivo (-o de own)
 ls -lo
-```
-- Exibir apenas o grupo do arquivo
-```
+
+#Exibir apenas o grupo do arquivo
 ls -lg
-```
-- Exibir a listagem com uma / no final dos diretórios
-```
+
+#Exibir a listagem com uma / no final dos diretórios
 ls -lp
-```
-- Classificar a listagem por data, ordem atualização do arquivo/diretorio (mais recentes primeiro)
-```
+
+#Classificar a listagem por data, ordem atualização do arquivo/diretorio (mais recentes primeiro)
 ls -lt
-```
-- Inverter a classificação da listagem
-```
+
+#Inverter a classificação da listagem
 ls -lr
-```
-- Exibir a listagem classificada por data de forma invertida, inclusive arquivos ocultos. (ideal para auditoria de logs, para saber os logs que foram alterados por ultimo)
-```
+
+#Exibir a listagem classificada por data de forma invertida, inclusive arquivos ocultos. (ideal para auditoria de logs, para saber os logs que foram alterados por ultimo)
 ls -lhatr
-```
-- Classificar pela data de criação (ctime)
-```
+
+#Classificar pela data de criação (ctime)
 ls -lc
-```
-- Classificar pela externsão do arqivo
-```
+
+#Classificar pela externsão do arqivo
 ls -lX
-```
-- Listar os diretorios de forma recursiva
-```
+
+#Listar os diretorios de forma recursiva
 ls -lR
 
 ```
