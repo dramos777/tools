@@ -78,33 +78,29 @@ xzdiff xzegrep
 ### rmdir 
 O comando rmdir remove diretório que estejam vazios
 
-- Apagar pastas vazias recursivamente:
 ```
+#Apagar pastas vazias recursivamente:
 rmdir -p /tmp/diretorio1/diretorio2/diretorio3
 ```
 
 ### cat
 O comando **cat** é utilizado para concatenar aquivos. No geral, ele é usado para exibir conteúdo de arquivos
-- Visualizar conteúdo de arquivo:
 ```
+#Visualizar conteúdo de arquivo:
 cat /tmp/arquivo.txt
-```
-- Colocar um $ no final da linha do arquivo. Util para identificar linhas que encerram com espaço.
-```
+
+#Colocar um $ no final da linha do arquivo. Util para identificar linhas que encerram com espaço.
 cat -E /tmp/arquivo.txt
 ```
 ### Variações do comando cat
-
-- Visualizar arquivos .gz:
 ```
+#Visualizar arquivos .gz:
 zcat /tmp/arquivo.gz
-```
-- Visualizar arquivos .bz2:
-```
+
+#Visualizar arquivos .bz2:
 bzcat /tmp/arquivo.bz2
-```
-- Visualizar arquivos .xz:
-```
+
+#Visualizar arquivos .xz:
 xzcat /tmp/arquivo.xz
 ```
 
