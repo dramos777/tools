@@ -1,18 +1,16 @@
 ### ls
 O comando **ls** é utilizado basicamente para listar conteúdo de diretórios e informações úteis para o gerenciamento de arquivos.
-- listar arquivos sem exibir backup (arquivos com ~ no final):
 ```
+#listar arquivos sem exibir backup (arquivos com ~ no final):
 ls -B
-```
-- Listar arquivos diferenciando por cores:
-```
+
+#Listar arquivos diferenciando por cores:
 ls --color=auto
-```
-- Remover cores da lista (inverso do comando ls --color=auto):
-```
+
+#Remover cores da lista (inverso do comando ls --color=auto):
 ls --color=never
-```
-- O comando ls permite listar o conteúdo de mais de um diretório ao mesmo tempo:
+
+#O comando ls permite listar o conteúdo de mais de um diretório ao mesmo tempo:
 ```
 ls Diretorio1 Diretorio2
 ```
@@ -1749,3 +1747,32 @@ ou
 ```
 echo "export EDITOR=vim" >> ~/.bashrc
 ```
+## Permissões
+Tipos de arquivos:
+- *-* arquivo
+- *d* diretorio
+- *l* link simbólico
+- *b* dispositivo de bloco
+- *c* dispositivo de caractere
+- *s* socket
+
+Forma de escrita:
+- Simbólica ( -rwxrw-r-- )
+- Octal (764)
+
+Significado das permissões e valor octal:
+- *-* ausência de permissão             == *0*
+- *r* permissão de leitura (read)       == *4*
+- *w* permissão de escrita (write)      == *2*
+- *x* Permissão de execução (execute)   == *1*
+
+|---------------------------------------------------------|
+|                    Tabela Explicativa                   |
+|---------------------------------------------------------|
+| Tipo de arquivo | Perm do dono | Perm do grupo | Outros |
+|-----------------|--------------|---------------|--------|
+|        -        |      rwx     |      rw-      |   r--  |
+|                 |--------------|---------------|--------|
+|                 |       7      |       6       |    4   |
+|-----------------|--------------|---------------|--------|
+
