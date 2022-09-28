@@ -1766,11 +1766,9 @@ Significado das permissões e valor octal:
 - *w* permissão de escrita (write)      == *2*
 - *x* Permissão de execução (execute)   == *1*
 
-|                    Tabela Explicativa                   |
-|---------------------------------------------------------|
+Tabela Explicativa                   
 | Tipo de arquivo | Perm do dono | Perm do grupo | Outros |
 |-----------------|--------------|---------------|--------|
 |        -        |      rwx     |      rw-      |   r--  |
-|                 |--------------|---------------|--------|
 |                 |       7      |       6       |    4   |
 
