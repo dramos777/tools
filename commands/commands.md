@@ -1397,7 +1397,7 @@ O arquivo /etc/gshadow é o arquivo onde encontramos o nome do grupo, senha crip
 ### Comandos adduser e addgroup (interativo)
 O arquivo de configuração é */etc/adduser.conf*, nele é possível alterar váriso parametros de criação de usuário.
 
-opções do comando **adduser** para usuários normais:
+Opções do comando **adduser** para usuários normais:
 |                   |                     |                    |             |
 |-------------------|---------------------|--------------------|-------------|
 |   [--home DIR]    |   [--shell SHELL]   | [--no-create-home] | [--uid ID]  |
@@ -1405,7 +1405,7 @@ opções do comando **adduser** para usuários normais:
 | [--ingroup GROUP] |[--disabled-password]| [--disabled-login] |[--add_extra_groups]|
 
 
-opções do comando **adduser** para usuários de sistema            
+Opções do comando **adduser** para usuários de sistema            
 |                       |                  |                    |            |
 |-----------------------|------------------|--------------------|------------|
 | --system [--home DIR] | [--shell SHELL]  | [--no-create-home] | [--uid ID] |
@@ -1424,7 +1424,7 @@ addgroup --system [--gid ID] GRUPO
 #Adicionar um usuário existente a um grupo existente
 adduser USUARIO GRUPO
 ```
-opções gerais:
+Opções gerais:
 
 | Argumento           | Descrição                                     |
 |---------------------|-----------------------------------------------|
@@ -1434,44 +1434,44 @@ opções gerais:
 |  --version  [-v]    | número de versão e copyright                  |
 |  --conf [-c] FILE   | usa ARQUIVO como arquivo de configuração      |
 
-### useradd and groupadd (não interativo)
-Uso: useradd [opções] LOGIN
-     useradd -D
-     useradd -D [opções]
+### Comando useradd e groupadd (não interativo)
+
+**Uso:** 
+```
+useradd [opções] LOGIN
+useradd -D
+useradd -D [opções]
+```
 
 Opções:
-      --badnames                do not check for bad names
-  -b, --base-dir BASE_DIR       diretório base para o diretório pessoal da
-                                nova conta
-      --btrfs-subvolume-home    use BTRFS subvolume for home directory
-  -c, --comment COMENTÁRIO      campo GECOS da nova conta
-  -d, --home-dir DIR_PESSOAL    diretório pessoal da nova conta
-  -D, --defaults                exibe ou altera configuração padrão do useradd
-  -e, --expiredate DATA_DE_EXPIRAÇÃO  data de expiração da nova conta
-  -f, --inactive INATIVO        período de inatividade de senha da nova conta
-  -g, --gid GRUPO               nome ou ID do grupo primário da nova
-                                conta
-  -G, --groups GRUPOS           lista de grupos complementares da nova
-                                conta
-  -h, --help                    mostrar esta mensagem de ajuda e sair
-  -k, --skel SKEL_DIR           use este diretório esqueleto (skeleton) alternativo
-  -K, --key CHAVE=VALOR         sobreescreve os padrões de /etc/login.defs
-  -l, --no-log-init             não adiciona o usuário aos bancos de dados
-                                lastlog e faillog
-  -m, --create-home             cria o diretório pessoal do usuário
-  -M, --no-create-home          não cria o diretório pessoal do usuário
-  -N, --no-user-group           não cria um grupo com o mesmo nome do usuário
-  -o, --non-unique              permite criar usuários com UID duplicado
-                                (não-único)
-  -p, --password SENHA          senha criptografada da nova conta
-  -r, --system                  cria uma conta de sistema
-  -R, --root CHROOT_DIR		directório para onde fazer chroot
-  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
-  -s, --shell SHELL             shell de login da nova conta
-  -u, --uid UID                 ID de usuário da nova conta
-  -U, --user-group              cria um grupo com o mesmo nome do usuário
-  -Z, --selinux-user USUÁRIO_SE  usa um USUÁRIO_SE específico para o mapeamento de
-                                 usuário SELinux
+
+|     --badnames               | do not check for bad names                     |
+|------------------------------|------------------------------------------------|
+|  -b, --base-dir BASE_DIR     |  diretório base para o diretório pessoal da nova conta|
+|      --btrfs-subvolume-home  |  use BTRFS subvolume for home directory        |
+|  -c, --comment COMENTÁRIO    |  campo GECOS da nova conta                     |
+|  -d, --home-dir DIR_PESSOAL  |  diretório pessoal da nova conta               |
+|  -D, --defaults              |  exibe ou altera configuração padrão do useradd|
+|  -e, --expiredate DATA_DE_EXPIRAÇÃO | data de expiração da nova conta         |
+|  -f, --inactive INATIVO      |  período de inatividade de senha da nova conta |
+|  -g, --gid GRUPO             |  nome ou ID do grupo primário da nova conta    |
+|  -G, --groups GRUPOS         |  lista de grupos complementares da nova conta  |
+|  -h, --help                  |  mostrar esta mensagem de ajuda e sair         |
+|  -k, --skel SKEL_DIR         |  use este diretório esqueleto (skeleton) alternativo|
+|  -K, --key CHAVE=VALOR       |  sobreescreve os padrões de /etc/login.defs    |
+|  -l, --no-log-init           |  não adiciona o usuário aos bancos de dados lastlog e faillog|
+|  -m, --create-home           |  cria o diretório pessoal do usuário|
+|  -M, --no-create-home        |  não cria o diretório pessoal do usuário|
+|  -N, --no-user-group         |  não cria um grupo com o mesmo nome do usuário|
+|  -o, --non-unique            |  permite criar usuários com UID duplicado (não-único)|
+|  -p, --password SENHA        |  senha criptografada da nova conta|
+|  -r, --system                |  cria uma conta de sistema|
+|  -R, --root CHROOT_DIR	   | directório para onde fazer chroot|
+|  -P, --prefix PREFIX_DIR     |  prefix directory where are located the /etc/* files|
+|  -s, --shell SHELL           |  shell de login da nova conta|
+|  -u, --uid UID               |  ID de usuário da nova conta|
+|  -U, --user-group            |  cria um grupo com o mesmo nome do usuário|
+|  -Z, --selinux-user USUÁRIO_SE|  usa um USUÁRIO_SE específico para o mapeamento de usuário SELinux|
 
 ### deluser
   remove um usuário normal do sistema
