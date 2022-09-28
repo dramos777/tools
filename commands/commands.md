@@ -1397,7 +1397,7 @@ O arquivo /etc/gshadow é o arquivo onde encontramos o nome do grupo, senha crip
 ### Comandos adduser e addgroup (interativo)
 O arquivo de configuração é */etc/adduser.conf*, nele é possível alterar váriso parametros de criação de usuário.
 
-|             opções do comando *adduser* para usuários normais              |
+             opções do comando *adduser* para usuários normais              
 |----------------------------------------------------------------------------|
 |   [--home DIR]    |   [--shell SHELL]   | [--no-create-home] | [--uid ID]  |
 |-------------------|---------------------|--------------------|-------------|
@@ -1408,7 +1408,7 @@ O arquivo de configuração é */etc/adduser.conf*, nele é possível alterar v�
 | [--add_extra_groups] |                                                     |
 |----------------------------------------------------------------------------|
 
-|            opções do comando *adduser* para usuários de sistema            |
+            opções do comando *adduser* para usuários de sistema            
 |----------------------------------------------------------------------------|
 | --system [--home DIR] | [--shell SHELL]  | [--no-create-home] | [--uid ID] |
 |-----------------------|------------------|--------------------|------------|
