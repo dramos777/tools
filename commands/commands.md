@@ -1406,6 +1406,7 @@ opções do comando **adduser** para usuários normais:
 
 
 opções do comando *adduser* para usuários de sistema            
+|                       |                  |                    |            |
 |-----------------------|------------------|--------------------|------------|
 | --system [--home DIR] | [--shell SHELL]  | [--no-create-home] | [--uid ID] |
 |   [--gecos GECOS]     |    [--group      |    --ingroup GRUPO |  --gid ID] |
