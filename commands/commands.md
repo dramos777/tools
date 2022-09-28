@@ -1405,7 +1405,7 @@ opções do comando **adduser** para usuários normais:
 | [--ingroup GROUP] |[--disabled-password]| [--disabled-login] |[--add_extra_groups]|
 
 
-opções do comando *adduser* para usuários de sistema            
+opções do comando **adduser** para usuários de sistema            
 |                       |                  |                    |            |
 |-----------------------|------------------|--------------------|------------|
 | --system [--home DIR] | [--shell SHELL]  | [--no-create-home] | [--uid ID] |
@@ -1414,23 +1414,26 @@ opções do comando *adduser* para usuários de sistema
 
 Exemplos:
 ```
-#Adiciona um grupo de usuário
+#Adicionar um grupo de usuário
 adduser --group [--gid ID] GRUPO
 addgroup [--gid ID] GRUPO
 
-#Adiciona um grupo de sistema
+#Adicionar um grupo de sistema
 addgroup --system [--gid ID] GRUPO
 
-#Adiciona um usuário existente a um grupo existente
+#Adicionar um usuário existente a um grupo existente
 adduser USUARIO GRUPO
 ```
 opções gerais:
-  --quiet | -q      não passa informações de processo para stdout
-  --force-badname   permite nomes de usuário que não combinam com
-                    a variável de configuração NAME_REGEX
-  --help | -h       mensagem de utilização
-  --version | -v    número de versão e copyright
-  --conf | -c FILE  usa ARQUIVO como arquivo de configuração
+
+| Argumento           | Descrição                                     |
+|---------------------|-----------------------------------------------|
+|  --quiet [-q]       | não passa informações de processo para stdout |
+|  --force-badname    | permite nomes de usuário que não combinam com |
+|                       a variável de configuração NAME_REGEX         |
+|  --help [-h]        | mensagem de utilização                        |
+|  --version  [-v]    | número de versão e copyright                  |
+|  --conf [-c] FILE   | usa ARQUIVO como arquivo de configuração      |
 
 ### useradd and groupadd (não interativo)
 Uso: useradd [opções] LOGIN
