@@ -1184,7 +1184,8 @@ blkid -s UUID /dev/sdb1 >> Retorna apenas o UUID da partição /dev/sdb1
 |------------|-------------|------|---------|------|-------|
 |/dev/sdb6   |	/var       |ext4  |defaults |	0  |	1  |
 
-#### Mapa de opções do arquivo /etc/fstab
+Mapa de opções do arquivo /etc/fstab
+
 **defaults** --> Opções defaults
 
 **noatime** --> Não atualiza o access time dos arquivos
@@ -1376,41 +1377,57 @@ apt update && apt install acpid
 **OBS**.: Por padrão o systemd já possui suporte para desligamento usando ACPI e o gerenciamento é feito através do arquivo /etc/systemd/logind.conf, mas é menos flexivo, ele só permite utilizar as configurações padrões dele enquanto no ACPI é possível determinar um script
 
 # Administração de usuários e grupos
-- /etc/passwd é o arquivo de configuração dos usuários, nele são encontrados os nomes dos usuários, senha criptografada ou indicação de senhas (se não estiver criptografada no arquivo um x indica que a senha está no /etc/shadow), diretório home, shell, etc.
+O carquivo */etc/passwd* é o arquivo de configuração dos usuários, nele são encontrados os nomes dos usuários, senha criptografada ou indicação de senhas (se não estiver criptografada no arquivo um x indica que a senha está no /etc/shadow), diretório home, shell, etc.
+
 Descrição das colunas separadas por **:**
-- **usuario:x:uid:gid:comentarios:home:shell**
-ex:
 ```
+#usuario:x:uid:gid:comentarios:home:shell
+
+#ex:
 root:x:0:0:root:/root:/bin/bash
 ```
-- /etc/shadow -e o arquivo de configuração das senhas dos usuários, nele são encontrados informações da conta do usuário como expiração da senha, senha criptografada, etc
-- /etc/group é o arquivo de configurção dos grupos de usuário, nele são encontrados informações como nome do grupo, GID, se o grupo tem senha e os usuários pertencentes ao grupo
-- /etc/gshadow nesse arquivo são encontrados o nome do grupo, senha criptografada, administrador do grupo e membros do grupo.
+O arquivo */etc/shadow* é o arquivo de configuração das senhas dos usuários, nele são encontrados informações da conta do usuário como expiração da senha, senha criptografada, etc
+
+O arquivo */etc/group* é o arquivo de configurção dos grupos de usuário, nele são encontrados informações como nome do grupo, GID, se o grupo tem senha e os usuários pertencentes ao grupo
+
+O arquivo /etc/gshadow é o arquivo onde encontramos o nome do grupo, senha criptografada, administrador do grupo e membros do grupo.
+
 **OBS.:** Quando adicionamos uma senha no grupo é possível alterar o grupo do usuário naquela sessão com o comando newgrp [-] [grupo]
 
-### adduser and addgroup (interativo)
-- O arquivo de configuração é /etc/adduser.conf, nele é possível alterar váriso parametros de criação de usuário.
+### Comandos adduser e addgroup (interativo)
+O arquivo de configuração é */etc/adduser.conf*, nele é possível alterar váriso parametros de criação de usuário.
 
-adduser [--home DIR] [--shell SHELL] [--no-create-home] [--uid ID]
-[--firstuid ID] [--lastuid ID] [--gecos GECOS] [--ingroup GROUP | --gid ID]
-[--disabled-password] [--disabled-login] [--add_extra_groups] USUÁRIO
-   Adiciona um usuário normal
+|             opções do comando *adduser* para usuários normais              |
+|----------------------------------------------------------------------------|
+|   [--home DIR]    |   [--shell SHELL]   | [--no-create-home] | [--uid ID]  |
+|-------------------|---------------------|--------------------|-------------|
+|  [--firstuid ID]  |   [--lastuid ID]    |   [--gecos GECOS]  | [--gid ID]  |
+|-------------------|---------------------|--------------------|-------------|
+| [--ingroup GROUP] |[--disabled-password]| [--disabled-login] |             |
+|-------------------|---------------------|--------------------|-------------|
+| [--add_extra_groups] |                                                     |
+|----------------------------------------------------------------------------|
 
-adduser --system [--home DIR] [--shell SHELL] [--no-create-home] [--uid ID]
-[--gecos GECOS] [--group | --ingroup GRUPO | --gid ID] [--disabled-password]
-[--disabled-login] [--add_extra_groups] USUÁRIO
-   Adiciona um usuário de sistema
+|            opções do comando *adduser* para usuários de sistema            |
+|----------------------------------------------------------------------------|
+| --system [--home DIR] | [--shell SHELL]  | [--no-create-home] | [--uid ID] |
+|-----------------------|------------------|--------------------|------------|
+|   [--gecos GECOS]     |    [--group      |    --ingroup GRUPO |  --gid ID] |
+|-----------------------|------------------|--------------------|------------|
+|[--disabled-password]  |[--disabled-login]|[--add_extra_groups]|            |
 
+Exemplos:
+```
+#Adiciona um grupo de usuário
 adduser --group [--gid ID] GRUPO
 addgroup [--gid ID] GRUPO
-   Adiciona um grupo de usuário
 
+#Adiciona um grupo de sistema
 addgroup --system [--gid ID] GRUPO
-   Adiciona um grupo de sistema
 
-adduser USUÁRIO GRUPO
-   Adiciona um usuário existente a um grupo existente
-
+#Adiciona um usuário existente a um grupo existente
+adduser USUARIO GRUPO
+```
 opções gerais:
   --quiet | -q      não passa informações de processo para stdout
   --force-badname   permite nomes de usuário que não combinam com
@@ -1747,7 +1764,6 @@ Significado das permissões e valor octal:
 - *w* permissão de escrita (write)      == *2*
 - *x* Permissão de execução (execute)   == *1*
 
-|---------------------------------------------------------|
 |                    Tabela Explicativa                   |
 |---------------------------------------------------------|
 | Tipo de arquivo | Perm do dono | Perm do grupo | Outros |
@@ -1755,5 +1771,4 @@ Significado das permissões e valor octal:
 |        -        |      rwx     |      rw-      |   r--  |
 |                 |--------------|---------------|--------|
 |                 |       7      |       6       |    4   |
-|-----------------|--------------|---------------|--------|
 
