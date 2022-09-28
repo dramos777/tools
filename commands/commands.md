@@ -1505,59 +1505,57 @@ deluser USUÁRIO GRUPO
 deluser mike students
 ```
 
-
-userdel
-
-### id
+### Comando id
 Exibe informações de usuários e grupos
 ```
 id technogaps
 ```
-### newgrp
+### Comando newgrp
 Adiciona um usuário a um novo grupo temporariamente, ou seja, só durante aquela sessão. Útil para conseguir permissões de determinado grupo sem fazer alterações definitivas. Uso:
 ```
  newgrp [-] [grupo]
 ```
-### passwd
+### Comando passwd
 
-Uso: passwd [opções] [LOGIN]
+**Uso:**
+```
+passwd [opções] [LOGIN]
+```
 
-Opções:
-  -a, --all                     reportar estado de senhas em toda as contas
-  -d, --delete                  remover a senha para a conta indicada
+| Opções                    |                 Descrição                        |
+|---------------------------|--------------------------------------------------|
+|  -a, --all                |     reportar estado de senhas em toda as contas|
+|  -d, --delete             |     remover a senha para a conta indicada|
+|  -e, --expire             |     forçar expiração da senha para a conta indicada|
+
+**Exemplos:**
 ```
 passwd -d userteste
-```
-  -e, --expire                  forçar expiração da senha para a conta indicada
-```
 passwd -e userteste
 ```
-  -h, --help                    mostrar esta mensagem de ajuda e sair
-  -k, --keep-tokens             mudar senha somente caso expirada
-  -i, --inactive INATIVO        definir senha inativa após expiração para
-                                INATIVO
-  -l, --lock                    trava a conta indicada
+| Opções                    |        Descrição                                 |
+|---------------------------|--------------------------------------------------|
+|  -h, --help               |     mostrar esta mensagem de ajuda e sair|
+|  -k, --keep-tokens        |     mudar senha somente caso expirada|
+|  -i, --inactive INATIVO   |     definir senha inativa após expiração para INATIVO|
+|  -l, --lock               |     trava a conta indicada|
+|  -u, --unlock             |     destravar a conta indicada|
+|  -de, --delete,--expire   |     deleta a senha e expira|
 ```
 passwd -l userteste
-```
-  -n, --mindays MIN_DIAS        define número mínimo de dias antes da troca
-                                de senhas para MIN_DIAS
-  -q, --quiet                   modo silencioso
-  -r, --repository REPOSITÓRIO  mudar senha no repositório REPOSITÓRIO
-  -R, --root CHROOT_DIR		directório para onde fazer chroot
-  -S, --status                  reportar estado de senha para a conta indicada
-  -u, --unlock                  destravar a conta indicada
-```
 passwd -u userteste
-```
-  -w, --warndays DIAS_AVISO     define dias de aviso de expiração para
-                                DIAS_AVISO
-  -x, --maxdays MAX_DIAS        define número máximo de dias antes da troca
-                                de senhas para MAX_DIAS
-  -de, --delete,--expire        deleta a senha e expira
-```
 passwd -de userteste
 ```
+| Opções                    |        Descrição                                 |
+|---------------------------|--------------------------------------------------|
+|  -n, --mindays MIN_DIAS   |     define número mínimo de dias antes da troca de senhas para MIN_DIAS|
+|  -q, --quiet              |     modo silencioso|
+|  -r, --repository REPOSITÓRIO|  mudar senha no repositório REPOSITÓRIO|
+|  -R, --root CHROOT_DIR	|	directório para onde fazer chroot|
+|  -S, --status             |     reportar estado de senha para a conta indicada|
+|  -w, --warndays DIAS_AVISO |    define dias de aviso de expiração para DIAS_AVISO|
+|  -x, --maxdays MAX_DIAS    |    define número máximo de dias antes da troca de senhas para MAX_DIAS|
+
 ### gpasswd
 
 Uso: gpasswd [opção] GRUPO
