@@ -1473,34 +1473,38 @@ Opções:
 |  -U, --user-group            |  cria um grupo com o mesmo nome do usuário|
 |  -Z, --selinux-user USUÁRIO_SE|  usa um USUÁRIO_SE específico para o mapeamento de usuário SELinux|
 
-### deluser
-  remove um usuário normal do sistema
-  exemplo: deluser mike
+### Comando deluser
+Remove um usuário normal do sistema
+exemplo:
+```
+deluser mike
+```
+| Argumento           | Descrição                                           |
+|---------------------|-----------------------------------------------------|
+|  --remove-home      |  remove o diretório pessoal e mail spool do usuário|
+|  --remove-all-files |  remove todos os arquivos dos quais o usuário é o dono|
+|  --backup           |  realiza backup de arquivos antes de remover.|
+|  --backup-to <DIR>  |  diretório de destino para os backups. O padrão é o diretório corrente.
+|  --system           |  remove somente se for usuário de sistema|
+|  --only-if-empty    |  remove somente se não houver membros restantes|
+|  --quiet [-q]       |  não passa informações de processo para stdout|
+|  --help  [-h]       |   mensagem de utilização|
+|  --version [-v]     |  número da versão e copyright|
+|  --conf [-c] ARQUIVO|  usa ARQUIVO como arquivo de configuração|
 
-  --remove-home        remove o diretório pessoal e mail spool do usuário
-  --remove-all-files   remove todos os arquivos dos quais o usuário é o dono
-  --backup             realiza backup de arquivos antes de remover.
-  --backup-to <DIR>    diretório de destino para os backups.
-                       O padrão é o diretório corrente.
-  --system             remove somente se for usuário de sistema
 
+**Uso**
+```
+#remove um grupo do sistema
 delgroup GRUPO
 deluser --group GRUPO
-  remove um grupo do sistema
-  exemplo: deluser --group students
+deluser --group students
 
-  --system             remove somente se for grupo de sistema
-  --only-if-empty      remove somente se não houver membros restantes
-
+#remove o usuário de um grupo
 deluser USUÁRIO GRUPO
-  remove o usuário de um grupo
-  exemplo: deluser mike students
+deluser mike students
+```
 
-opções gerais:
-  --quiet | -q         não passa informações de processo para stdout
-  --help | -h          mensagem de utilização
-  --version | -v       número da versão e copyright
-  --conf | -c ARQUIVO  usa ARQUIVO como arquivo de configuração
 
 userdel
 
