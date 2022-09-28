@@ -1403,10 +1403,7 @@ opções do comando *adduser* para usuários normais:
 |-------------------|---------------------|--------------------|-------------|
 |  [--firstuid ID]  |   [--lastuid ID]    |   [--gecos GECOS]  | [--gid ID]  |
 |-------------------|---------------------|--------------------|-------------|
-| [--ingroup GROUP] |[--disabled-password]| [--disabled-login] |             |
-|-------------------|---------------------|--------------------|-------------|
-| [--add_extra_groups] |                                                     |
-|----------------------------------------------------------------------------|
+| [--ingroup GROUP] |[--disabled-password]| [--disabled-login] |[--add_extra_groups]|
 
             opções do comando *adduser* para usuários de sistema            
 
