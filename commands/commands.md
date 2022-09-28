@@ -1558,15 +1558,17 @@ passwd -de userteste
 
 ### gpasswd
 
-Uso: gpasswd [opção] GRUPO
-- Para colocar senha no grupo:
+**Uso:**
 ```
+gpasswd [opção] GRUPO
+
+#Colocar senha no grupo
 gpasswd grupo
-```
-**OBS.:** quando o grupo possui uma senha é possível adiciona um usuário ao grupo de forma temporária, ou seja, só durante aquela sessão. Útil para conseguir permissões de determinado grupo sem fazer alterações definitivas. Uso:
-```
+
+#Adicionar usuário teporariamente (sessão atual) no grupo que tem senha
 newgrp grupo
 ```
+
 Opções:
   -a, --add USUÁRIO             adiciona o USUÁRIO ao GRUPO
 ```
