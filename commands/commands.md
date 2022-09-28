@@ -1429,8 +1429,7 @@ opções gerais:
 | Argumento           | Descrição                                     |
 |---------------------|-----------------------------------------------|
 |  --quiet [-q]       | não passa informações de processo para stdout |
-|  --force-badname    | permite nomes de usuário que não combinam com 
-                       a variável de configuração NAME_REGEX          |
+|  --force-badname    | permite nomes de usuário que não combinam com a variável de configuração NAME_REGEX                                                |
 |  --help [-h]        | mensagem de utilização                        |
 |  --version  [-v]    | número de versão e copyright                  |
 |  --conf [-c] FILE   | usa ARQUIVO como arquivo de configuração      |
