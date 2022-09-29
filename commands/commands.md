@@ -1645,7 +1645,7 @@ gpasswd -A userteste grupoteste
 
 Exceto para as opções -A e -M, as opções não podem ser combinadas.
 
-### usermod
+### Comando usermod
 **Uso:** 
 
 É possível escrever uma linha de códico com vários argumentos ou executar o comando separadamente.
@@ -1659,7 +1659,7 @@ usermod -d -m /home/userteste -c "usuario de testes" -l novologin -g 0 -u 5555 u
 
 | Opções                     |     Descrição   |
 |----------------------------|-----------------|
-|  -b, --badnames            |    allow bad names|
+|  -b, --badnames            |    Permite nomes fora dos padrões|
 |  -c, --comment COMENTÁRIO  |    novo valor do campo GECOS|
 |  -d, --home DIR_PESSOAL    |    novo diretório de login para a nova conta de usuário|
 |  -e, --expiredate DATA_EXPIRA | define data de expiração de conta para DATA_EXPIRA (YYYY-MM-DD). Se DATA_EXPIRA estiver vazia ele desabilita a expiração|
@@ -1667,7 +1667,7 @@ usermod -d -m /home/userteste -c "usuario de testes" -l novologin -g 0 -u 5555 u
 |  -l, --login LOGIN         |    novo valor do nome de login (altera o nome do usuario)|
 |  -L, --lock                |    trava a conta de usuário|
 |  -m, --move-home           |    move o conteúdo do diretório pessoal para a nova localização (use somente com -d)|
-|  -s, --shell SHELL             novo shell de login para a conta de usuário|
+|  -s, --shell SHELL         |    novo shell de login para a conta de usuário|
 |  -u, --uid UID             |    novo UID para a conta de usuário|
 
 
@@ -1720,86 +1720,92 @@ usermod -u 5555 userteste
 |  -W, --del-subgids FIRST-LAST | remove range of subordinate gids|
 |  -Z, --selinux-user SEUSER   | novo mapeamento de utilizador SELinux para a conta do utilizador|
 
-### groupmod
-Uso: groupmod [opções] GRUPO
+### Comando groupmod
+**Uso:**
+```
+groupmod [opções] GRUPO
+```
 
-Opções:
-  -g, --gid GID                 muda o ID do grupo para GID
-  -h, --help                    mostrar esta mensagem de ajuda e sair
-  -n, --new-name NOVO_GRUPO     muda o nome para NOVO_GRUPO
-  -o, --non-unique              permite usar um GID (não-único) duplicado
-  -p, --password SENHA          muda a senha para esta SENHA (criptografada)
-  -R, --root CHROOT_DIR		directório para onde fazer chroot
-  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+| Opções                      |  Descrição      |
+|-----------------------------|-----------------|
+|  -g, --gid GID              |   muda o ID do grupo para GID|
+|  -h, --help                 |   mostrar esta mensagem de ajuda e sair|
+|  -n, --new-name NOVO_GRUPO  |   muda o nome para NOVO_GRUPO|
+|  -o, --non-unique           |   permite usar um GID (não-único) duplicado|
+|  -p, --password SENHA       |   muda a senha para esta SENHA (criptografada)|
+|  -R, --root CHROOT_DIR	  |  directório para onde fazer chroot|
+|  -P, --prefix PREFIX_DIR    |   prefix directory where are located the /etc/* files|
 
+### Comando chfn
+**Uso:**
+```
+chfn [opções] [LOGIN]
+```
+| Opções   | Descrição |
+|----------|-----------|
+|  -f, --full-name NOME_COMPLETO |alterar o nome completo do utilizador|
+|  -h, --home-phone TEL_CASA   | alterar o número de telefone de casa do utilizador|
+|  -o, --other OUTRA_INFO  | alterar outra info GECOS do utilizador|
+|  -r, --root NUMERO_PORTA | alterar o número da porta do utilizador|
+|  -R, --root CHROOT_DIR   | 	directório para onde fazer chroot|
+|  -u, --help              |      mostrar esta mensagem de ajuda e sair|
+|  -w, --work-phone TEL_EMPREGO |alterar o número de telefone do emprego do utilizador|
 
-### chfn
-Uso: chfn [opções] [LOGIN]
+### Comando chsh
+**Uso:**
+```
+chsh [opções] [LOGIN]
+```
 
-Opções:
-  -f, --full-name NOME_COMPLETO alterar o nome completo do utilizador
-  -h, --home-phone TEL_CASA	alterar o número de telefone de casa do utilizador
-  -o, --other OUTRA_INFO	alterar outra info GECOS do utilizador
-  -r, --root NUMERO_PORTA	alterar o número da porta do utilizador
-  -R, --root CHROOT_DIR		directório para onde fazer chroot
-  -u, --help                    mostrar esta mensagem de ajuda e sair
-  -w, --work-phone TEL_EMPREGO alterar o número de telefone do emprego do utilizador
+|Opções | Descrição|
+|-------|----------|
+|  -h, --help      |              mostrar esta mensagem de ajuda e sair|
+|  -R, --root CHROOT_DIR   | 	directório para onde fazer chroot|
+|  -s, --shell SHELL       |      novo shell de login para a conta de usuário|
 
-### chsh
-Uso: chsh [opções] [LOGIN]
-
-Opções:
-  -h, --help                    mostrar esta mensagem de ajuda e sair
-  -R, --root CHROOT_DIR		directório para onde fazer chroot
-  -s, --shell SHELL             novo shell de login para a conta de usuário
-
-### lastlog
-Uso: lastlog [opções]
+### Comando lastlog
+**Uso:**
+```
+lastlog [opções]
+```
 **OBS.:** O comando lastlog se basea as informações do arquivo /etc/log/lastlog
 
-Opções:
-  -b, --before DIAS             imprime somente registros lastlog mais
-                                antigos que DIAS
-  -C, --clear                   clear lastlog record of an user (usable only with -u)
-  -h, --help                    mostrar esta mensagem de ajuda e sair
-  -R, --root CHROOT_DIR		directório para onde fazer chroot
-  -S, --set                     set lastlog record to current time (usable only with -u)
-  -t, --time DIAS               imprime somente registros lastlog mais
-                                recentes que DIAS
-  -u, --user LOGIN              imprime registro lastlog para usuário com
-                                LOGIN especificado
-### last
-Uso:
+| Opções | Descrição |
+|--------|-----------|
+|  -b, --before DIAS |            imprime somente registros lastlog mais antigos que DIAS|
+|  -C, --clear        |           clear lastlog record of an user (usable only with -u)|
+|  -h, --help       |             mostrar esta mensagem de ajuda e sair|
+|  -R, --root CHROOT_DIR	  |  directório para onde fazer chroot||  -S, --set                  |   set lastlog record to current time (usable only with -u)|
+|  -t, --time DIAS      |         imprime somente registros lastlog mais recentes que DIAS|
+|  -u, --user LOGIN     |         imprime registro lastlog para usuário com LOGIN especificado|
+
+### Comando last
+**Uso:**
+```
  last [opções] [<usuário>...] [<tty>...]
+ ```
 
 Mostra uma listagem dos últimos usuários autenticados.
 
-Opções:
- -<número>            quantidade de linhas para mostrar
- -a, --hostlast       exibe nomes de máquina na última coluna
- -d, --dns            traduz o número de IP para um nome de máquina
- -f, --file <arquivo> usa um arquivo específico em vez de /var/log/wtmp
- -F, --fulltimes      mostra horários e datas completos de login e logout
- -i, --ip             exibe números de IP na anotação números-e-pontos
- -n, --limit <número> quantidade de linhas para mostrar
- -R, --nohostname     não exibe o campo de nome de máquina
- -s, --since <hora>   exibe as linhas desde o horário especificado
- -t, --until <hora>   exibe as linhas até o horário especificado
- -p, --present <hora> exibe quem estava presente no horário especificado
- -w, --fullnames      exibe os nomes de domínio e usuário completos
- -x, --system         exibe entradas de desligamento do sistema e alterações
-                        no nível de execução
-     --time-format <formato>
-                      mostra marcas de tempo usando o <formato>:
-                        notime|short|full|iso
+|Opções|Descrição|
+|-------|----|
+| -<número>  |          quantidade de linhas para mostrar|
+| -a, --hostlast  |     exibe nomes de máquina na última coluna|
+| -d, --dns      |      traduz o número de IP para um nome de máquina|
+| -f, --file <arquivo> |usa um arquivo específico em vez de /var/log/wtmp|
+| -F, --fulltimes    |  mostra horários e datas completos de login e logout|
+| -i, --ip       |      exibe números de IP na anotação números-e-pontos|
+| -n, --limit <número> |quantidade de linhas para mostrar|
+| -R, --nohostname   |  não exibe o campo de nome de máquina|
+| -s, --since <hora> |  exibe as linhas desde o horário especificado|
+| -t, --until <hora> |  exibe as linhas até o horário especificado|
+| -p, --present <hora> |exibe quem estava presente no horário especificado|
+| -w, --fullnames     | exibe os nomes de domínio e usuário completos|
+| -x, --system       |  exibe entradas de desligamento do sistema e alterações no nível de execução|
+|     --time-format <formato>|  mostra marcas de tempo usando o <formato>:[notime][short][full][iso]
+| -h, --help       |    exibe esta ajuda e sai|
+| -V, --version    |    exibe a versão|
 
- -h, --help           exibe esta ajuda e sai
- -V, --version        exibe a versão
-
-Para mais detalhes, veja last(1).
-Uso: users [OPÇÃO]... [ARQUIVO]
-Emite quem está atualmente conectado de acordo com ARQUIVO.
-Se ARQUIVO não for especificado, usa-se /var/run/utmp.
 É costume usar /var/log/wtmp como ARQUIVO.
 
 ### Comando users
