@@ -1608,7 +1608,7 @@ passwd -de userteste
 |  -w, --warndays DIAS_AVISO |    define dias de aviso de expiração para DIAS_AVISO|
 |  -x, --maxdays MAX_DIAS    |    define número máximo de dias antes da troca de senhas para MAX_DIAS|
 
-### gpasswd
+### Comando gpasswd
 
 **Uso:**
 ```
@@ -1621,88 +1621,105 @@ gpasswd grupo
 newgrp grupo
 ```
 
-Opções:
-  -a, --add USUÁRIO             adiciona o USUÁRIO ao GRUPO
+|Opções                        | Descrição |
+|------------------------------|-----------|
+|  -a, --add USER GROUP        | adiciona o USUÁRIO ao GRUPO|
+|  -d, --delete USER GROUP     |  remove USUÁRIO do GRUPO|
+|  -M, --members USUÁRIO,...   |  ajusta a lista de membros do GRUPO|
+|  -r, --remove-password       |  remove a senha do GRUPO|
+|  -A, --administrators ADMIN    ajusta a lista de administradores para o GRUPO|
+
+Exemplos
 ```
 gpasswd -a userteste grupoteste
-```
-  -d, --delete USUÁRIO          remove USUÁRIO do GRUPO
-  -h, --help                    mostrar esta mensagem de ajuda e sair
-  -Q, --root CHROOT_DIR		directório para onde fazer chroot
-  -r, --remove-password         remove a senha do GRUPO
-  -R, --restrict                restringe acesso dos membros ao GRUPO
-  -M, --members USUÁRIO,...     ajusta a lista de membros do GRUPO
-```
+gpasswd -d userteste grupoteste
 gpasswd -M userteste grupoteste
-```
-  -A, --administrators ADMIN    ajusta a lista de administradores para o GRUPO
-```
+gpasswd -r grupoteste
 gpasswd -A userteste grupoteste
 ```
+|Opções                        | Descrição |
+|------------------------------|-----------|
+|  -h, --help                  |  mostrar esta mensagem de ajuda e sair|
+|  -Q, --root CHROOT_DIR	   | directório para onde fazer chroot|
+|  -R, --restrict              |  restringe acesso dos membros ao GRUPO|
 
 Exceto para as opções -A e -M, as opções não podem ser combinadas.
+
 ### usermod
-Uso: usermod [opções] LOGIN
-**OBS.:** é possível escrever uma linha de códico com vários argumentos ou executar o comando separadamente.
+**Uso:** 
+
+É possível escrever uma linha de códico com vários argumentos ou executar o comando separadamente.
 ```
+#uso padrão
+usermod [opções] LOGIN
+
+#uso com varios argumentos
 usermod -d -m /home/userteste -c "usuario de testes" -l novologin -g 0 -u 5555 userteste
 ```
 
-Opções:
-  -b, --badnames                allow bad names
-  -c, --comment COMENTÁRIO      novo valor do campo GECOS
+| Opções                     |     Descrição   |
+|----------------------------|-----------------|
+|  -b, --badnames            |    allow bad names|
+|  -c, --comment COMENTÁRIO  |    novo valor do campo GECOS|
+|  -d, --home DIR_PESSOAL    |    novo diretório de login para a nova conta de usuário|
+|  -e, --expiredate DATA_EXPIRA | define data de expiração de conta para DATA_EXPIRA (YYYY-MM-DD). Se DATA_EXPIRA estiver vazia ele desabilita a expiração|
+|  -g, --gid GRUPO           |    forçar usar GRUPO como novo grupo primário|
+|  -l, --login LOGIN         |    novo valor do nome de login (altera o nome do usuario)|
+|  -L, --lock                |    trava a conta de usuário|
+|  -m, --move-home           |    move o conteúdo do diretório pessoal para a nova localização (use somente com -d)|
+|  -s, --shell SHELL             novo shell de login para a conta de usuário|
+|  -u, --uid UID             |    novo UID para a conta de usuário|
+
+
 ```
+#Adicionar informações do usuário para o usuário
 usermod -c "Usuario de testes" userteste
-```
-  -d, --home DIR_PESSOAL        novo diretório de login para a nova conta de
-```
+
+#Definir diretório home na criação da conta
 usermod -d /home/userteste userteste
-```
-                                usuário
-  -e, --expiredate DATA_EXPIRA  define data de expiração de conta para
-                                DATA_EXPIRA
-  -f, --inactive INATIVO        define inatividade de senha após expiração
-                                para INATIVO
-  -g, --gid GRUPO               forçar usar GRUPO como novo grupo primário
-```
+
+#Expirar a conta dia 31 de dezembro de 2022
+usermod -e userteste 2022-12-31
+
+#Cancelar expiração da conta
+usermod -e userteste
+
+#Força a utilização do grupo 0 como novo grupo primário
 usermod -g 0 userteste
-```
-  -G, --groups GRUPOS           nova lista de GRUPOS suplementares
-  -a, --append                  anexa o usuário para os GRUPOS suplementares
-                                mencionados pela opção -G sem remove-lo de
-                                outros grupos
-  -h, --help                    mostrar esta mensagem de ajuda e sair
-  -l, --login LOGIN             novo valor do nome de login (altera o nome do usuario)
-```
+
+#Altera o nome do login do usuário
 usermod -l novonomedeusuario userteste 
-```
-  -L, --lock                    trava a conta de usuário
-```
+
+#Trava a conta do usuário
 usermod -L userteste
-```
-  -m, --move-home               move o conteúdo do diretório pessoal para
-                                a nova localização (use somente com -d)
-```
+
+#Mover o diretório home do usuário para outro local
 usermod -m -d /home/novodiretorio userteste
-```
-  -o, --non-unique              permitir usar UID duplicados (não-únicos)
-  -p, --password SENHA          usar senha criptografada para a nova senha
-  -R, --root CHROOT_DIR		directório para onde fazer chroot
-  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
-  -s, --shell SHELL             novo shell de login para a conta de usuário
-```
+
+#Altera o shell do usuário para zsh
 usermod -s /bin/zsh userteste
-```
-  -u, --uid UID                 novo UID para a conta de usuário
-```
+
+#Altera o UID do usuário
 usermod -u 5555 userteste
 ```
-  -U, --unlock                  destravar a conta de usuário
-  -v, --add-subuids FIRST-LAST  add range of subordinate uids
-  -V, --del-subuids FIRST-LAST  remove range of subordinate uids
-  -w, --add-subgids FIRST-LAST  add range of subordinate gids
-  -W, --del-subgids FIRST-LAST  remove range of subordinate gids
-  -Z, --selinux-user SEUSER	novo mapeamento de utilizador SELinux para a conta do utilizador
+
+| Opções                     |     Descrição   |
+|----------------------------|-----------------|
+|  -f, --inactive INATIVO    |    define inatividade de senha após expiração para INATIVO|
+|  -G, --groups GRUPOS       |    nova lista de GRUPOS suplementares|
+|  -a, --append              |    anexa o usuário para os GRUPOS suplementares mencionados pela opção -G sem remove-lo de outros grupos|
+|  -h, --help                |    mostrar esta mensagem de ajuda e sair|
+|  -o, --non-unique          |    permitir usar UID duplicados (não-únicos)|
+|  -p, --password SENHA      |    usar senha criptografada para a nova senha|
+|  -R, --root CHROOT_DIR	 |   directório para onde fazer chroot|
+|  -P, --prefix PREFIX_DIR   |    prefix directory where are located the /etc/* files|
+|  -U, --unlock              |    destravar a conta de usuário|
+|  -v, --add-subuids FIRST-LAST | add range of subordinate uids|
+|  -V, --del-subuids FIRST-LAST | remove range of subordinate uids|
+|  -w, --add-subgids FIRST-LAST | add range of subordinate gids|
+|  -W, --del-subgids FIRST-LAST | remove range of subordinate gids|
+|  -Z, --selinux-user SEUSER   | novo mapeamento de utilizador SELinux para a conta do utilizador|
+
 ### groupmod
 Uso: groupmod [opções] GRUPO
 
