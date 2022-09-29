@@ -1785,10 +1785,10 @@ Emite quem está atualmente conectado de acordo com ARQUIVO.
 Se ARQUIVO não for especificado, usa-se /var/run/utmp.
 É costume usar /var/log/wtmp como ARQUIVO.
 
-### users
+### Comando users
 Exibe os usuários logados no sistema
 
-### groups
+### Comando groups
 Exibe os grupos dos usuários logados no sistema
 
 # Alterar o editor padrão
@@ -1799,7 +1799,8 @@ ou
 ```
 echo "export EDITOR=vim" >> ~/.bashrc
 ```
-## Permissões
+# Permissões
+
 Tipos de arquivos:
 - *-* arquivo
 - *d* diretorio
@@ -1809,18 +1810,120 @@ Tipos de arquivos:
 - *s* socket
 
 Forma de escrita:
-- Simbólica ( -rwxrw-r-- )
+- Literal ( -rwxrw-r-- )
 - Octal (764)
 
 Significado das permissões e valor octal:
-- *-* ausência de permissão             == *0*
-- *r* permissão de leitura (read)       == *4*
-- *w* permissão de escrita (write)      == *2*
-- *x* Permissão de execução (execute)   == *1*
+- **-** ausência de permissão             == *0*
+- **r** permissão de leitura (read)       == *4*
+- **w** permissão de escrita (write)      == *2*
+- **x** Permissão de execução (execute)   == *1*
+
+- **u** user
+- **g** group
+- **o** others
+- **a** all
 
 Tabela Explicativa                   
 | Tipo de arquivo | Perm do dono | Perm do grupo | Outros |
 |-----------------|--------------|---------------|--------|
 |        -        |      rwx     |      rw-      |   r--  |
 |                 |       7      |       6       |    4   |
+
+### Comando chmod
+Modifica as permissões utilizando argumentos literais ou octal
+
+Exemplos:
+```
+#adição de execução no arquivo
+chmod +x teste.txt
+
+#remoção de execução no arquivo
+chmod -x teste.txt
+
+#adição de execução para usuario dono
+chmod u+x teste.txt
+
+#adição de execução para grupo dono
+chmod g+x teste.txt
+
+#adição de execução para outros
+chmod o+x teste.txt
+
+#remoção de leitura para o usuario dono
+chmod u-r teste.txt
+
+#remoção de escrita para o grupo dono
+chmod g-w teste.txt
+
+#remoção de execução para outros
+chmod o-x teste.txt
+
+#usuario recebe permissão igual a rwx
+chmod u=rwx teste.txt
+
+#todos recebem permissão de leitura e escrita
+chmod a=rw teste.txt
+
+#permissão atribuida ao diretório de forma recursiva
+chmod -R 755 dir_teste
+```
+
+### Comando chown
+Altera o dono e o grupo dono do arquivo ou diretório
+
+Exemplos:
+```
+#alterar dono e grupo dono
+chown user1:user1 teste.txt
+
+#alterar dono
+chown user1 teste.txt
+
+#alterar grupo dono
+chown :user1 teste.txt
+
+#alterar dono e grupo dono do diretorio de forma recursiva
+chown -R user1:user1 dir_teste
+```
+# Permissões especiais - Stick Bit, Sgid Bit e Suid Bit
+Essas permissões são utilizadas adicionando um caractere a esquerda da forma octal padrão. (Exemplo: 1755)
+
+|Permissões | Octal | Literal   | Descrição               |
+|-----------|-------|-----------|-------------------------|
+|Suid Bit   |   4   |    s(S)   | Em binários herda o poder de dono quando executado
+| Sgid Bit  |   2   |    s(S)   | Em diretórios permite herança de grupos
+| Stick Bit |   1   |    t(T)   | Em diretórios restringe a remoção de arquivos e diretórios somente ao dono|
+
+Exemplos:
+|  Literal    |  Octal | Permissão   | Descrição                       |
+|-------------|-----------|----------|---------------------------------|
+| -rwsr--r--  |  4744  |  Suid Bit   | Arquivo. Dono COM permissão de execução e SuidBit ativo (**s** minúsculo no campo **USER**)|
+| -rwSr--r--  |  4644  |  Suid Bit   | Arquivo. Dono SEM permissão de execução e SuidBit ativo (**S** maiúsculo no campo **USER**)|
+| drw-r-sr--  |  2654  |  Sgid Bit   | Diretório. Grupo COM permissão de execução e Sgid Bit ativo (**s** minúsculo no campo **GROUP**)
+| drw-r-Sr--  |  2644  |  Sgid Bit   | Diretório. Grupo SEM permissão de execução e Sgid Bit ativo (**S** maiúsculo no campo **GROUP**)
+| drw-r--r-t  |  1645  |  Stick Bit   | Diretório. Outros COM permissão de execução e Stick Bit ativo (**s** minúsculo no campo **OTHERS**)
+| drw-r--r-T  |  1644  |  Stick Bit   | Diretório. Outros SEM permissão de execução e Stick Bit ativo (**S** maiúsculo no campo **OTHERS**)
+
+# Entendendo umask
+A **umask** define a permissão que um diretório ou arquivo será criado.
+
+- O valor padrão de umask é 022
+Arquivos que podem ser utilizados para alterar a umask:
+- ~/.profile
+- ~/.bashrc
+- /etc/profile
+- /etc/bash.bashrc
+- /etc/profile.d/arquivo.sh
+- /etc/skel/.profile ~> Para definir umask padrão para novos usuários
+
+
+Para calcular pegamos a permissão total menos a umask para diretórios e menos o bit de execução para arquivos.
+
+|Permissão total |  777 |
+|----------------|------|
+|      umask     |  022 |
+|    Diretório   |  755 |
+|Bit de execução |  111 |
+|    Arquivo     |  644 |
 
