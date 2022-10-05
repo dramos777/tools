@@ -2109,5 +2109,7 @@ which crontab
 
 #Exemplo
 which -a crontab
-´´´
+```
 **OBS.** O diretório /usr/share/doc/ possui documentações dos comandos instalados no linux após a instalação padrão do sistema
+
+
