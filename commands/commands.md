@@ -1952,9 +1952,12 @@ Para calcular pegamos a permissão total menos a umask para diretórios e menos 
 
 # Redirecionadores - stdin - stdout - stderr - and - or - pipe - tee
 **FD (File Descriptor):**
-- stdin = 0
-- stdout = 1
-- stderr = 2
+
+stdin = 0
+
+stdout = 1
+
+stderr = 2
 
 - [**>**] Redireciona a saída padrão e sobrescreve [stdout]
 ```
