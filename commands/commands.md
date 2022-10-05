@@ -1979,6 +1979,7 @@ cat >> teste.txt
 ```
 #Exemplo
 cat < teste.txt
+```
 
 - [**<<**] Redireciona a entrada padrão [stdin]
 ```
