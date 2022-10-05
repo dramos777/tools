@@ -1956,7 +1956,7 @@ Para calcular pegamos a permissão total menos a umask para diretórios e menos 
 - stdout = 1
 - stderr = 2
 
-">" ~> Redireciona a saída padrão e sobrescreve [stdout]
+- [**>**] Redireciona a saída padrão e sobrescreve [stdout]
 ```
 #Exemplo:
 uptime > teste.txt
@@ -1964,7 +1964,7 @@ uptime > teste.txt
 #Exemplo - criação de texto com cat
 cat > teste.txt
 ```
-">>" ~> Redireciona a saída padrão e concatena[stdout]
+- [**>>**] Redireciona a saída padrão e concatena[stdout]
 ```
 #Exemplo:
 upitme >> teste.txt
@@ -1972,12 +1972,12 @@ upitme >> teste.txt
 #Exemplo - concatenação de texto com cat
 cat >> teste.txt
 ```
-"<" ~> Redireciona a entrada padrão [stdin]
+- [**<**] Redireciona a entrada padrão [stdin]
 ```
 #Exemplo
 cat < teste.txt
 
-"<<" ~> Redireciona a entrada padrão [stdin]
+- [**<<**] Redireciona a entrada padrão [stdin]
 ```
 #Exemplo - criação de texto com cat [EOF]
 cat << palavra
@@ -2008,8 +2008,8 @@ texto3
 EOF
 ```
 
-"2>" ~> Redireciona a saída de erro padrão - [stderr]
-"2>>" ~> Redireciona a saída de erro padrão - [stderr]
+- [**2>**] Redireciona a saída de erro padrão - [stderr]
+- [**2>>**] Redireciona a saída de erro padrão - [stderr]
 ```
 #Exemplo
 asdf 2> erro.txt
@@ -2018,8 +2018,8 @@ asdf 2> erro.txt
 asdf 2>> erro.txt
 ```
 
-"2>&1" ~> Redirecionado a saída de erro para o file descriptor stdout (saída padrão)
-"1>&2" ~> Redireciona a saída padrão para o file descriptor stderr (saída de erro)
+- [**2>&1**] Redirecionado a saída de erro para o file descriptor stdout (saída padrão)
+- [**1>&2**] Redireciona a saída padrão para o file descriptor stderr (saída de erro)
 ```
 #Exemplo - redirecionar stderr para stdout e salvar no arquivo.txt
 ls asdf /tmp > arquivo.txt 2>&1
@@ -2062,7 +2062,6 @@ cd /usr/share/man
 - 7 Pacotes Macro;
 - 8 Comandos administrativos;
 - 9 Rotinas do kernel.
-
 
 ```
 #Exemplo1
