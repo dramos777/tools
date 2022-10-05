@@ -1950,3 +1950,161 @@ Para calcular pegamos a permissão total menos a umask para diretórios e menos 
 |Bit de execução |  111 |
 |    Arquivo     |  644 |
 
+# Redirecionadores - stdin - stdout - stderr - and - or - pipe - tee
+**FD (File Descriptor):**
+- stdin = 0
+- stdout = 1
+- stderr = 2
+
+">" ~> Redireciona a saída padrão e sobrescreve [stdout]
+```
+#Exemplo:
+uptime > teste.txt
+
+#Exemplo - criação de texto com cat
+cat > teste.txt
+```
+">>" ~> Redireciona a saída padrão e concatena[stdout]
+```
+#Exemplo:
+upitme >> teste.txt
+
+#Exemplo - concatenação de texto com cat
+cat >> teste.txt
+```
+"<" ~> Redireciona a entrada padrão [stdin]
+```
+#Exemplo
+cat < teste.txt
+
+"<<" ~> Redireciona a entrada padrão [stdin]
+```
+#Exemplo - criação de texto com cat [EOF]
+cat << palavra
+texto1
+texto2
+texto3
+palavra
+
+#Exemplo - criação de arquivo [EOF]
+cat << palavra > arquivo.txt
+texto1
+texto2
+texto3
+palavra
+
+#Exemplo - criação de arquivo [EOF] na prática
+cat << EOF > arquivo.txt
+texto1
+texto2
+texto3
+EOF
+
+#Exemplo - concatenção de arquivo [EOF]
+cat << EOF >> arquivo.txt
+texto1
+texto2
+texto3
+EOF
+```
+
+"2>" ~> Redireciona a saída de erro padrão - [stderr]
+"2>>" ~> Redireciona a saída de erro padrão - [stderr]
+```
+#Exemplo
+asdf 2> erro.txt
+
+#Exemplo
+asdf 2>> erro.txt
+```
+
+"2>&1" ~> Redirecionado a saída de erro para o file descriptor stdout (saída padrão)
+"1>&2" ~> Redireciona a saída padrão para o file descriptor stderr (saída de erro)
+```
+#Exemplo - redirecionar stderr para stdout e salvar no arquivo.txt
+ls asdf /tmp > arquivo.txt 2>&1
+
+#Exemplo - redirecionar stdout para stderr e salvar no arquivo.txt
+ls asdf /tmp 2> arquivo.txt 1>&2
+```
+Redirecionar a saída padrão para um arquivo e exibir na tela utilizando o **tee**
+```
+#Sobrescreve o arquivo caso exista
+ls /tmp | tee arquivo.txt
+
+#Faz um append no final do arquivo
+ls /tmp | tee -a arquivo.txt
+
+```
+
+Redirecionador && (and) e || (or)
+```
+# O && (and) executa comando por comando enquanto não apresentar erro. Se ocorrer um erro ele para a execução
+ls /tmp && apt install cmatrix
+
+# O || (or), enquanto os comandos listados apresentarem erro ele continua tentando executar. Quando encontra um comando que é executado com sucesso para o processo
+ls asdf || ls fdsa || apt update || apt install cmatrix
+
+```
+# Páginas de manual (man)
+Syntax: **man [sessao] comando**
+
+**Sessões:**
+```
+cd /usr/share/man
+```
+- 1 Programas executáveis ou comandos de shell;
+- 2 Chamadas do Sistema (funções fornecidas pelo Kernel);
+- 3 Chamadas de Biblioteca (funções fornecidas pelas bibliotecas);
+- 4 Arquivos especiais, especialmente aqueles localizados em /dev;
+- 5 Formatos de arquivos e convenções;
+- 6 Jogos;
+- 7 Pacotes Macro;
+- 8 Comandos administrativos;
+- 9 Rotinas do kernel.
+
+
+```
+#Exemplo1
+man 5 passwd
+
+#Exemplo2
+man passwd
+
+#Exibir em qual sessão está determiado padrão (similar ao apropos)
+man -k passwd
+```
+
+### Comando apropos
+Exibe em qual sessão da man page está localizado determiado padrão
+
+```
+#Exemplo
+apropos ls
+
+#Exemplo - filtrar por palavra exata (ls)
+apropos -e ls
+
+#Exemplo - reconhecimento de wildcard (coringas)
+apropos -w i?con*
+```
+### Comando whatis
+Exibe uma breve descrição e em qual sessão da man page está localizado determiado padrão
+
+```
+#Exemplo
+whatis ls
+
+#Exemplo - reconhecimento de wildcard (coringas)
+whatis -w i?con*
+```
+# Comando which
+Localiza o caminho do binário
+```
+#Exemplo
+which crontab
+
+#Exemplo
+which -a crontab
+´´´
+**OBS.** O diretório /usr/share/doc/ possui documentações dos comandos instalados no linux após a instalação padrão do sistema
