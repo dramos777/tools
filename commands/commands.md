@@ -2112,4 +2112,170 @@ which -a crontab
 ```
 **OBS.** O diretório /usr/share/doc/ possui documentações dos comandos instalados no linux após a instalação padrão do sistema
 
+# Gerenciadores de pacotes - Debian e derivados
+Diretório padrão para download dos arquivos .deb
+```
+/var/cache/apt/archives
+```
+Verificar versão
+```
+cat /etc/debian_version
 
+cat /etc/issue
+```
+### dpkg - Debian Package (não resolve dependências)
+Exemplos
+```
+#Instalar o pacote cmatrix.deb
+dpkg -i cmatrix.deb
+
+#Verificar se o programa cmatrix foi instalado
+dpkg -l cmatrix
+
+#Remover o programa cmatrix (mantendo as configurações)
+dpkg -r cmatrix
+
+#Remover o programa cmatrix completamente (remove tudo, inclusive arquivos de configurações)
+dpkg -P cmatrix
+
+#Localizar todos os pacotes (arquivos e diretórios) do cmatrix
+dpkg -L cmatrix
+
+#Descobrir de qual programa determinado arquivo pertence
+dpkg -S /usr/share/doc/cmatrix/README.md
+
+#Verificar informações do pacote cmatrix.
+#A opção -I exibe informações de um pacote .deb NÃO instalado na máquina.
+dpkg -I cmatrix.deb
+
+#Verificar status do pacote cmatrix
+dpkg -s cmatrix
+
+#Reconfigurar um aplicativo
+dpkg --reconfigure
+```
+### apt (resolve dependências)
+Arquivo/diretório de configuração
+```
+#Diretório dos arquivos de configuração
+/etc/apt/
+
+#Arquivo de configuração dos repositório
+/etc/apt/source.list
+
+#Extensão do arquivo de configuração /etc/apt/source.list
+/etc/apt/source.list.d
+
+#Nova sintax para adição de repositórios assinados por chaves OpenGPG
+deb [arch=amd64 signed-by=/usr/share/keyrings/signal-archive-keyring.gpg] https://updates.signal.org/desktop/apt xenial main
+
+```
+
+Exemplos
+```
+#Atualização da lista de pacotes do repositório
+apt update
+
+#Instalação do cmatrix
+apt install cmatrix
+
+#Remover o cmatrix (mantendo os arquivos de configuração)
+apt remove cmatrix
+
+#Remover o cmatrix completamente (incluíndo arquivos de configurações)
+apt remove --purge cmatrix
+
+#Reinstalar o pacote cmatrix
+apt reinstall cmatrix
+
+#Limpar a pasta dos arquivos .deb
+apt clean
+
+#Remover automaticamente todos os pacotes não usados (cuidado)
+apt autoremove
+
+#Limpar pacotes de instação antigos
+apt autoclean
+
+#Baixar o pacotes .deb do cmatrix sem instalar
+apt download cmatrix
+
+#Atualizar os pacotes instalados com excessão dos pacotes do sistema
+#Mantem os arquivos de instalação
+apt upgrade
+
+#Atualizar todos os pacotes e os pacotes do sistema se necessário (incluindo o kernel do Linux)
+#Remove todos os arquivos de instalações anteriores se necessário
+apt dist-upgrade
+
+#Simular a atualização dos pacotes instalados com excessão dos pacotes do sistema
+apt --simulate upgrade
+
+#Simular a atualização dos pacotes incluindo pacotes do sistema se necessário (incluindo o kernel do Linux)
+apt --simulate dist-upgrade
+
+#Procurar o pacote cmatrix nos repositórios
+apt search cmatrix
+```
+# gpg keys - Como adicionar
+- As chaves gpg dos repositórios devem ser gravadas em um local onde apenas o root tenha acesso (Ex: **/usr/share/keyrings**)
+- Por convenção, o nome do arquivo precisa ter archive.keyring (Ex: /usr/share/keyrings/meurepositorio-archive-keyring.gpg)
+- Os arquivos de chaves OpenGPG geralmente são encontradas com as extensões .gpg, .asc ou .key
+- Os arquivos OpenPGP podem ser blindados com ASCII ou não
+
+Adicionando chaves OpenGPG **NÃO** blindadas ASCII
+sintax
+```
+#Utilizando o wget
+wget -O- https://linkdoarquivo.gpg/arquivo.gpg | sudo tee /usr/share/keyrings/
+
+#Utilizando o curl
+curl 
+sudo curl -fsSLo /usr/share/keyrings/signal-archive-keyring.gpg https://linkdoarquivo.gpg/arquivo.gpg
+
+```
+Adicionando chaves OpenGPG blindadas ASCII - **utilizando wget**
+
+```
+wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor | sudo tee /usr/share/keyrings/signal-archive-keyring.gpg
+
+#wget ~> baixa a chave do link e envia pra stdout -O-
+#gpg --dearmor ~> o gpg é a ferramenta de criptografia e a opção --dearmor descompacta a entrada de uma armadura OpenGPG ASCII
+#sudo tee ~> redireciona a saída padrão para o arquivo /usr/share/keyring/signal-arquive-keyring.gpg e exibe na tela
+```
+Adicionando chaves OpenGPG blindadas ASCII - **utilizando curl**
+```
+curl https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > /usr/share/keyrings/signal-archive-keyring.gpg
+
+#curl ~> baixa a chave do link
+#gpg --dearmor ~> o gpg é a ferramenta de criptografia e a opção --dearmor descompacta a entrada de uma armadura OpenGPG ASCII
+#> ~> redireciona a saída padrão para o arquivo /usr/share/keyring/signal-arquive-keyring.gpg
+```
+- Para adicionar os repositórios utilizando chaves assinadas da maneira acima é recomendado a criação de um arquivo com extensão .list em /etc/apt/source.list.d/ (ex: /etc/apt/source.list.d/signal.list)
+- O arquivo precisa ter a seguinte estrutura:
+```
+deb [arch=amd64 signed-by=/usr/share/keyrings/signal-archive-keyring.gpg] https://updates.signal.org/desktop/apt xenial main
+```
+### Removendo chaves gpg do APT
+Para remover as chaves do APT é necessários excluir os arquivos do /etc/apt/trusted.gpg.d/ e da base que o arquivo /etc/apt/trusted.gpg gera.
+```
+#Remover todos os arquivos de chaves gpg do diretório /etc/apt/trusted.gpg.d/
+rm -rf /etc/apt/trusted.gpg.d/*
+
+#Remover um repositório expecífico dentro de /etc/apt/trusted.gpg.d/
+rm -rf /etc/apt/trusted.gpg.d/arquivo.gpg
+```
+
+Remover chaves geradas pelo arquivo /etc/apt/trusted.gpg
+```
+#Listar as chaves e identificar o ID GPG (são os 8 caracteres da impressão digital da chave GPG)
+apt-key list
+
+#Saída do comando acima:
+pub   rsa4096 2016-04-22 [SC]      B9F8 D658 297A F3EF C18D  5CDF A2F6 83C5 2980 AECFuid           [ unknown] Oracle Corporation (VirtualBox archive signing key) <info@virtualbox.org>sub   rsa4096 2016-04-22 [E]
+
+#ID GPG
+2980 AECF
+
+#Deletando a chave
+apt-key del 2980AECF
