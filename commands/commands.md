@@ -2279,3 +2279,90 @@ pub   rsa4096 2016-04-22 [SC]      B9F8 D658 297A F3EF C18D  5CDF A2F6 83C5 2980
 
 #Deletando a chave
 apt-key del 2980AECF
+
+# Gerenciadores de pacotes - Red Hat e derivados
+### rpm
+Gerenciador de pacotes de baixo nível do Red Hat. Não resolve dependências
+
+Exemplos:
+```
+#Instalação do pacote cmatrix.rpm
+rpm -ivh cmatrix.rpm
+
+#Atualicação do pacote cmatrix.rpm
+rpm -Uvh cmatrix.rpm
+
+#Remover o pacote do cmatrix
+rpm -ev cmatrix
+
+#Listar todos os pacotes instalados
+rpm -qa
+
+#Listar o pacote cmatrix
+rpm -qa cmatrix
+
+#Listar os arquivos relacionados ao cmatrix
+rpm -ql cmatrix
+
+#Mostrar de qual pacote pertence determinado arquivo
+rpm -qf /usr/share/man/man1/cmatrix.1.gz
+
+#Exibir informações sobre o pacote cmatrix
+rpm -qi cmatrix
+
+#Exibir o arquivo de configuração de determinado serviço
+rpm -qc cmatrix
+
+#Exibir os programas que foram instalados por ultimo
+rpm -qa --last
+
+```
+### dnf e yum - Resolve dependências
+O dnf e o yum possuem a mesma sintax. O que é usado em um vai funcionar no outro
+
+- Diretório de configuração dos repositórios (os arquivos precisamda extensão .repo)
+```
+/etc/yum.repos.d/
+```
+
+Exemplos
+```
+#Instalar o pacote cmatrix
+dnf install cmatrix
+
+#Remover o pacote cmatrix
+dnf remove cmatrix
+
+#Atualizar o pacote cmatrix (diferente do apt)
+dnf update cmatrix
+
+#Fazer busca por pacotes
+dnf search cmatrix
+
+#Exibir informações de determinado pacote
+dnf info cmatrix
+
+#Verificar os programas instalados na máquina
+dnf list installed
+
+#Listar todos os pacotes que ainda não foram instalados, mas que podem ser instaldos na máquina
+dnf list
+
+#Mostrar de qual pacote pertence determinado arquivo
+dnf provides /usr/share/man/man1/cmatrix.1.gz
+
+#Listar os grupos de aplicativos que podem ser instalados na máquina
+dnf grouplist
+
+#Instalar um grupo de aplicativos
+dnf groupinstall "Container Management"
+
+#Remover grupo de aplicativos instalados
+dnf groupremove "Container Management"
+
+#Listar os repositórios configurados como ENABLED no sistema
+dnf repolist
+
+#Listar todos os repositórios (ENABLED ou DISABLED)
+dnf repolist all
+```
