@@ -2279,6 +2279,7 @@ pub   rsa4096 2016-04-22 [SC]      B9F8 D658 297A F3EF C18D  5CDF A2F6 83C5 2980
 
 #Deletando a chave
 apt-key del 2980AECF
+```
 
 # Gerenciadores de pacotes - Red Hat e derivados
 ### rpm
