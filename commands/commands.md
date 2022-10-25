@@ -2367,3 +2367,72 @@ dnf repolist
 #Listar todos os repositórios (ENABLED ou DISABLED)
 dnf repolist all
 ```
+# Variáveis de ambiente
+Visualização de variáveis:
+```
+#Visualizar variáveis e funções do shell
+set
+
+#Visualizar apenas as variáveis
+env
+
+#Visualizar apenas as variáveis
+printenv
+
+#Exibir o conteúdo de uma variável (echo $VARIAVEL)
+echo $PATH
+
+#Exibir o conteúdo de uma variável sem usar o $
+printenv BASH
+```
+Criação de variáveis (sintax: CHAVE=VALOR)
+```
+#Criação da variável USUARIO com o valor Maria de forma local
+USUARIO=Maria
+
+#Criação da variável USUARIO com o valor Maria de forma local (com set)
+set USUARIO=Maria
+
+#Criação da variável USUARIO com o valor Maria de forma global (para os sub-shells)
+export USUARIO=Maria
+
+#Remover a variavel USUARIO
+unset USUARIO
+
+#Criar uma variável com mais de um valor
+USUARIOS=Maria:Joao:Fulustreca
+```
+### Alterando idioma do sistema utilizando variáveis
+Para verificar a convenção de como se escreve o valor da variável é só consultar o arquivo **/etc/locale.gen**
+```
+#Setando como pt_BR com primário e caso não tenha disponível a tradução usar o en_US como secundário
+LANG=pt_BR.UTF-8:en_US.UTF-8
+
+#Alterar as mensagens do sistema para pt_BR
+export LC_MESSAGES=pt_BR.UTF-8
+
+#Alterar todas as mensagens do sistema para pt_BR
+export LC_ALL=pt_BR.UTF-8
+```
+# Personalização do sistema com ALIAS
+O comando alias cria um apelido do comando. Para exibir os alias criados utiliza-se o comando alias sem argumento
+
+```
+#Criar um alias para o comando whoami
+alias quemsoueu=whoami
+
+#Remover o alias quemsoueu
+unalias quemsoueu
+```
+### Arquivos para alterar o comportamento do shell bash
+- /etc/profile
+- /etc/profile.d/
+- /etc/bash.bashrc
+- ~/.bash_login
+- ~/.hushlogin ~> A presença deste arquivo impede a exibição da mensagem do motd
+- ~/.profile
+- ~/.bashrc
+- ~/.bash_logout
+- /etc/environment ~> Arquivo default pra adição de variáveis (são lidas no boot)
+
+# Logs
