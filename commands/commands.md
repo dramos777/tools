@@ -2369,6 +2369,7 @@ dnf repolist all
 ```
 # Variáveis de ambiente
 - /etc/environment ~> Arquivo default pra adição de variáveis (são lidas no boot)
+
 Visualização de variáveis:
 ```
 #Visualizar variáveis e funções do shell
@@ -2437,3 +2438,221 @@ unalias quemsoueu
 - /etc/environment ~> Arquivo default pra adição de variáveis (são lidas no boot)
 
 # Logs
+Arquivos de configuração do rsyslog
+- /etc/rsyslog.conf
+- /etc/rsyslog.d/*.conf
+
+Exemplos:
+```
+#FonteDoLog.NivelDaColetaDeInformação     /var/log/ArquivoDeDestino.log
+auth.debug          /var/log/teste.log
+
+#FonteDoLog1,FonteDoLog2.NivelDaColeta   /var/log/ArquivoDeDestino.log
+auth,authpriv.*     /var/log/auth.log
+
+#FonteDoLog.NivelDaColeta;FonteDoLog1,FonteDoLog2.NivelDaColeta(none=nada)   /var/log/ArquivoDeDestino.log
+#Neste Exemplo o none indica que auth e authpriv não serão coletados
+*.*;auth,authpriv.none  /var/log/syslog.log
+
+#FonteDoLog.NivelDaColetaDeInformação     /var/log/ArquivoDeDestino.log
+cron.*   /var/log/cron.log
+
+#FonteDoLog.=NivelEXATODaColetaDeInformação     /var/log/ArquivoDeDestino.log
+cron.=err   /var/log/cron.log
+```
+### Guiafoca - https://www.guiafoca.org/
+
+Arquivo de configuração rsyslog.conf
+O arquivo de configuração /etc/rsyslog.conf possui o seguinte formato:
+facilidade.nível
+destino
+A facilidade e nível são separadas por um "." e contém parâmetros que definem o que será registrado nos
+arquivos de log do sistema:
+• facilidade - É usada para especificar que tipo de programa está enviando a mensagem. Os seguintes
+níveis são permitidos (em ordem alfabética):
+• auth - Mensagens de segurança/autorização (é recomendável usar authpriv ao invés deste).
+• authpriv - Mensagens de segurança/autorização (privativas).
+• cron - Daemons de agendamento (cron e at).
+• daemon - Outros daemons do sistema que não possuem facilidades específicas.
+• ftp - Daemon de ftp do sistema.
+• kern - Mensagens do kernel.
+• lpr - Subsistema de impressão.
+• local0 a local7 - Reservados para uso local.
+• mail - Subsistema de e-mail.
+• news - Subsistema de notícias da USENET.
+• security - Sinônimo para a facilidade auth (evite usa-la).
+• syslog - Mensagens internas geradas pelo syslogd.
+• user - Mensagens genéricas de nível do usuário.
+• uucp - Subsistema de UUCP.
+• * - Confere com todas as facilidades.
+Mais de uma facilidade pode ser especificada na mesma linha do rsyslog.conf separando-as com
+",".
+• nível - Especifica a importância da mensagem. Os seguintes níveis são permitidos (em ordem de
+importância invertida; da mais para a menos importante):
+• emerg - O sistema está inutilizável.
+202Arquivos e daemons de Log
+• alert - Uma ação deve ser tomada imediatamente para resolver o problema.
+• crit - Condições críticas.
+• err - Condições de erro.
+• warning - Condições de alerta.
+• notice - Condição normal, mas significante.
+• info - Mensagens informativas.
+• debug - Mensagens de depuração.
+• * - Confere com todos os níveis.
+• none - Nenhuma prioridade.
+Além destes níveis os seguintes sinônimos estão disponíveis:
+• error - Sinônimo para o nível err.
+• panic - Sinônimo para o nível emerg.
+• warn - Sinônimo para o nível warning.
+• destino - O destino das mensagens pode ser um arquivo, um pipe (se iniciado por um "|"), um
+computador remoto (se iniciado por uma "@"), determinados usuários do sistema (especificando os
+logins separados por vírgula) ou para todos os usuários logados via wall (usando "*").
+Todas as mensagens com o nível especificado e superiores a esta especificadas no rsyslog.conf serão
+registradas, de acordo com as opções usadas. Conjuntos de facilidades e níveis podem ser agrupadas
+separando-as por ";".
+OBS1: Sempre use TABS ao invés de espaços para separar os parâmetros do rsyslog.conf.
+OBS2: Algumas facilidades como security, emitem um beep de alerta no sistema e enviam uma
+mensagem para o console, como forma de alerta ao administrador e usuários logados no sistema.
+Existem ainda 4 caracteres que garantes funções especiais: "*", "=", "!" e "-":
+• "*" - Todas as mensagens da facilidade especificada serão redirecionadas.
+• "=" - Somente o nível especificado será registrado.
+• "!" - Todos os níveis especificados e maiores NÃO serão registrados.
+• "-" - Pode ser usado para desativar o sync imediato do arquivo após sua gravação.
+Os caracteres especiais "=" e "!" podem ser combinados em uma mesma regra.
+Exemplo: Veja abaixo um exemplo de um arquivo /etc/rsyslog.conf padrão de sistemas Debian
+# /etc/rsyslog.conf arquivo de configuração do rsyslog
+#
+# Para mais detalhes, instale o rsyslog-doc e veja o arquivo
+# /usr/share/doc/rsyslog-doc/html/configuration/index.html
+203Arquivos e daemons de Log
+#################
+#### MODULOS ####
+#################
+module(load="imuxsock") # fornece suporte para log local do sistema
+module(load="imklog")
+# fornece suprote a log do kernel (antigo ulogd)
+#module(load="immark") # fornece recurso de colocação da mensagem --MARK--
+# fornece suporte a recebimento de mensagens do UDP
+#module(load="imudp")
+#input(type="imudp" port="514")
+# fornece suporte a recebimento de mensagens TCP
+#module(load="imtcp")
+#input(type="imtcp" port="514")
+###########################
+#### DIRETIVAS GLOBAIS ####
+###########################
+#
+# Usar o formato tradicional de timestamps.
+# Para ativar a precisão de timestamps, comente a seguinte linha.
+#
+$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
+#
+# Configura as permissões padrões para todos os arquivos de log
+#
+$FileOwner root
+$FileGroup adm
+$FileCreateMode 0640
+$DirCreateMode 0755
+$Umask 0022
+#
+# Onde devem ser colocados os arquivos de spool e estado
+#
+$WorkDirectory /var/spool/rsyslog
+#
+# Inclui todos os arquivos de configuração que existirem em /etc/rsyslog.d/
+#
+$IncludeConfig /etc/rsyslog.d/*.conf
+#
+# Primeiro alguns arquivos de log padrões. Registrados por facilidade
+#
+auth,authpriv.*
+*.*;auth,authpriv.none
+cron.*
+/var/log/auth.log
+-/var/log/syslog
+/var/log/cron.log
+204Arquivos e daemons de Log
+daemon.*
+kern.*
+lpr.*
+mail.*
+user.*
+uucp.*
+-/var/log/daemon.log
+-/var/log/kern.log
+-/var/log/lpr.log
+/var/log/mail.log
+-/var/log/user.log
+-/var/log/uucp.log
+#
+# Registro de logs do sistema de mensagens. Divididos para facilitar
+# a criação de scripts para manipular estes arquivos.
+#
+mail.info
+-/var/log/mail.info
+mail.warn
+-/var/log/mail.warn
+mail.err
+/var/log/mail.err
+# Registro para o sistema de news INN
+#
+news.crit
+/var/log/news/news.crit
+news.err
+/var/log/news/news.err
+news.notice
+-/var/log/news/news.notice
+#
+# Alguns arquivos de registro "pega-tudo".
+# São usadas "," para especificar mais de uma prioridade (por
+# exemplo, "auth,authpriv.none") e ";" para especificar mais de uma
+# facilidade.nível que será gravada naquele arquivo.
+# Isto permite deixar as regras consideravelmente menores e mais legíveis
+#
+*.=debug;\
+auth,authpriv.none;\
+news.none;mail.none
+-/var/log/debug
+*.=info;*.=notice;*.=warn;\
+auth,authpriv.none;\
+cron,daemon.none;\
+mail,news.none
+-/var/log/messages
+#
+# Emergências são enviadas para qualquer um que estiver logado no sistema. Isto
+# é feito através da especificação do "*" como destino das mensagens e são
+# enviadas através do comando wall.
+#
+*.emerg
+*
+#
+# Eu gosto de ter mensagens mostradas no console, mas somente em consoles que
+# não utilizo.
+#
+#daemon,mail.*;\
+#
+news.=crit;news.=err;news.=notice;\
+#
+*.=debug;*.=info;\
+#
+*.=notice;*.=warn
+/dev/tty8
+# O pipe /dev/xconsole é usado pelo utilitário "xconsole". Para usa-lo,
+# você deve executar o "xconsole" com a opção "-file":
+205Arquivos e daemons de Log
+#
+#
+$ xconsole -file /dev/xconsole [...]
+#
+# NOTA: ajuste as regras abaixo, ou ficará maluco se tiver um site
+# muito movimentado...
+#
+daemon.*;mail.*;\
+news.crit;news.err;news.notice;\
+*.=debug;*.=info;\
+*.=notice;*.=warn
+|/dev/xconsole
+# A linha baixo envia mensagens importantes para o console em que
+# estamos trabalhando logados (principalmente para quem gosta de ter
+# controle total sobre o que está acontecendo com seu sistema).
+*.err;kern.debug;auth.notice;mail.crit /dev/console
