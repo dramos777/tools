@@ -2368,6 +2368,7 @@ dnf repolist
 dnf repolist all
 ```
 # Variáveis de ambiente
+- /etc/environment ~> Arquivo default pra adição de variáveis (são lidas no boot)
 Visualização de variáveis:
 ```
 #Visualizar variáveis e funções do shell
