@@ -11,7 +11,7 @@ scp -c arcfour arquivo.gz usuario@servidor:/tmp/
 ```
 fping -aqg 192.169.0.0/24
 ```
-### Show files with path
+### Show files with path (util in scripts)
 ```
 ls teste/*
 ```
