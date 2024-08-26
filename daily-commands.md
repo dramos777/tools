@@ -15,3 +15,7 @@ fping -aqg 192.169.0.0/24
 ```
 ls teste/*
 ```
+### Remove Carriage Return (Util to remove some problems in scripts format)
+```
+sed "s/\r//"
+```
