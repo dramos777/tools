@@ -19,3 +19,7 @@ ls teste/*
 ```
 sed "s/\r//"
 ```
+### Make a random temp file
+```
+mktemp
+```
