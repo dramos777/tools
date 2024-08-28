@@ -27,7 +27,7 @@ mktemp
 ```
 git clone --recursive https://github.com/owasp-modsecurity/ModSecurity ModSecurity
 ```
-A opção --recursive no comando git clone é usada para clonar um repositório Git que contém submódulos. Submódulos são repositórios Git que estão incluídos dentro de outro repositório Git como uma subpasta. Depois de clonar o repositório principal, o Git também clona todos os submódulos definidos no repositório principal. Esses submódulos são especificados no arquivo .gitmodules do repositório principal. Exemplo de configuração de um arquivo .gitmodules:
+The --recursive option in the git clone command is used to clone a Git repository that contains submodules. Submodules are Git repositories included within another Git repository as a subdirectory. After cloning the main repository, Git also clones all the submodules defined in the main repository. These submodules are specified in the .gitmodules file of the main repository. Example of a .gitmodules file configuration:
 ```
 [submodule "test/test-cases/secrules-language-tests"]
 	path = test/test-cases/secrules-language-tests
