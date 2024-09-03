@@ -42,4 +42,7 @@ The --recursive option in the git clone command is used to clone a Git repositor
 	path = others/mbedtls
 	url = https://github.com/Mbed-TLS/mbedtls.git
 ```
-
+### Remove rectangle on ls command output
+```
+dircolors -p | sed 's/;42/;01/' > ~/.dircolors
+```
