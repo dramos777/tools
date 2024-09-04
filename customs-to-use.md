@@ -6,5 +6,5 @@ POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
 ```
 ###### To change directory and its icon color use:
 ```
-POWERLEVEL9K_DIR_FOREGROUND=31
+POWERLEVEL9K_DIR_FOREGROUND=136
 ```
