@@ -1,29 +1,29 @@
 ### Ansible
-Execute a playbook without ssh host-key-checking
+###### Execute a playbook without ssh host-key-checking
 ```
 ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts main.yml
 ```
-### Copy files speeder through networking
+###### Copy files speeder through networking
 ```
 scp -c arcfour arquivo.gz usuario@servidor:/tmp/
 ```
-### Check actives IPs
+###### Check actives IPs
 ```
 fping -aqg 192.169.0.0/24
 ```
-### Show files with path (util in scripts)
+###### Show files with path (util in scripts)
 ```
 ls teste/*
 ```
-### Remove Carriage Return (Util to remove some problems in scripts format)
+###### Remove Carriage Return (Util to remove some problems in scripts format)
 ```
 sed "s/\r//"
 ```
-### Make a random temp file
+###### Make a random temp file
 ```
 mktemp
 ```
-### Clone a repository using recursive option
+###### Clone a repository using recursive option
 ```
 git clone --recursive https://github.com/owasp-modsecurity/ModSecurity ModSecurity
 ```
@@ -42,11 +42,11 @@ The --recursive option in the git clone command is used to clone a Git repositor
 	path = others/mbedtls
 	url = https://github.com/Mbed-TLS/mbedtls.git
 ```
-### Remove rectangle on ls command output
+###### Remove rectangle on ls command output
 ```
 dircolors -p | sed 's/;42/;01/' > ~/.dircolors
 ```
-### Add exec permission on subdirectories with find
+###### Add exec permission on subdirectories with find
 ```
 find /home/userdir -type d -exec chmod +x {} +
 ```
