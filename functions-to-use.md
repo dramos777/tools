@@ -1,13 +1,13 @@
 ###### Check if package is already installed
 ```
 check_and_install() {
-    local command=$1
+    local _command=$1
 
-    if dpkg -l | grep -iw $command > /dev/null; then
-        echo "$command already installed."
+    if command -v $_command > /dev/null 2>&1; then
+        echo "$_command is installed on your system."
     else
-        echo "$command not found. Installing $command..."
-        apt install -y $command
+        echo "$_command "is not installed on your system"
     fi
+
 }
 ```
