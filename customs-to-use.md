@@ -8,3 +8,8 @@ POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
 ```
 POWERLEVEL9K_DIR_FOREGROUND=136
 ```
+### VLC
+###### VLC - Configuration - Video Stuttering
+
+    - Tools > Preferences > Input/Codecs: "Hardware-accelerated decoding" (DISABLE)
+    - Tools > Preferences > Video: "Video Output OpenGL"
