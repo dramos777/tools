@@ -51,9 +51,9 @@ dircolors -p | sed 's/;42/;01/' > ~/.dircolors
 ```
 find /home/userdir -type d -exec chmod +x {} +
 ```
-Explanation of the Command:
+###### *Explanation of the Command:*
 
-    find /home/userdir: Starts the search from the directory /home/userdir.
-    -type d: Limits the search to directories only.
-    -exec chmod +x {} +: For each directory found ({}), the command chmod +x is executed, adding execute permission. The + at the end allows find to pass multiple files to the chmod command at once, which is more efficient than executing the chmod command separately for each directory.
+######     *- find /home/userdir: Starts the search from the directory /home/userdir.*
+######     *-type d: Limits the search to directories only.*
+######     *-exec chmod +x {} +: For each directory found ({}), the command chmod +x is executed, adding execute permission. The + at the end allows find to pass multiple files to the chmod command at once, which is more efficient than executing the chmod command separately for each directory.*
 
