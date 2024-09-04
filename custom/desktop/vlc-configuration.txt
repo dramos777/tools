@@ -1,3 +1,0 @@
-VLC - Configuração - Video travando
-1 - Ferramentas > Preferencias > Entrada/Codificadores: "Decodificação acelerada por hardware" (DESABILITAR)
-2 - Ferramentas > Preferencias > Video: "Saída de vídeo OpenGL"
