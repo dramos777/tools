@@ -1,4 +1,4 @@
-### Check if package is already installed
+###### Check if package is already installed
 ```
 check_and_install() {
     local command=$1
