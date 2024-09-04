@@ -3,6 +3,7 @@
 ```
 ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts main.yml
 ```
+### Others
 ###### Copy files speeder through networking
 ```
 scp -c arcfour arquivo.gz usuario@servidor:/tmp/
@@ -27,7 +28,7 @@ mktemp
 ```
 git clone --recursive https://github.com/owasp-modsecurity/ModSecurity ModSecurity
 ```
-The --recursive option in the git clone command is used to clone a Git repository that contains submodules. Submodules are Git repositories included within another Git repository as a subdirectory. After cloning the main repository, Git also clones all the submodules defined in the main repository. These submodules are specified in the .gitmodules file of the main repository. Example of a .gitmodules file configuration:
+###### *The --recursive option in the git clone command is used to clone a Git repository that contains submodules. Submodules are Git repositories included within another Git repository as a subdirectory. After cloning the main repository, Git also clones all the submodules defined in the main repository. These submodules are specified in the .gitmodules file of the main repository. Example of a .gitmodules file configuration:*
 ```
 [submodule "test/test-cases/secrules-language-tests"]
 	path = test/test-cases/secrules-language-tests
