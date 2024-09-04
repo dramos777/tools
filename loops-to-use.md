@@ -1,4 +1,4 @@
-### case
+###### case
 ```
 case $1 in
     -d) echo "This is option -d" ;;
@@ -6,13 +6,13 @@ case $1 in
      *) echo "This is any other option" && exit 1 ;;
 esac
 ```
-### for
+###### for
 ```
 for i in $(seq 0 19); do
     echo "Writing text 20 times. This is time $(($i+1))"
 done
 ```
-### while
+###### while
 ```
 TITLE_FILE="titles.txt"
 
