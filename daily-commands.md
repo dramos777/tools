@@ -1,3 +1,8 @@
+### Kubernetes
+###### Copy from pod to host
+```
+kubectl -n <yournamespace> cp <yourpod>:<yourdirectory>/file.txt ./file.txt
+```
 ### Ansible
 ###### Execute a playbook without ssh host-key-checking
 ```
