@@ -7,3 +7,8 @@ sudo apt update && sudo apt install flameshot
 ```
 sudo apt update && sudo apt install gnome-screenshot
 ```
+### Video recorder
+###### **vokoscreen-ng** - Allows you to record both your computer screen and webcam, with the added feature of customizing the webcam window layout to a circular format.
+```
+sudo apt update && sudo apt install vokoscreen-ng
+```
