@@ -1362,6 +1362,10 @@ pvdisplay
 ```
 pvs
 ```
+- Remover um PV
+```
+pvremove /dev/sdb1
+```
 
 ### Group Volume
 - Criar um grupo de volumes (GV ou Group Volume) chamado vg-tecnogaps e adiciona a partição /dev/sdb1 ao grupo
@@ -1380,6 +1384,10 @@ vgs
 - Expande o GV vg-technogaps, ou seja, adiciona a partição /dev/sdb2 ao grupo já existente chamado vg-technogaps
 ```
 vgextend vg-technogaps /dev/sdb2
+```
+- Remover um GV
+```
+vgremove vg-technogaps
 ```
 ### Logical Volume
 - Criar um Volume Lógico (LV ou Logical Volume) chamado lv-technogaps com tamnho de 200M utilizando o GV vg-technogaps
@@ -1400,11 +1408,11 @@ lvs
 mkfs.ext4 /dev/vg-technogaps/lv-technogaps
 ```
 
-- Adicionar 200M no PV lv-technogaps
+- Adicionar 200M no LV lv-technogaps
 ```
 lvextend -L +200M /dev/vg-technogaps/lv-technogaps
 ```
-- Determinar o valor total de 400M para o PV lv-technogaps
+- Determinar o valor total de 400M para o LV lv-technogaps
 ```
 lvextend -L 400M /dev/vg-technogaps/lv-technogaps
 ```
@@ -1412,6 +1420,14 @@ lvextend -L 400M /dev/vg-technogaps/lv-technogaps
 - Resize sistema de arquivos ext4
 ```
 resize2fs /dev/vg-technogaps/lv-technogaps
+```
+- Desativar um LV
+```
+lvchange -an /dev/vg-technogaps/lv-technogaps
+```
+- Remover um LV
+```
+lvremove /dev/vg-technogaps/lv-technogaps
 ```
 ### fstrim (Discard SSD)
 - Escanear e liberar todo o sistema de arquivos que tenha o discard. (Utilizar esta técnica em discos SSD é recomendado para otimizar o uso do disco e diminuir lentidão no sistema. OBS.: Agendar para ser executado periodicamente ou no login da máquina)
