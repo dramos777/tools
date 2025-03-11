@@ -345,11 +345,11 @@ tune2fs -i 180 /dev/sdb1
 ```
 tune2fs -e remount-ro /dev/sdb1
 ```
-- Alterar para 1% o espaço reservado ao root
+- Alterar para 1% o espaço reservado ao root (espaço para manutenção)
 ```
 tune2fs -m 1 /dev/sdb1
 ```
-- Altera para 0.1% o espaço reservado ao root
+- Altera para 0.1% o espaço reservado ao root (espaço para manutenção)
 ```
 tune2fs -m 0.1 /dev/sdb1
 ```
