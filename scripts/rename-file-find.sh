@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-find . -name file-name -exec mv {} new-file-name \;
+find . -name "old-file-name" -exec bash -c 'mv "$0" "$(dirname "$0")/new-file-name"' {} \;
