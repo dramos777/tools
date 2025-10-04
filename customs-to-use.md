@@ -25,4 +25,14 @@ sudo vim /etc/default/grub
 sudo update-grub
 sudo reboot
 ```
-
+### How to enable Touch Mouse in lenovo x11
+```
+cat <<EOF>/etc/X11/xorg.conf.d/40-libinput.conf
+Section "InputClass"
+    Identifier "touchpad catchall"
+    Driver "libinput"
+    MatchIsTouchpad "on"
+    Option "Tapping" "on"
+EndSection
+EOF
+```
