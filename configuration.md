@@ -19,12 +19,15 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/meusite.com/privkey.pem;
 
     # 1️⃣ Redireciona /old_page -> /new_page
-    location = /old_page {
-        return 301 /new_page;
+    location ~ ^/oldpage(/.*)?$ {
+        set $subpath $1;
+        return 301 /newpage$subpath;
+    }
     }
 
     # 2️⃣ Exibe conteúdo de /old_page quando acessarem /new_page
-    location = /new_page {
+        location ~ ^/newpage(/.*)?$ {
+            set $subpath $1;
         proxy_pass http://backend/old_page;  # troque pelo seu backend
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
