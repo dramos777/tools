@@ -62,3 +62,7 @@ find /home/userdir -type d -exec chmod +x {} +
 ######     *-type d: Limits the search to directories only.*
 ######     *-exec chmod +x {} +: For each directory found ({}), the command chmod +x is executed, adding execute permission. The + at the end allows find to pass multiple files to the chmod command at once, which is more efficient than executing the chmod command separately for each directory.*
 
+###### Kill all process of a script
+```
+ps aux | grep script.sh | grep -v grep | awk '{print $2}' | xargs kill
+```
