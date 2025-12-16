@@ -66,3 +66,8 @@ find /home/userdir -type d -exec chmod +x {} +
 ```
 ps aux | grep script.sh | grep -v grep | awk '{print $2}' | xargs kill
 ```
+
+###### Rsync
+```
+rsync -ar --info=progress2 --progress --stats -e "ssh -i /home/user/.ssh/id_rsa" big_file.tar user@192.168.0.100:/home/user/
+```
