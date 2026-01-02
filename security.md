@@ -57,3 +57,34 @@ for d in dev proc sys run; do sudo umount /mnt/$d; done
 sudo umount /mnt
 sudo reboot
 ```
+### How to Bypass or Reset a Password on Debian via GRUB
+To bypass or reset a user password (including root) on Debian using the GRUB bootloader, follow these steps:
+
+1. Access the GRUB Menu
+Restart your computer. As soon as the manufacturer's logo disappears, hold down the Shift key (or press Esc repeatedly) to display the boot menu [1, 2].
+
+2. Edit the Boot Entry
+With the Debian option selected, press the e key to edit the boot parameters [1, 3].
+
+3. Modify the Kernel Line
+Locate the line that starts with linux /boot/vmlinuz.... Go to the very end of this line and replace the parameters ro quiet splash (if they exist) with:
+
+```
+rw init=/bin/bash
+#[2, 4]
+```
+4. Boot the System
+Press Ctrl + X or F10 to boot using these temporary settings. You will drop directly into a terminal with root privileges [1, 4].
+
+5. Reset the Password
+In the terminal, type the command below (replace username with your actual username, or use just passwd to change the root password):
+
+```
+passwd username
+#[2, 3]
+```
+
+Enter the new password twice when prompted (note that characters will not appear on the screen for security reasons).
+
+6. Sync and Reboot
+Type sync to ensure that changes are written to the disk. Then, force the machine to reboot
