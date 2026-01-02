@@ -17,3 +17,43 @@ sudo sysctl -p
 ```
 openssl dhparam -out dhparam.pem 2048
 ```
+### Breakdown password - live CD
+1. Identify and mount the partition
+First, find where your system is installed:
+
+```
+sudo fdisk -l  # Look for something like /dev/sda2 or /dev/nvme0n1p2
+sudo mount /dev/sda2 /mnt
+```
+
+2. Mount essential filesystems
+For commands like passwd to work, the chroot environment needs access to hardware and kernel processes:
+
+```
+for d in dev proc sys run; do sudo mount --bind /$d /mnt/$d; done
+```
+
+3. Enter the system (The key step)
+Now, change the root to the folder where you mounted the disk:
+
+```
+sudo chroot /mnt
+# Note: The prompt will change. You are now root inside your installed system.
+```
+
+4. Reset the password
+Since you are already root in the target system, just type:
+
+```
+passwd your_username
+```
+
+5. Exit safely
+It is important to unmount everything before rebooting:
+
+```
+exit  # Exits the chroot environment
+for d in dev proc sys run; do sudo umount /mnt/$d; done
+sudo umount /mnt
+sudo reboot
+```
