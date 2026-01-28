@@ -1364,6 +1364,8 @@ pvs
 ```
 - Remover um PV
 ```
+lvremove [lv-name] [vg-name]
+vgremove [vg-name]
 pvremove /dev/sdb1
 ```
 
