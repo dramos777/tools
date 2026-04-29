@@ -36,3 +36,29 @@ server {
 }
 
 ```
+### Config headers to browser store cache
+```
+# Assets estáticos — cache longo no browser
+location ~* \.(css|js|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot|pdf|map|wasm)$ {
+    proxy_pass https://192.168.0.100:80;
+    proxy_ssl_verify off;
+    proxy_set_header Host              $host;
+    proxy_set_header X-Real-IP         $remote_addr;
+    proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+
+    proxy_hide_header Cache-Control;
+    proxy_hide_header Expires;
+    proxy_hide_header Pragma;
+
+    add_header Cache-Control "public, max-age=31536000, immutable" always;
+    add_header Vary "Accept-Encoding" always;
+}
+```
+
+
+
+
+
+
+
