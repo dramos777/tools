@@ -1395,6 +1395,8 @@ vgremove vg-technogaps
 - Criar um Volume Lógico (LV ou Logical Volume) chamado lv-technogaps com tamnho de 200M utilizando o GV vg-technogaps
 ```
 lvcreate -n lv-technogaps -L 200M vg-technogaps
+# or to use all space in disc
+lvcreate -l 100%FREE -n lv_servicos vg-technogaps
 ```
 - Exibir informações dos LVs criados
 ```
