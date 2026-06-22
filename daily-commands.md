@@ -71,3 +71,100 @@ ps aux | grep script.sh | grep -v grep | awk '{print $2}' | xargs kill
 ```
 rsync -ar --info=progress2 --progress --stats -e "ssh -i /home/user/.ssh/id_rsa" big_file.tar user@192.168.0.100:/home/user/
 ```
+# LVM - Logical Volume Manager
+Instalar pacote lvm
+```
+apt update && apt install lvm2
+```
+Para entender o LVM é necessário pensar em camadas:
+- **Physical Volume** ou **PV** --> possui o tamanho fixo. Na criação da partição será necessário utilizar o tipo de sistema de arquivos como LVM (utilizando o cfdisk, por exemplo).
+
+- **Group Volume** ou **GV** --> "Agrupa" os PVs para dar a intenção de maior capacidade
+
+- **Logical Volume** ou **LV** --> É o volume que de fato será formatado (ext4, xfs, etc) e montado no sistema.
+
+### Physical Volume
+
+- Criar um volume fisico (Physical Volume) na partição /dev/sdb1
+```
+pvcreate /dev/sdb1
+```
+- Exibir informações dos PVs criados
+```
+pvdisplay
+```
+- Exibir informações dos PVs criados de forma sumarizada
+```
+pvs
+```
+- Remover um PV
+```
+lvremove [lv-name] [vg-name]
+vgremove [vg-name]
+pvremove /dev/sdb1
+```
+
+### Group Volume
+- Criar um grupo de volumes (GV ou Group Volume) chamado vg-tecnogaps e adiciona a partição /dev/sdb1 ao grupo
+```
+vgcreate vg-technogaps /dev/sdb1
+```
+- Exibir informações dos GVs criados
+```
+vgdisplay
+```
+- Exibir informações dos GVs criados de forma sumarizada
+```
+vgs
+```
+
+- Expande o GV vg-technogaps, ou seja, adiciona a partição /dev/sdb2 ao grupo já existente chamado vg-technogaps
+```
+vgextend vg-technogaps /dev/sdb2
+```
+- Remover um GV
+```
+vgremove vg-technogaps
+```
+### Logical Volume
+- Criar um Volume Lógico (LV ou Logical Volume) chamado lv-technogaps com tamnho de 200M utilizando o GV vg-technogaps
+```
+lvcreate -n lv-technogaps -L 200M vg-technogaps
+# or to use all space in disc
+lvcreate -l 100%FREE -n lv_servicos vg-technogaps
+```
+- Exibir informações dos LVs criados
+```
+lvdisplay
+```
+- Exibir informações dos LVs criados de forma sumarizada
+```
+lvs
+```
+
+- Formatar o volume lógico criado
+```
+mkfs.ext4 /dev/vg-technogaps/lv-technogaps
+```
+
+- Adicionar 200M no LV lv-technogaps
+```
+lvextend -L +200M /dev/vg-technogaps/lv-technogaps
+```
+- Determinar o valor total de 400M para o LV lv-technogaps
+```
+lvextend -L 400M /dev/vg-technogaps/lv-technogaps
+```
+
+- Resize sistema de arquivos ext4
+```
+resize2fs /dev/vg-technogaps/lv-technogaps
+```
+- Desativar um LV
+```
+lvchange -an /dev/vg-technogaps/lv-technogaps
+```
+- Remover um LV
+```
+lvremove /dev/vg-technogaps/lv-technogaps
+```
