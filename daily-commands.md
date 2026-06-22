@@ -168,3 +168,7 @@ lvchange -an /dev/vg-technogaps/lv-technogaps
 ```
 lvremove /dev/vg-technogaps/lv-technogaps
 ```
+Sync directory
+```
+sudo rsync -avxHAX /var/ /mnt/new_var/
+```
