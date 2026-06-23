@@ -155,7 +155,10 @@ lvextend -L +200M /dev/vg-technogaps/lv-technogaps
 ```
 lvextend -L 400M /dev/vg-technogaps/lv-technogaps
 ```
-
+- Adicionar 100% do espaço disponível no grupo de volumes para o LV lv-technogaps
+```
+lvextend -l 100%FREE /dev/vg-technogaps/lv-technogaps
+```
 - Resize sistema de arquivos ext4
 ```
 resize2fs /dev/vg-technogaps/lv-technogaps
